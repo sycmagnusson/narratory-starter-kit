@@ -1,82 +1,169 @@
-import { BotTurn, BridgeTurn } from "narratory"
+import { BotTurn, BridgeTurn, ANYTHING } from "narratory"
 import { yes, no } from "./Intents/basicQuestions"
+import { answerFallback } from "./answerFallback"
 
 const askNegative: BotTurn = {
-    label: "ASK_NEGATIVE",
-    say: [
-"Then, do you want to ask me something else?",
-"Then, is there anything else you want to know?",
-"Then, do you want to try and ask me another question?",
-"Then, how about you try and ask me something else?",
-"Then, do you want to try and ask me something else?",
-"Then, how about you try and ask me another question?",
-"Do you want to try and ask me another question?",
-"Do you want to ask me something else?",
-"Then, how about another question?",
-"Then, how about you ask me something else?",
-"Then, do you want to ask me another question?",
-"Do you want to ask another question?",
-"Do you want to ask me another question?",
-"Do you want to try another question?"
-],
-user: [
-    {intent: yes,
-        bot: { 
-            say: "",
-            goto: "QUERY_QUESTION",
-        }
+  label: "ASK_NEGATIVE",
+  say: [
+    "Then, do you want to ask me something else?",
+    "Then, how about you ask me something else?",
+    "Then, how about you ask me another question?",
+    "Then, do you want to ask me another question?",
+    "Then, do you feel like asking another question?",
+  ],
+  user: [
+    {
+      intent: yes,
+      bot: {
+        say: ["Cool! Go ahead and ask me a question."],
+        goto: "QUERY_QUESTION",
+      },
+    },
+    {
+      intent: no,
+      bot: {
+        say: ["Alright.", "I see."],
+        goto: "MAKE_SURE",
+      }
+    },
+        {
+            intent: ANYTHING,
+            bot: answerFallback,
         },
-        { intent: no,
-        bot: {
-            say: "",
-            goto: "MAKE_SURE"}
-
-        },
-    ]
-} 
-
-const makeSure: BridgeTurn = {
-    label: "MAKE_SURE",
-    bot: {
-        say: ["That's alright with me.",
-        "I do believe we're only passing through.",
-        "I can't do this alone."],
-        bot: {
-           say: ["How about we go back to where we were?",
-            "How about we go back to where we came from?",
-            "How about we return to where we were?",
-            "How about we pick up from where we left?",
-            "How about picking up from where we left?",
-            "How about we go back to where we were?"],
-           user: [
-                { intent: yes, 
-                    bot: {
-                        say: "",
-                    }
-                    },
-                    { intent: no, 
-                        bot: { 
-                            say:"",
-                        goto: "GOODBYE",
-                    },
-                }
-            ]
-        }    
-    }
+  ]
 }
+
+
+const makeSure: BotTurn = {
+  label: "MAKE_SURE",
+  say: "So. Is this it?",
+  user: [
+    {
+      intent: yes,
+      bot: {
+        say: "Every kingdom must one day come to an end.",
+        goto: "GOODBYE",
+      },
+    },
+    {
+      intent: ANYTHING,
+      bot: [
+        {
+          cond: { retryCount: 0 },
+          bot: {
+            say: ["Uh-huh...", "Hmm hmm..."],
+            bot: {
+              say: "Go on then. Ask me something.",
+              repair: true,
+            },
+          },
+        },
+        {
+          cond: { retryCount: 1 },
+          bot: {
+              say: ["Ehm...", "Uhm..."],
+              bot: {
+          say: "Sorry, I didn't get it. You have to ask me a question.",
+          repair: true,
+              }
+            }
+        },
+        {
+          say: 'Then. "This is it?"',
+          user: [
+            {
+              intent: yes,
+              bot: {
+                say: "Every kingdom must one day come to an end.",
+                goto: "GOODBYE",
+              },
+            },
+            {
+              intent: ANYTHING,
+              bot: [
+                {
+                  say: '"Well this is desert."',
+                  goto: "GOODBYE",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
+
+/*
+const makeSure: BridgeTurn = {
+  label: "MAKE_SURE",
+  bot: {
+    say: ["Alright.", "I see."],
+    bot: {
+      say: "Then...",
+      bot: {
+        say: "... is this it?",
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "...",
+              goto: "GOODBYE",
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: [
+              {
+                cond: { retryCount: 0 },
+                say: ["Uh-huh...", "Hmm hmm..."],
+                bot: {
+                  say: "Go on then. Ask me something.",
+                  repair: true,
+                },
+              },
+              {
+                cond: { retryCount: 1 },
+                say: "You have to ask me a question.",
+                repair: true,
+              },
+              {
+                    say: '"... is this it?"',
+                    repair: true,
+                    user: [
+                      {
+                        intent: yes,
+                        bot: {
+                          say: "...",
+                          goto: "GOODBYE",
+                        },
+                      },
+                      {
+                        intent: no,
+                        bot: {
+                          say: "",
+                          goto: "GOODBYE",
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+      },
+    },
+  } */
 
 const tellAllAbout: BridgeTurn = {
-    label: "TELL_ALL_ABOUT",
-bot: {
-  say: ["My time is a little unclear.",
-  "I'll take the long way 'round.",
-  "Where to, where to begin?"],
+  label: "TELL_ALL_ABOUT",
   bot: {
-    say: ["Let’s start with one of them.",
-    "Let’s go one at a time."],
-    goto: "CHOOSE_EP",
-  }
+    say: ["\"I'll take the long way 'round.\"", '"Where to, where to begin?"', '"Make your mind up, child"'],
+    bot: {
+      say: ["Let’s start with one of them.", "Let’s go one at a time."],
+      goto: "CHOOSE_EP",
+    },
+  },
 }
-}
-                 
+
 export const botInitiatives = [askNegative, makeSure, tellAllAbout]

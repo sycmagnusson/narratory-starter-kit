@@ -280,6 +280,7 @@ export const inAboutEveryKingdom: Intent = {
       "When did you release your album",
       "When did your album come out",
       "Release albums",
+      "what albums do you have",
     ],
   }
 

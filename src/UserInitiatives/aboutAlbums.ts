@@ -1,6 +1,6 @@
 import { inAboutEveryKingdom, inNameOfFirstAlbum, inHaveFirstAlbum, inReleaseDateFirstAlbum, inNameOfSecondAlbum, inHaveSecondAlbum, inReleaseDateSecondAlbum, inAboutNoondayDream, inNameOfThirdAlbum, inHaveThirdAlbum, inReleaseDateThirdAlbum, inNameOfLatestAlbum, inReleaseDateLatestAlbum, inAboutAlbum, chooseEveryKingdom, chooseIFWWW, inHowManyAlbum, chooseNoondayDream, inReleaseDateEveryKingdom, inAboutIFWWW, inReleaseDateIFWWW, inTellAboutAllAlbum, inReleaseDateNoondayDream } from "../Intents/aboutAlbums";
 import { UserTurn } from "narratory";
-import { varContinueAlbum } from "../variables";
+import { varContinueAlbum, varAskPositive, varAskNegative } from "../variables";
 import { yes, no } from "../Intents/basicQuestions";
 
 export const aboutAlbums: UserTurn[] = [
@@ -11,6 +11,10 @@ export const aboutAlbums: UserTurn[] = [
         bot: {
           label: "ABOUT_EVERYKINGDOM",
           say: "I will add more info about this Every Kingdom soon.",
+          bot: {
+            say: varAskPositive,
+            goto: "QUERY_QUESTION",
+            }
         },
       },
     },
@@ -31,7 +35,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -55,7 +63,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -79,7 +91,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -103,7 +119,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -117,6 +137,10 @@ export const aboutAlbums: UserTurn[] = [
         bot: {
           label: "ABOUT_IFWWW",
           say: "I will add more info about this I Forget Where We Were soon.",
+          bot: {
+            say: varAskPositive,
+            goto: "QUERY_QUESTION",
+            }
         },
       },
     },
@@ -137,7 +161,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -161,7 +189,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -185,7 +217,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -209,7 +245,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -223,6 +263,10 @@ export const aboutAlbums: UserTurn[] = [
         bot: {
           label: "ABOUT_NOONDAYDREAM",
           say: "I will add more info about this Noonday Dream soon.",
+          bot: {
+            say: varAskPositive,
+            goto: "QUERY_QUESTION",
+            }
         },
       },
     },
@@ -243,7 +287,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -267,7 +315,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -291,7 +343,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -315,7 +371,11 @@ export const aboutAlbums: UserTurn[] = [
             {
               intent: no,
               bot: {
-                say: "",
+                say: ["Uh-huh...", "Hm hm..."],
+                bot: {
+                  say: varAskNegative,
+                goto: "QUERY_QUESTION"
+                }
               },
             },
           ],
@@ -339,7 +399,11 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: "",
+              say: ["Uh-huh...", "Hm hm..."],
+              bot: {
+                say: varAskNegative,
+              goto: "QUERY_QUESTION"
+              }
             },
           },
         ],
@@ -366,7 +430,11 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: "",
+              say: ["Uh-huh...", "Hm hm..."],
+              bot: {
+                say: varAskNegative,
+              goto: "QUERY_QUESTION"
+              }
             },
           },
         ],
@@ -424,7 +492,11 @@ export const aboutAlbums: UserTurn[] = [
                   {
                     intent: no,
                     bot: {
-                      say: "",
+                      say: ["Uh-huh...", "Hm hm..."],
+                      bot: {
+                        say: varAskNegative,
+                      goto: "QUERY_QUESTION"
+                      }
                     },
                   },
                   {
@@ -458,7 +530,11 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: "",
+              say: ["Uh-huh...", "Hm hm..."],
+              bot: {
+                say: varAskNegative,
+              goto: "QUERY_QUESTION"
+              }
             },
           },
         ],

@@ -332,6 +332,12 @@ export const inAboutBen: Intent = {
     "who is this person",
     "who is it",
     "introduce yourself",
+    "who is Ben Howard",
+    "tell me about Ben Howard", 
+    "tell me your story", 
+    "what's your story", 
+    "tell me about your life",
+    "about Ben"
   ],
 }
 

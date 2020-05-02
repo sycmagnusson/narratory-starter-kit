@@ -1,4 +1,4 @@
-import { UserTurn } from "narratory"
+import { UserTurn, ANYTHING } from "narratory"
 import {
   inNameQuestion,
   inFirstNameQuestion,
@@ -22,7 +22,8 @@ import {
   inRealBenQuestion,
   inLiveShows,
 } from "../Intents/basicQuestions"
-import { varThatsThat, varContinue } from "../variables"
+import { varThatsThat, varContinue, varAskNegative, varAskPositive } from "../variables"
+import { answerFallback } from "../answerFallback"
 
 /* | Name | First Name | Middle Name | Last Name | Full Name |
    | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
@@ -37,6 +38,7 @@ export const basicQuestions: UserTurn[] = [
       say: "Ben.",
       bot: {
         say: ["Ehm, yeah. Just Ben.", "Eh, yeah. Just Ben."],
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -46,6 +48,7 @@ export const basicQuestions: UserTurn[] = [
       say: "Benjamin.",
       bot: {
         say: ["But just Ben is fine too.", "You can just call me Ben though."],
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -55,6 +58,7 @@ export const basicQuestions: UserTurn[] = [
       say: "John.",
       bot: {
         say: varThatsThat,
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -64,10 +68,9 @@ export const basicQuestions: UserTurn[] = [
       say: "Howard.",
       bot: {
         say: [
-          "Did you know that one person out of 1,028 in England has got that last name?",
           'Which means "high guardian". If you ever wondered.',
-          'Which means "brave heart". Go ahead and add that to your unnecessary knowledge.',
-        ],
+          'Which means "brave heart". Go ahead and add that to your unnecessary knowledge.'],
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -77,6 +80,7 @@ export const basicQuestions: UserTurn[] = [
       say: "Benjamin John Howard.",
       bot: {
         say: ["However, just Ben's fine too.", "But really, you can just call me Ben."],
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -84,6 +88,7 @@ export const basicQuestions: UserTurn[] = [
     intent: inHello,
     bot: {
       say: ["Hello, hi!", "Hi, hello!", "Hello mate!", "Hello!", "Hi!", "Hi, hello!"],
+      goto: "QUERY_QUESTION",
     },
   },
   {
@@ -99,12 +104,14 @@ export const basicQuestions: UserTurn[] = [
         "Yeah, good! Nice!",
         "Yeah, good! Alright!",
       ],
+      goto: "QUERY_QUESTION",
     },
   },
   {
     intent: inHowIsDay,
     bot: {
       say: ["Lovely, thanks.", "Great, thank you.", '"I\'ve seen happiness". Yeah.', "Good mate, yeah."],
+      goto: "QUERY_QUESTION",
     },
   },
   {
@@ -112,9 +119,12 @@ export const basicQuestions: UserTurn[] = [
     bot: {
       say: [
         'Err. "I\'ve have plenty of time to think about it."',
-        '"I wish I had all my friends somewhere drinking." "Heh.',
+        '"I wish I had all my friends somewhere drinking." Heh.',
         '"I could lay here for a while". Yeah.',
+        '"My time is a little unclear." Yeah.',
+        'Err. "My time is a little unclear."',
       ],
+      goto: "QUERY_QUESTION",
     },
   },
   {
@@ -128,6 +138,7 @@ export const basicQuestions: UserTurn[] = [
         "Yeah, nice to meet you too!",
         "Nice to meet you too, yeah.",
       ],
+      goto: "QUERY_QUESTION",
     },
   },
   {
@@ -136,6 +147,7 @@ export const basicQuestions: UserTurn[] = [
       say: "I'm 33.",
       bot: {
         say: ['"Time, you know. You can\'t get it back."', '"It\'s been a while, been a while now."'],
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -144,7 +156,7 @@ export const basicQuestions: UserTurn[] = [
     bot: {
       say: "24th of April, 1987.",
       bot: {
-        say: "Do you want to hear about where I grew up?",
+        say: "Do you want to hear the story about where I grew up?",
       user: [
         {
           intent: yes,
@@ -157,7 +169,10 @@ export const basicQuestions: UserTurn[] = [
         intent: no,
         bot: {
           say: ["Ehm...", "Uh-huh...", "Hm hm..."],
-          goto: "ASK_NEGATIVE"
+          bot: {
+            say: varAskNegative,
+            goto: "QUERY_QUESTION"
+          }
         }
         },
       ]
@@ -170,6 +185,7 @@ export const basicQuestions: UserTurn[] = [
       say: ["1987."],
       bot: {
         say: ['"Every day\'s a dice roll."', '"And somehow I did feel like yesterday was ours."'],
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -179,6 +195,7 @@ export const basicQuestions: UserTurn[] = [
       say: ["24th of April.", "April 24th."],
       bot: {
         say: varThatsThat,
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -188,6 +205,7 @@ export const basicQuestions: UserTurn[] = [
       say: ["Richmond. South-west London.", "South-west London. Richmond."],
       bot: {
         say: varThatsThat,
+        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -220,14 +238,18 @@ export const basicQuestions: UserTurn[] = [
                               intent: yes,
                               bot: {
                                 label: "ABOUT_DEVON",
-                                say: "",
+                                say: "I will add more info about Devon here",
+                                goto: "QUERY_QUESTION",
                               },
                             },
                             {
                               intent: no,
                               bot: {
-                                say: "",
-                                goto: "ASK_NEGATIVE",
+                                say: ["Uh-huh...", "Hm hm..."],
+                                bot: {
+                                  say: varAskNegative,
+                                goto: "QUERY_QUESTION"
+                                }
                               },
                             },
                           ],
@@ -242,8 +264,12 @@ export const basicQuestions: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: "",
-            },
+              say: ["Uh-huh...", "Hm hm..."],
+              bot: {
+                say: varAskNegative,
+              goto: "QUERY_QUESTION"
+              }
+            }
           },
         ],
       },
@@ -268,19 +294,26 @@ export const basicQuestions: UserTurn[] = [
                   bot: {
                     say: "I'm just exquisite.",
                     bot: {
-                      say: ["Cool, cool.", "Yeah.", "Ehm.", "Alright.", "Eh."],
+                      bot: {
+                        say: varAskPositive,
+                        goto: "QUERY_QUESTION",
                     },
                   },
                 },
               },
             },
           },
+        },
           {
             intent: no,
             bot: {
               say: ["Uh-huh...", "Hm hm..."],
-            },
+              bot: {
+                say: varAskNegative,
+              goto: "QUERY_QUESTION"
+              }
           },
+        }
         ],
       },
     },
@@ -307,7 +340,7 @@ export const basicQuestions: UserTurn[] = [
               {
                 intent: yes,
                 bot: {
-                  say: "",
+                  say: varAskPositive,
                   goto: "QUERY_QUESTION",
                 },
               },
@@ -315,7 +348,13 @@ export const basicQuestions: UserTurn[] = [
                 intent: no,
                 bot: {
                   say: "I see...",
-                  goto: "GOODBYE",
+                  bot: {
+                    say: ["Then, do you want to ask me something else?",
+                    "Then, how about you ask me something else?",
+                    "Then, how about you ask me another question?",
+                    "Then, do you want to ask me another question?",],
+                  goto: "QUERY_QUESTION"
+                  }
                 },
               },
             ],
@@ -330,10 +369,12 @@ export const basicQuestions: UserTurn[] = [
     label: "LIVE_SHOWS",
     say: "",
     bot: {
-      say: "I have vanished. I haven't toured since 2019.",
+      say: ['"Come find me when the years get older."',
+      '"You can tell \'em I\'ll be back in the minute. For now is not the time".'],
+      goto: "QUERY_QUESTION",
     }
   }
-}
+},
 ]
 
 export const UIBasicQuestions = [basicQuestions]
