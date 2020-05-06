@@ -15,6 +15,8 @@ export const varFillers = [
   "Eh.",
 ]
 
+export const varPositiveFillers = ["So, yeah.", "Alright.", "Cool, cool.", "Yeah, so.", "Cool.", "Okay, so."]
+
 export const varGreetings = [
   //"Hello, hi!", "Hi, hello!", "Hello mate!", "Hello!", "Hi!", "Hi, hello!",
   "... oh, hello, hi!",
@@ -31,7 +33,7 @@ export const varlyricGreetings = [
   '"I was there already I think, as a child. But I really can\'t remember why..."',
   '"And the moonlight covered the moors, and I swear there was music behind every door..."',
   '"I want blue sky, picking rose petals. Spring come too early most years now..."',
-  '"Ain\'t nothing in this world that ain\'t me and you and ours and theirs and his and hers and yours and mine..."'
+  "\"Ain't nothing in this world that ain't me and you and ours and theirs and his and hers and yours and mine...\"",
 ]
 
 export const varFirstQuestion = [
@@ -79,15 +81,24 @@ export const varAskNegative = [
   "Then, how about you ask me another question?",
   "Then, do you want to ask me another question?",
   "Then, do you feel like asking another question?",
+  "Then, do you feel like asking something else?",
 ]
 
 export const varAskPositive = [
-  "So. How about you ask me something else?",
-  "So. Is there any other question you would like to ask me?",
-  "So. Do you want to ask me anything else?",
-  "Alright. How about you ask me something else?",
-  "Alright. Is there any other question you would like to ask me?",
-  "Alright. Do you want to ask me anything else?",
+  "How about you ask me something else?",
+  "Is there any other question you would like to ask me?",
+  "Do you want to ask me anything else?",
+  "Do you have any other question for me?",
+  "How about you ask me another question?",
+  "Is there anything else you would like to ask me?",
+]
+export const varSorryAgain = [
+  "I'm sorry, what was that?",
+  "Sorry, hey. What did you say?",
+  "Hey, mate. I'm sorry. I didn't understand what you said. Could you say that again?",
+  "Sorry mate. Could you try and re-phrase that?",
+  "Hey, sorry. Do you think you could say that one more time?",
+  "Sorry, I didn't get that. Could you repeat that?"
 ]
 
 export const variables = [
@@ -101,6 +112,7 @@ export const variables = [
   varContinueAlbum,
   varAskNegative,
   varAskPositive,
+  varSorryAgain,
 ]
 
 export const inOnlyLove: Intent = {

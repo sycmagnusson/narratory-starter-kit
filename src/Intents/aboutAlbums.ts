@@ -1,309 +1,230 @@
 import { Intent } from "narratory"
+import { entAlbum, entEK, entIFWWW, entND } from "../Entities/aboutAlbums"
+import { entName, entFirst, entHave, entWhen, entRelease, entKnow, entSomething, entInfo, entSecond, entThird, entLast, entLatest, entMany } from "../Entities/general"
 
 export const inAboutEveryKingdom: Intent = {
-    examples: [
-      "tell me about your first album",
-      "tell me about every kingdom",
-      "first album",
-      "1 album",
-      "debut album",
-      "info about debut album",
-      "info about first album",
-      "info about every kingdom",
-      "What about every kingdom",
-      "tell me something about every kingdom",
-      "i want to know about every kingdom",
-    ],
-  }
-  
-  export const inNameOfFirstAlbum: Intent = {
-    examples: [
-      "What’s your first album called",
-      "What’s your 1 album called",
-      "What’s the title of your first album",
-      "What’s the title of your 1 album",
-      "Title of first album",
-      "what's the name of your debut album",
-      "what's the title of your debut album",
-      "title of debut album",
-    ],
-  }
-  
-  export const inHaveFirstAlbum: Intent = {
-    examples: [
-      "Have you released a first album",
-      "Did you release a first album",
-      "Do you have a first album",
-      "Is there a first album",
-      "have you got a first album?",
-    ],
-  }
-  
-  export const inReleaseDateFirstAlbum: Intent = {
-    examples: [
-      "When was your first album released",
-      "What year did you release your first album",
-      "When did you release your first album",
-      "When did your first album come out",
-      "Release first album",
-      "Release 1 album.",
-      "When was every kingdom released",
-      "What year did you release every kingdom",
-      "When did you release every kingdom",
-      "When did every kingdom come out",
-    ],
-  }
-  
-  export const inReleaseDateEveryKingdom: Intent = {
-      examples: [
-        "When was every kingdom released",
-        "What year did you release every kingdom",
-        "When did you release every kingdom",
-        "When did every kingdom come out",
-      ],
-    }
-  
-  export const inAboutIFWWW: Intent = {
-    examples: [
-      "tell me about your second album",
-      "tell me about i forget where we were",
-      "second album",
-      "2 album",
-      "info about second album",
-      "info about i forget where we were",
-      "What about i forget where we were",
-      "tell me something about i forget where we were",
-      "i want to know about i forget where we were",
-    ],
-  }
-  
-  export const inNameOfSecondAlbum: Intent = {
-    examples: [
-      "What’s the name of your second album",
-      "What’s your second album called",
-      "What’s your 2 album called",
-      "What’s the title of your second album",
-      "What’s the title of your 2 album",
-      "Title of second album",
-    ],
-  }
-  
-  export const inHaveSecondAlbum: Intent = {
-    examples: [
-      "Have you released a second album",
-      "Did you release a second album",
-      "Do you have a second album",
-      "Is there a second album",
-      "have you got a second album?"
-    ],
-  }
-  
-  export const inReleaseDateSecondAlbum: Intent = {
-    examples: [
-      "When was your second album released",
-      "What year did you release your second album",
-      "When did you release your second album",
-      "When did your second album come out",
-      "Release second album",
-      "Release 2 album.",
-      "When was i forget where we were released",
-      "What year did you release i forget where we were",
-      "When did you release i forget where we were",
-      "When did i forget where we were come out",
-    ],
-  }
-  
-  export const inReleaseDateIFWWW: Intent = {
-      examples: [
-        "When was i forget where we were released",
-        "What year did you release i forget where we were",
-        "When did you release i forget where we were",
-        "When did i forget where we were come out",
-      ],
-    }
-  
-  export const inAboutNoondayDream: Intent = {
-    examples: [
-      "tell me about your third album",
-      "tell me about noonday dream",
-      "third album",
-      "3 album",
-      "info about third album",
-      "info about noonday dream",
-      "What about noonday dream",
-      "tell me something about noonday dream",
-      "i want to know about noonday dream",
-    ],
-  }
-  
-  export const inNameOfThirdAlbum: Intent = {
-    examples: [
-      "What’s the name of your third album",
-      "What’s your third album called",
-      "What’s your 3 album called",
-      "What’s the title of your third album",
-      "What’s the title of your 3 album",
-      "Title of third album",
-    ],
-  }
-  
-  export const inHaveThirdAlbum: Intent = {
-    examples: [
-      "Have you released a third album",
-      "Did you release a third album",
-      "Do you have a third album",
-      "Is there a third album",
-      "have you got a third album?"
-    ],
-  }
-  
-  export const inReleaseDateThirdAlbum: Intent = {
-    examples: [
-      "When was your third album released",
-      "What year did you release your third album",
-      "When did you release your third album",
-      "When did your third album come out",
-      "Release third album",
-      "Release 3 album.",
-    ],
-  }
+  entities: { FIRST: entFirst, ALBUM: entAlbum, EK: entEK, KNOW: entKnow, SOMETHING: entSomething, INFO: entInfo},
+  examples: [
+    "_INFO about your _FIRST _ALBUM",
+    "_INFO about _EK",
+    "_FIRST _ALBUM",
+    "_INFO _SOMETHING about _EK",
+    "_INFO _SOMETHING about _FIRST _ALBUM",
+    "i want to _KNOW about _EK",
+    "i want to _KNOW about your _FIRST _ALBUM",
+    "what's your _FIRST _ALBUM",
+    "_EK"
+  ],
+}
 
-  export const inReleaseDateNoondayDream: Intent = {
-    examples: [
-      "When was noonday dream released",
-      "What year did you release noonday dream ",
-      "When did you release noonday dream ",
-      "When did noonday dream  come out",
-    ],
-  }
+export const inNameOfFirstAlbum: Intent = {
+  entities: { FIRST: entFirst, ALBUM: entAlbum, NAME: entName },
+  examples: ["_NAME of _FIRST _ALBUM", "What's your _FIRST _ALBUM _NAME", "What's the _NAME of your _FIRST _ALBUM"],
+}
 
-  export const inNameOfLatestAlbum: Intent = {
-    examples: [
-      "What’s your latest album called",
-      "What’s the title of your latest album",
-      "Title of latest album",
-      "What’s the name of your last album?",
-      "What’s your last album called",
-      "What’s the title of your last album",
-      "Title of last album",
-      "what's your latest album",
-      "tell me about your latest album",
-    ],
-  }
-  
-  export const inReleaseDateLatestAlbum: Intent = {
-    examples: [
-      "When did you release your latest album",
-      "When was your last album released",
-      "What year did you release your last album",
-      "When did you release your last album",
-      "When did your last album come out",
-      "Release last album",
-      "When was your latest album released",
-      "What year did you release your latest album",
-      "When did you release your latest album",
-      "When did your latest album come out",
-      "Release latest album",
-    ],
-  }
-  
-  export const inHowManyAlbum: Intent = {
-    examples: [
-      "How many albums do you have?",
-      "How many album are there",
-      "How many album have you released",
-      "How many album are out",
-      "How many album",
-      "album how many",
-    ],
-  }
-  
-  export const chooseEveryKingdom: Intent = {
-    examples: [
-      "every kingdom",
-      "first album",
-      "tell me about every kingdom",
-      "i want to know about every kingdom",
-      "info every kingdom",
-      "give me details about every kingdom",
-    ],
-  }
-  
-  export const chooseIFWWW: Intent = {
-    examples: [
-      "i forget where we were",
-      "second album",
-      "tell me about i forget where we were",
-      "i want to know about i forget where we were",
-      "info i forget where we were",
-      "give me details about i forget where we were",
-    ],
-  }
-  
-  export const chooseNoondayDream: Intent = {
-    examples: [
-      "noonday dream",
-      "third album",
-      "tell me about noonday dream",
-      "i want to know about noonday dream",
-      "info noonday dream",
-      "give me details about noonday dream",
-    ],
-  }
+export const inHaveFirstAlbum: Intent = {
+  entities: { FIRST: entFirst, ALBUM: entAlbum, RELEASE: entRelease, HAVE: entHave},
+  examples: [
+    "_HAVE you _RELEASE a _FIRST _ALBUM",
+    "Do you _HAVE a _FIRST _ALBUM",
+    "_HAVE a _FIRST _ALBUM",
+    "_HAVE you got a _FIRST _ALBUM",
+  ],
+}
 
-  export const inTellAboutAllAlbum: Intent = {
-    examples: [
-      "tell me about all the albums",
-      "i wanna know about all the albums",
-      "tell about all albums",
-      "can i hear about all albums",
-      "can you tell me about all albums",
-      "tell me about all of his albums",
-      "i wanna know about all of his albums",
-    ],
-  }
-  
-  export const inAboutAlbum: Intent = {
-    examples: [
-      "What’s the name of your album",
-      "What’s your album called",
-      "What’s the title of your album",
-      "Title of album",
-      "Do you have a album",
-      "What’s the name of your album",
-      "Have you released a album",
-      "What’s your album",
-      "Have you got any album out",
-      "do you have any album",
-      "When was your album released",
-      "What year did you release your album",
-      "When did you release your album",
-      "When did your album come out",
-      "Release albums",
-      "what albums do you have",
-    ],
-  }
+export const inReleaseDateFirstAlbum: Intent = {
+  entities: { FIRST: entFirst, ALBUM: entAlbum, RELEASE: entRelease, WHEN: entWhen},
+  examples: [
+    "_WHEN was your _FIRST _ALBUM _RELEASE",
+    "_WHEN did you _RELEASE your _FIRST _ALBUM",
+    "_WHEN did your _FIRST _ALBUM _RELEASE",
+    "_RELEASE _FIRST _ALBUM",
+  ],
+}
 
-  export const intents = [inAboutEveryKingdom,,
-    inNameOfFirstAlbum,
-    inHaveFirstAlbum,
-    inReleaseDateFirstAlbum,
-    inReleaseDateEveryKingdom,
-    inAboutIFWWW,
-    inNameOfSecondAlbum,
-    inHaveSecondAlbum,
-    inReleaseDateSecondAlbum,
-    inReleaseDateIFWWW,
-    inAboutNoondayDream,
-    inNameOfThirdAlbum,
-    inHaveThirdAlbum,
-    inReleaseDateThirdAlbum,
-    inReleaseDateNoondayDream,
-    inNameOfLatestAlbum,
-    inReleaseDateLatestAlbum,
-    inHowManyAlbum,
-    chooseEveryKingdom,
-    chooseIFWWW,
-    chooseNoondayDream,
-    inTellAboutAllAlbum,
-    inAboutAlbum]
+export const inReleaseDateEveryKingdom: Intent = {
+  entities: {RELEASE: entRelease, WHEN: entWhen, EK: entEK},
+  examples: [
+    "WHEN was _EK _RELEASE",
+    "_WHEN did you _RELEASE _EK",
+    "_WHEN did _EK _RELEASE",
+  ],
+}
+
+export const inAboutIFWWW: Intent = {
+  entities: { SECOND: entSecond, ALBUM: entAlbum, IFWWW: entIFWWW, KNOW: entKnow, SOMETHING: entSomething, INFO: entInfo},
+  examples: [
+    "_INFO about your _SECOND _ALBUM",
+    "_INFO about _IFWWW",
+    "_SECOND _ALBUM",
+    "_INFO _SOMETHING about _IFWWW",
+    "_INFO _SOMETHING about _SECOND _ALBUM",
+    "i want to _KNOW about _IFWWW",
+    "i want to _KNOW about your _SECOND _ALBUM",
+    "what's your _SECOND _ALBUM",
+    "_IFWWW"
+  ],
+}
+
+export const inNameOfSecondAlbum: Intent = {
+  entities: {SECOND: entSecond, NAME: entName, ALBUM: entAlbum},
+  examples: ["_NAME of _SECOND _ALBUM", "What's your _SECOND _ALBUM _NAME", "What's the _NAME of your _SECOND _ALBUM"],
+}
+
+export const inHaveSecondAlbum: Intent = {
+  entities: { SECOND: entSecond, ALBUM: entAlbum, RELEASE: entRelease, HAVE: entHave},
+  examples: [
+    "_HAVE you _RELEASE a _SECOND _ALBUM",
+    "Do you _HAVE a _SECOND _ALBUM",
+    "_HAVE a _SECOND _ALBUM",
+    "_HAVE you got a _SECOND _ALBUM",
+  ],
+}
+
+export const inReleaseDateSecondAlbum: Intent = {
+  entities: {RELEASE: entRelease, WHEN: entWhen, SECOND: entSecond},
+  examples: [
+    "_WHEN was your _SECOND _ALBUM _RELEASE",
+    "_WHEN did you _RELEASE your _SECOND _ALBUM",
+    "_WHEN did your _SECOND _ALBUM _RELEASE",
+    "_RELEASE _SECOND _ALBUM",
+  ],
+}
+
+export const inReleaseDateIFWWW: Intent = {
+  entities: {RELEASE: entRelease, WHEN: entWhen, IFWWW: entIFWWW},
+  examples: [
+    "WHEN was _IFWWW _RELEASE",
+    "_WHEN did you _RELEASE _IFWWW",
+    "_WHEN did _IFWWW _RELEASE",
+  ],
+}
+
+export const inAboutNoondayDream: Intent = {
+  entities: { THIRD: entThird, ALBUM: entAlbum, ND: entND, KNOW: entKnow, SOMETHING: entSomething, INFO: entInfo},
+  examples: [
+    "_INFO about your _THIRD _ALBUM",
+    "_INFO about _ND",
+    "_THIRD _ALBUM",
+    "_INFO _SOMETHING about _ND",
+    "_INFO _SOMETHING about _THIRD _ALBUM",
+    "i want to _KNOW about _ND",
+    "i want to _KNOW about your _THIRD _ALBUM",
+    "what's your _THIRD _ALBUM",
+    "_ND"
+  ],
+}
+
+export const inNameOfThirdAlbum: Intent = {
+  entities: {THIRD: entThird, NAME: entName, ALBUM: entAlbum},
+  examples: ["_NAME of _THIRD _ALBUM", "What's your _THIRD _ALBUM _NAME", "What's the _NAME of your _THIRD _ALBUM"],
+}
+
+export const inHaveThirdAlbum: Intent = {
+  entities: { THIRD: entThird, ALBUM: entAlbum, RELEASE: entRelease, HAVE: entHave},
+  examples: [
+    "_HAVE you _RELEASE a _THIRD _ALBUM",
+    "Do you _HAVE a _THIRD _ALBUM",
+    "_HAVE a _THIRD _ALBUM",
+    "_HAVE you got a _THIRD _ALBUM",
+  ],
+}
+
+export const inReleaseDateThirdAlbum: Intent = {
+  entities: {RELEASE: entRelease, WHEN: entWhen, THIRD: entThird},
+  examples: [
+    "_WHEN was your _THIRD _ALBUM _RELEASE",
+    "_WHEN did you _RELEASE your _THIRD _ALBUM",
+    "_WHEN did your _THIRD _ALBUM _RELEASE",
+    "_RELEASE _THIRD _ALBUM",
+  ],
+}
+
+export const inReleaseDateNoondayDream: Intent = {
+  entities: {RELEASE: entRelease, WHEN: entWhen, ND: entND},
+  examples: [
+    "WHEN was _ND _RELEASE",
+    "_WHEN did you _RELEASE _ND",
+    "_WHEN did _ND _RELEASE",
+  ],
+}
+
+export const inNameOfLatestAlbum: Intent = {
+  entities: {LATEST: entLatest, NAME: entName, ALBUM: entAlbum},
+  examples: ["_NAME of _LATEST _ALBUM", "What's your _LATEST _ALBUM _NAME", "What's the _NAME of your _LATEST _ALBUM"],
+}
+
+export const inReleaseDateLatestAlbum: Intent = {
+  entities: {RELEASE: entRelease, WHEN: entWhen, LATEST: entLast},
+  examples: [
+    "_WHEN was your _LATEST _ALBUM _RELEASE",
+    "_WHEN did you _RELEASE your _LATEST _ALBUM",
+    "_WHEN did your _LATEST _ALBUM _RELEASE",
+    "_RELEASE _LATEST _ALBUM",
+  ],
+}
+
+export const inHowManyAlbum: Intent = {
+  entities: {MANY: entMany, ALBUM: entAlbum, HAVE: entHave, RELEASE: entRelease},
+  examples: [
+    "how _MANY _ALBUM do you _HAVE?",
+    "How _MANY _ALBUM are there",
+    "How _MANY _ALBUM _HAVE you _RELEASE",
+    "How _MANY _ALBUM are _RELEASE",
+    "How _MANY _ALBUM",
+    "_ALBUM how _MANY",
+  ],
+}
+
+export const inTellAboutAllAlbum: Intent = {
+  entities: {INFO: entInfo, ALBUM: entAlbum, HAVE: entHave, RELEASE: entRelease},
+  examples: [
+   "_INFO about _ALL the _ALBUM",
+    "i wanna _KNOW about _ALL the _ALBUM",
+    "can i _KNOW about _ALL _ALBUM",
+    "can you _INFO about _ALL _ALBUM",
+  ],
+}
+
+export const inAboutAlbum: Intent = {
+  entities: { ALBUM: entAlbum, EK: entEK, KNOW: entKnow, SOMETHING: entSomething, INFO: entInfo},
+  examples: [
+    "_NAME of _ALBUM", 
+    "What's your _ALBUM _NAME", 
+    "What's the _NAME of your _ALBUM",
+    "_WHEN was your _ALBUM _RELEASE",
+    "_WHEN did you _RELEASE your _ALBUM",
+    "_WHEN did your _ALBUM _RELEASE",
+    "_RELEASE _ALBUM",
+    "_HAVE you got any _ALBUM _RELEASE",
+    "_do you HAVE any _ALBUM?",
+    "what's your _ALBUM",
+    "what _ALBUM do you _HAVE"
+  ],
+}
+
+export const intents = [
+  inAboutEveryKingdom,
+  inNameOfFirstAlbum,
+  inHaveFirstAlbum,
+  inReleaseDateFirstAlbum,
+  inReleaseDateEveryKingdom,
+  inAboutIFWWW,
+  inNameOfSecondAlbum,
+  inHaveSecondAlbum,
+  inReleaseDateSecondAlbum,
+  inReleaseDateIFWWW,
+  inAboutNoondayDream,
+  inNameOfThirdAlbum,
+  inHaveThirdAlbum,
+  inReleaseDateThirdAlbum,
+  inReleaseDateNoondayDream,
+  inNameOfLatestAlbum,
+  inReleaseDateLatestAlbum,
+  inHowManyAlbum,
+  /*chooseEveryKingdom,
+  chooseIFWWW,
+  chooseNoondayDream,*/
+  inTellAboutAllAlbum,
+  inAboutAlbum,
+]

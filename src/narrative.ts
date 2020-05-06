@@ -1,8 +1,5 @@
 import { BotTurn, BridgeTurn, ANYTHING } from "narratory"
-import {
-  varGreetings,
-  varlyricGreetings,
-} from "./variables"
+import { varGreetings, varlyricGreetings } from "./variables"
 import { yes, no } from "./Intents/basicQuestions"
 import { answerFallback } from "./answerFallback"
 
@@ -19,61 +16,101 @@ const greeting: BridgeTurn = {
         bot: {
           say: ["Ehm.", "So, yeah.", "So, eh.", "So, ehm.", "Ehm, so.", "So, hmm.", "So.", "Eh."],
           bot: {
-            say: ["What question do you have for me?", "What would you like to ask me?", "How about you ask me a question?"
+            say: [
+              "What question do you have for me?",
+              "What would you like to ask me?",
+              "How about you ask me a question?",
             ],
             user: [
               {
                 intent: yes,
                 bot: {
                   say: "Go on, ask me a question then.",
-                  repair: true
-                }
-              },
-              {
-                intent: no,
-                bot: {
-                  say: "",
-                  goto: "MAKE_SURE",
-                }
+                  repair: true,
+                },
               },
               {
                 intent: ANYTHING,
                 bot: answerFallback,
-              }
-            ]
-          }
-        }
-      }
-    }
-  }
+              },
+              {
+                intent: no,
+                bot: [
+                  {
+                    cond: { retryCount: 0 },
+                    bot: {
+                      say: ["Uh-huh...", "Hmm hmm..."],
+                      bot: {
+                        say: "Sorry, I didn't get it. You have to tell me which album you want to know more about.",
+                        repair: true,
+                      },
+                    },
+                  },
+                  {
+                    cond: { retryCount: 1 },
+                    bot: {
+                      say: ["Ehm...", "Uhm..."],
+                      bot: {
+                        say: "What was that? You have to tell me which album you want me to tell you more about.",
+                        repair: true,
+                      },
+                    },
+                  },
+                  {
+                    bot: {
+                      say: "This is it?",
+                      user: [
+                        {
+                          intent: yes,
+                          bot: {
+                            say: "I see...",
+                            goto: "GOODBYE",
+                          },
+                        },
+                        {
+                          intent: ANYTHING,
+                          bot: {
+                            say: "",
+                            goto: "GOODBYE",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      },
+    },
+  },
 }
-
 
 const queryQuestions: BotTurn = {
   label: "QUERY_QUESTION",
   say: "",
   user: [
-  {
-    intent: yes,
-    bot: {
-      say: ["Go on, ask me a question then.", "How about you ask me something?"],
-      repair: true
-    }
-  },
-  {
-    intent: no,
-    bot: {
-      say: "",
-      goto: "MAKE_SURE",
-    }
-  },
-  {
-    intent: ANYTHING,
-    bot: answerFallback,
-  }
-]
-  }
-
+    {
+      intent: yes,
+      bot: {
+        say: ["Go on, ask me a question then.", "How about you ask me something?"],
+        repair: true,
+      },
+    },
+    {
+      intent: no,
+      bot: {
+        say: "",
+        goto: "MAKE_SURE",
+      },
+    },
+    {
+      intent: ANYTHING,
+      bot: answerFallback,
+    },
+  ],
+}
 
 const goodbye: BotTurn = {
   label: "GOODBYE",

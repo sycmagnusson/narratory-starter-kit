@@ -1,10 +1,5 @@
-import { UserTurn, ANYTHING } from "narratory"
+import { UserTurn, ANYTHING, BotTurn } from "narratory"
 import {
-  inNameQuestion,
-  inFirstNameQuestion,
-  inMiddleNameQuestion,
-  inLastNameQuestion,
-  inFullNameQuestion,
   inHowAreYou,
   inHello,
   inHowIsDay,
@@ -21,9 +16,13 @@ import {
   inAboutBen,
   inRealBenQuestion,
   inLiveShows,
+  inName,
+  inFirstName,
+  inMiddleName,
+  inLastName,
+  inFullName,
 } from "../Intents/basicQuestions"
 import { varThatsThat, varContinue, varAskNegative, varAskPositive } from "../variables"
-import { answerFallback } from "../answerFallback"
 
 /* | Name | First Name | Middle Name | Last Name | Full Name |
    | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
@@ -33,7 +32,7 @@ import { answerFallback } from "../answerFallback"
 
 export const basicQuestions: UserTurn[] = [
   {
-    intent: inNameQuestion, 
+    intent: inName,
     bot: {
       say: "Ben.",
       bot: {
@@ -43,7 +42,7 @@ export const basicQuestions: UserTurn[] = [
     },
   },
   {
-    intent: inFirstNameQuestion,
+    intent: inFirstName, 
     bot: {
       say: "Benjamin.",
       bot: {
@@ -53,7 +52,7 @@ export const basicQuestions: UserTurn[] = [
     },
   },
   {
-    intent: inMiddleNameQuestion,
+    intent: inMiddleName,
     bot: {
       say: "John.",
       bot: {
@@ -63,19 +62,19 @@ export const basicQuestions: UserTurn[] = [
     },
   },
   {
-    intent: inLastNameQuestion,
+    intent: inLastName,
     bot: {
       say: "Howard.",
       bot: {
         say: [
-          'Which means "high guardian". If you ever wondered.',
+          'If you ever wondered, that means means "high guardian".',
           'Which means "brave heart". Go ahead and add that to your unnecessary knowledge.'],
         goto: "QUERY_QUESTION",
       },
     },
   },
   {
-    intent: inFullNameQuestion,
+    intent: inFullName,
     bot: {
       say: "Benjamin John Howard.",
       bot: {
@@ -118,9 +117,9 @@ export const basicQuestions: UserTurn[] = [
     intent: inWhatsUp,
     bot: {
       say: [
-        'Err. "I\'ve have plenty of time to think about it."',
+        'Err. "I\'ll have plenty of time to think about it."',
         '"I wish I had all my friends somewhere drinking." Heh.',
-        '"I could lay here for a while". Yeah.',
+        '"Hmm. I could lay here for a while. ',
         '"My time is a little unclear." Yeah.',
         'Err. "My time is a little unclear."',
       ],
@@ -134,7 +133,7 @@ export const basicQuestions: UserTurn[] = [
         "Nice meeting you too! Yeah.",
         "Yeah, nice meeting you too!",
         "Nice meeting you too, yeah.",
-        "Nice to meet you too",
+        "Nice to meet you too.",
         "Yeah, nice to meet you too!",
         "Nice to meet you too, yeah.",
       ],
@@ -349,11 +348,8 @@ export const basicQuestions: UserTurn[] = [
                 bot: {
                   say: "I see...",
                   bot: {
-                    say: ["Then, do you want to ask me something else?",
-                    "Then, how about you ask me something else?",
-                    "Then, how about you ask me another question?",
-                    "Then, do you want to ask me another question?",],
-                  goto: "QUERY_QUESTION"
+                    say: "",
+                  goto: "GOODBYE"
                   }
                 },
               },

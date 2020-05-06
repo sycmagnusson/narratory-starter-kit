@@ -1,4 +1,5 @@
 import { Intent } from "narratory"
+import { entName, entFirst, entMiddle, entLast, entFull, entHello, entWhere, entBorn, entPlace, entMean, entInfo, entUnderstand, entAnother, entQuestion, entCan, entAsk, entSomething, entGoodbye, entIDK } from "../Entities/general"
 
 /* | Name | First Name | Middle Name | Last Name | Full Name |
    | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
@@ -7,130 +8,79 @@ import { Intent } from "narratory"
    | About Ben | Real Ben? | Live Shows |
    | Yes | No | */
 
-export const inNameQuestion: Intent = {
-  examples: ["what's your name", "what is your name", "your name", "tell me your name"],
-}
-
-export const inFirstNameQuestion: Intent = {
+export const inName: Intent = {
+  entities: { NAME: entName },
   examples: [
-    "what's your first name",
-    "what is your first name",
-    "tell me your first name",
-    "please tell me your first name",
-    "first name",
-    "your first name please",
-    "only your first name",
+    "_NAME",
+    "what is your _NAME",
+    "tell me your _NAME",
+    "your _NAME please",
+    "only your _NAME",
+    "just your _NAME",
+    "what's your _NAME",
   ],
 }
 
-export const inMiddleNameQuestion: Intent = {
+export const inFirstName: Intent = {
+  entities: { FIRST: entFirst, 
+    NAME: entName},
   examples: [
-    "what's your middle name",
-    "what is your middle name",
-    "your middle name",
-    "tell me your middle name",
-    "please tell me your middle name",
-    "middle name",
-    "your middle name please",
-    "only our middle name",
+    "_FIRST _NAME",
+    "what is your _FIRST _NAME",
+    "tell me your _FIRST _NAME",
+    "your _FIRST _NAME please",
+    "only your _FIRST _NAME",
+    "just your _FIRST _NAME",
+    "what's your _FIRST _NAME",
   ],
 }
 
-export const inLastNameQuestion: Intent = {
+export const inMiddleName: Intent = {
+  entities: { MIDDLE: entMiddle,
+    NAME: entName },
   examples: [
-    "what's your last name",
-    "what is your last name",
-    "your last name",
-    "tell me your last name",
-    "please tell me your last name",
-    "last name",
-    "your last name please",
-    "only our last name",
+    "_MIDDLE _NAME",
+    "what is your _MIDDLE _NAME",
+    "tell me your _MIDDLE _NAME",
+    "your _MIDDLE _NAME please",
+    "only your _MIDDLE _NAME",
+    "just your _MIDDLE_NAME",
+    "what's your _MIDDLE _NAME",
   ],
 }
 
-export const inFullNameQuestion: Intent = {
+export const inLastName: Intent = {
+  entities: { LAST: entLast, 
+    NAME: entName},
   examples: [
-    "what's your full name",
-    "what is your full name",
-    "your full name",
-    "tell me your full name",
-    "please tell me your full name",
-    "full name",
-    "your full name please",
-    "only our full name",
+    "_LAST _NAME",
+    "what is your _LAST _NAME",
+    "tell me your _LAST _NAME",
+    "your _LAST _NAME please",
+    "only your _LAST _NAME",
+    "just your _LAST _NAME",
+    "what's your _LAST _NAME",
+  ],
+}
+
+export const inFullName: Intent = {
+  entities: { FULL: entFull,
+    NAME: entName},
+  examples: [
+    "_FULL _NAME",
+    "what is your _FULL _NAME",
+    "tell me your _FULL _NAME",
+    "your _FULL _NAME please",
+    "only your _FULL _NAME",
+    "just your _FULL _NAME",
+    "what's your _FULL _NAME",
   ],
 }
 
 export const inHello: Intent = {
-  examples: [
-    "hi",
-    "hello",
-    "howdy",
-    "hey",
-    "greetings",
-    "yo",
-    "hiya",
-    "g'day",
-    "good morning",
-    "aloha",
-    "bonjour",
-    "salut",
-    "salutation",
-    "nihao",
-    "good afternoon",
-    "good evening",
-    "hi mate",
-    "hello mate",
-    "hallo",
-    "hallå",
-    "hej",
-    "hola",
-    "greeting",
-    "hello there",
-    "morning",
-    "shalom",
-    "konnichiwa",
-    "annyeong",
-    "guten tag",
-    "hi there",
-    "yello",
-    "hi ya",
-    "hey ya",
-    "good morrow",
-    "cuckoo",
-    "coo coo",
-    "cou cou",
-    "bonsoir",
-    "allo",
-    "grüß dich",
-    "moin",
-    "tja",
-    "tjena",
-    "tjo",
-    "hejsan",
-    "hello, hi",
-    "hi, hello",
-    "buenos dias",
-    "buenas tardes",
-    "¿Aló",
-    "a-yo",
-    "salaam",
-    "heyo",
-    "ahoy",
-    "gidday",
-    "ello ello",
-    "heilo",
-    "well hello",
-    "hey man",
-    "gday",
-    "morning",
-    "evening",
-    "why hello there",
-    "hey ben",
-    "yo ben",
-    "look who it is",
-  ],
+  entities: { HELLO: entHello},
+  examples: ["hi",
+  "_HELLO"]
 }
 
 export const inHowAreYou: Intent = {
@@ -244,7 +194,7 @@ export const inNiceMeetingYou: Intent = {
     "nice to meet you",
     "Enchanté",
     "enchantee",
-    "echante",
+    "enchante",
     "so glad to meet you",
     "pleasure to meet you",
     "nice meeting you",
@@ -273,9 +223,7 @@ export const inAge: Intent = {
 }
 
 export const inWhenBorn: Intent = {
-  examples: ["when were you born", 
-  "tell me when you were born",
-    "when are you born"],
+  examples: ["when were you born", "tell me when you were born", "when are you born"],
 }
 
 export const inWhatYearBorn: Intent = {
@@ -300,12 +248,13 @@ export const inBirthday: Intent = {
 }
 
 export const inBirthplace: Intent = {
+  entities: {WHERE: entWhere, BORN: entBorn, PLACE: entPlace},
   examples: [
-    "where were you born",
-    "in what city were you born",
-    "what was the city were you were born",
-    "which city are you born in",
-    "tell me where you were born",
+    "_WHERE were you _BORN",
+    "what was the _PLACE were you were _BORN",
+    "which _PLACE are you _BORN in",
+    "_INFO about _WHERE you were _BORN",
+    "_WHERE was your _BORN"
   ],
 }
 
@@ -324,7 +273,7 @@ export const inGrowUp: Intent = {
 
 export const inAboutBen: Intent = {
   examples: [
-    "who are you?",
+    /*"who are you?",
     "tell me who you are",
     "who is this",
     "who is this guy",
@@ -333,11 +282,11 @@ export const inAboutBen: Intent = {
     "who is it",
     "introduce yourself",
     "who is Ben Howard",
-    "tell me about Ben Howard", 
-    "tell me your story", 
-    "what's your story", 
+    "tell me about Ben Howard",
+    "tell me your story",
+    "what's your story",
     "tell me about your life",
-    "about Ben"
+    "about Ben",*/
   ],
 }
 
@@ -359,17 +308,18 @@ export const inRealBenQuestion: Intent = {
 }
 
 export const inLiveShows: Intent = {
-    examples: [
-  "ben howard live shows",
-  "are you doing any live shows",
-  "any upcoming concerts",
-  "any new concerts",
-  "are you going on tour",
-  "info ben howard live",
-  "info ben howard live show",
-  "ben howard live performance",
-  "ben howard performing live"]
-  }
+  examples: [
+    "ben howard live shows",
+    "are you doing any live shows",
+    "any upcoming concerts",
+    "any new concerts",
+    "are you going on tour",
+    "info ben howard live",
+    "info ben howard live show",
+    "ben howard live performance",
+    "ben howard performing live",
+  ],
+}
 
 export const yes: Intent = {
   examples: [
@@ -421,12 +371,41 @@ export const no: Intent = {
   ],
 }
 
+export const inMean: Intent = {
+  entities: {MEAN: entMean, INFO: entInfo, UNDERSTAND: entUnderstand, IDK: entIDK}, 
+  examples: ["what do you _MEAN",
+  "_INFO what you _MEAN",
+  "I don't _UNDERSTAND",
+  "can you _INFO what you _MEAN",
+  "what is _THIS",
+  "can you _INFO?",
+  "_IDK"],
+}
+
+export const inAnotherQuestion: Intent = {
+  entities: {ANOTHER: entAnother, QUESTION: entQuestion, CAN: entCan, ASK: entAsk, SOMETHING: entSomething}, 
+  examples: ["another question",
+    "_ANOTHER _QUESTION",
+  "_CAN I _ASK _ANOTHER _QUESTION",
+  "_CAN I _ASK _SOMETHING ELSE",
+  "_SOMETHING ELSE",
+  "i want to _ASK _ SOMETHING ELSE",
+  "i want to _ASK _ANOTHER _QUESTION"]
+}
+
+export const inGoodbye: Intent = {
+  entities: {GOODBYE: entGoodbye}, 
+  examples: ["goodbye",
+"_GOODBYE"]
+}
+
 export const intents = [
-  inNameQuestion,
-  inFirstNameQuestion,
-  inMiddleNameQuestion,
-  inLastNameQuestion,
-  inFullNameQuestion,
+  inMean,
+  inName,
+  inFirstName,
+  inMiddleName,
+  inLastName,
+  inFullName,
   inHello,
   inHowAreYou,
   inHowIsDay,

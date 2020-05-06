@@ -6,7 +6,6 @@ export const answerFallback = [
         text: "Oh hey, I wasn't listening. Come again please?",
         bot: {
             say: "",
-            goto: "QUERY_QUESTION",
         }
       }
     ],

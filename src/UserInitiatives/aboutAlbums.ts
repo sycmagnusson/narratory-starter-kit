@@ -1,389 +1,492 @@
-import { inAboutEveryKingdom, inNameOfFirstAlbum, inHaveFirstAlbum, inReleaseDateFirstAlbum, inNameOfSecondAlbum, inHaveSecondAlbum, inReleaseDateSecondAlbum, inAboutNoondayDream, inNameOfThirdAlbum, inHaveThirdAlbum, inReleaseDateThirdAlbum, inNameOfLatestAlbum, inReleaseDateLatestAlbum, inAboutAlbum, chooseEveryKingdom, chooseIFWWW, inHowManyAlbum, chooseNoondayDream, inReleaseDateEveryKingdom, inAboutIFWWW, inReleaseDateIFWWW, inTellAboutAllAlbum, inReleaseDateNoondayDream } from "../Intents/aboutAlbums";
-import { UserTurn } from "narratory";
-import { varContinueAlbum, varAskPositive, varAskNegative } from "../variables";
-import { yes, no } from "../Intents/basicQuestions";
+import {
+  inAboutEveryKingdom,
+  inNameOfFirstAlbum,
+  inHaveFirstAlbum,
+  inReleaseDateFirstAlbum,
+  inNameOfSecondAlbum,
+  inHaveSecondAlbum,
+  inReleaseDateSecondAlbum,
+  inAboutNoondayDream,
+  inNameOfThirdAlbum,
+  inHaveThirdAlbum,
+  inReleaseDateThirdAlbum,
+  inNameOfLatestAlbum,
+  inReleaseDateLatestAlbum,
+  inAboutAlbum,
+  inHowManyAlbum,
+  inReleaseDateEveryKingdom,
+  inAboutIFWWW,
+  inReleaseDateIFWWW,
+  inTellAboutAllAlbum,
+  inReleaseDateNoondayDream,
+} from "../Intents/aboutAlbums"
+import { UserTurn, ANYTHING } from "narratory"
+import { varContinueAlbum, varAskPositive, varAskNegative, varPositiveFillers, varSorryAgain } from "../variables"
+import { yes, no, inMean, inGoodbye } from "../Intents/basicQuestions"
 
 export const aboutAlbums: UserTurn[] = [
-    {
-      intent: inAboutEveryKingdom,
+  {
+    intent: inAboutEveryKingdom,
+    bot: {
+      say: ["Oh, ”Every Kingdom”.", "Right. ”Every Kingdom”."],
       bot: {
-        say: ["Oh, ”Every Kingdom”.", "Right. ”Every Kingdom”."],
+        label: "ABOUT_EVERYKINGDOM",
+        say: "I will add more info about this Every Kingdom soon.",
         bot: {
-          label: "ABOUT_EVERYKINGDOM",
-          say: "I will add more info about this Every Kingdom soon.",
+          say: varPositiveFillers,
           bot: {
             say: varAskPositive,
             goto: "QUERY_QUESTION",
-            }
+          },
         },
       },
     },
-    {
-      intent: inNameOfFirstAlbum,
+  },
+  {
+    intent: inNameOfFirstAlbum,
+    bot: {
+      say: ["”Every Kingdom”."],
       bot: {
-        say: ["”Every Kingdom”."],
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_EVERYKINGDOM",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: "",
-                goto: "ABOUT_EVERYKINGDOM",
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
               },
             },
-            {
-              intent: no,
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
               bot: {
-                say: ["Uh-huh...", "Hm hm..."],
+                label: "WDYM_EK",
+                say: 'Type "yes" if you want me to tell you more about Every Kingdom.',
                 bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
+                  say: 'Type "no" or "goodbye" if you feel like you\'re done talking to me.',
+                  bot: {
+                    say: "Or ask me a different question.",
+                    user: [
+                      {
+                        intent: yes,
+                        bot: {
+                          say: "",
+                          goto: "ABOUT_EVERYKINGDOM",
+                        },
+                      },
+                      {
+                        intent: no,
+                        bot: {
+                          say: ["Uh-huh...", "Hm hm..."],
+                          goto: "GOODBYE",
+                        },
+                      },
+                      {
+                        intent: inGoodbye,
+                        bot: {
+                          say: ["Uh-huh...", "Hm hm..."],
+                          goto: "GOODBYE",
+                        },
+                      },
+                      {
+                        intent: ANYTHING,
+                        bot: [
+                          {
+                            cond: { retryCount: 0 },
+                            bot: {
+                              say: "Sorry, I didn't get that.",
+                              bot: {
+                                say: 'You have to either type "yes", "no", "goodbye" or ask me a new question.',
+                                repair: true,
+                              },
+                            },
+                          },
+                          {
+                            cond: { retryCount: 1 },
+                            bot: {
+                              say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
+                              bot: {
+                                say:
+                                  'I can only understand you if you type either "yes", "no", "goodbye" or ask me another question.',
+                                repair: true,
+                              },
+                            },
+                          },
+                          {
+                            bot: {
+                              say: varSorryAgain,
+                              repair: true,
+                            }
+                          }
+                        ],
+                      },
+                    ],
+                  },
+                },
               },
             },
-          ],
+          },
+        ],
+      },
+    },
+  },
+  {
+    intent: inHaveFirstAlbum,
+    bot: {
+      say: "Yeah. ”Every Kingdom”.",
+      bot: {
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_EVERYKINGDOM",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
+              bot: {
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
+              },
+            },
+          },
+        ],
+      },
+    },
+  },
+  {
+    intent: inReleaseDateFirstAlbum,
+    bot: {
+      say: "2011. That's when ”Every Kingdom” came out.",
+      bot: {
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_EVERYKINGDOM",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
+              bot: {
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
+              },
+            },
+          },
+        ],
+      },
+    },
+  },
+  {
+    intent: inReleaseDateEveryKingdom,
+    bot: {
+      say: "”Every Kingdom” came out in 2011.",
+      bot: {
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_EVERYKINGDOM",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
+              bot: {
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
+              },
+            },
+          },
+        ],
+      },
+    },
+  },
+  {
+    intent: inAboutIFWWW,
+    bot: {
+      say: ["Oh, ”I Forget Where We Were”.", "Right. ”I Forget Where We Were”."],
+      bot: {
+        label: "ABOUT_IFWWW",
+        say: "I will add more info about this I Forget Where We Were soon.",
+        bot: {
+          bot: {
+            say: ["So.", "Alright.", "Cool, cool"],
+            bot: {
+              say: varAskPositive,
+              goto: "QUERY_QUESTION",
+            },
+          },
         },
       },
     },
-    {
-      intent: inHaveFirstAlbum,
+  },
+  {
+    intent: inNameOfSecondAlbum,
+    bot: {
+      say: "”I Forget Where We Were”.",
       bot: {
-        say: "Yeah. ”Every Kingdom”.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_IFWWW",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: "",
-                goto: "ABOUT_EVERYKINGDOM",
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
               },
             },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
+          },
+        ],
       },
     },
-    {
-      intent: inReleaseDateFirstAlbum,
+  },
+  {
+    intent: inHaveSecondAlbum,
+    bot: {
+      say: "Yeah. ”I Forget Where We Were”.",
       bot: {
-        say: "2011. That's when ”Every Kingdom” came out.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_IFWWW",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: "",
-                goto: "ABOUT_EVERYKINGDOM",
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
               },
             },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
+          },
+        ],
       },
     },
-    {
-      intent: inReleaseDateEveryKingdom,
+  },
+  {
+    intent: inReleaseDateSecondAlbum,
+    bot: {
+      say: "2014. That's when ”I Forget Where We Were” came out.",
       bot: {
-        say: "”Every Kingdom” came out in 2011.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_IFWWW",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: "",
-                goto: "ABOUT_EVERYKINGDOM",
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
               },
             },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
+          },
+        ],
       },
     },
-    {
-      intent: inAboutIFWWW,
+  },
+  {
+    intent: inReleaseDateIFWWW,
+    bot: {
+      say: "”I Forget Where We Were” came out in 2014.",
       bot: {
-        say: ["Oh, ”I Forget Where We Were”.", "Right. ”I Forget Where We Were”."],
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_IFWWW",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
+              bot: {
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
+              },
+            },
+          },
+        ],
+      },
+    },
+  },
+  {
+    intent: inAboutNoondayDream,
+    bot: {
+      say: ["Oh, ”Noonday Dream”.", "Right. ”Noonday Dream”."],
+      bot: {
+        label: "ABOUT_NOONDAYDREAM",
+        say: "I will add more info about this Noonday Dream soon.",
         bot: {
-          label: "ABOUT_IFWWW",
-          say: "I will add more info about this I Forget Where We Were soon.",
+          say: ["So.", "Alright.", "Cool, cool"],
           bot: {
             say: varAskPositive,
             goto: "QUERY_QUESTION",
-            }
+          },
         },
       },
     },
-    {
-      intent: inNameOfSecondAlbum,
+  },
+  {
+    intent: inNameOfThirdAlbum,
+    bot: {
+      say: "”Noonday Dream”.",
       bot: {
-        say: "”I Forget Where We Were”.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_NOONDAYDREAM",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: "",
-                goto: "ABOUT_IFWWW",
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
               },
             },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
+          },
+        ],
       },
     },
-    {
-      intent: inHaveSecondAlbum,
+  },
+  {
+    intent: inHaveThirdAlbum,
+    bot: {
+      say: "Yeah. ”Noonday Dream”.",
       bot: {
-        say: "Yeah. ”I Forget Where We Were”.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_NOONDAYDREAM",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: "",
-                goto: "ABOUT_IFWWW",
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
               },
             },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
+          },
+        ],
       },
     },
-    {
-      intent: inReleaseDateSecondAlbum,
+  },
+  {
+    intent: inReleaseDateThirdAlbum,
+    bot: {
+      say: "2018. That's when ”Noonday Dream” came out.",
       bot: {
-        say: "2014. That's when ”I Forget Where We Were” came out.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_NOONDAYDREAM",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: "",
-                goto: "ABOUT_IFWWW",
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
               },
             },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
+          },
+        ],
       },
     },
-    {
-      intent: inReleaseDateIFWWW,
+  },
+  {
+    intent: inReleaseDateNoondayDream,
+    bot: {
+      say: "”Noonday Dream” came out in 2018.",
       bot: {
-        say: "”I Forget Where We Were” came out in 2014.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
+        say: varContinueAlbum,
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "ABOUT_NOONDAYDREAM",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: "",
-                goto: "ABOUT_IFWWW",
+                say: varAskNegative,
+                goto: "QUERY_QUESTION",
               },
             },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
+          },
+        ],
       },
     },
-    {
-      intent: inAboutNoondayDream,
-      bot: {
-        say: ["Oh, ”Noonday Dream”.", "Right. ”Noonday Dream”."],
-        bot: {
-          label: "ABOUT_NOONDAYDREAM",
-          say: "I will add more info about this Noonday Dream soon.",
-          bot: {
-            say: varAskPositive,
-            goto: "QUERY_QUESTION",
-            }
-        },
-      },
-    },
-    {
-      intent: inNameOfThirdAlbum,
-      bot: {
-        say: "”Noonday Dream”.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
-              bot: {
-                say: "",
-                goto: "ABOUT_NOONDAYDREAM",
-              },
-            },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
-      },
-    },
-    {
-      intent: inHaveThirdAlbum,
-      bot: {
-        say: "Yeah. ”Noonday Dream”.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
-              bot: {
-                say: "",
-                goto: "ABOUT_NOONDAYDREAM",
-              },
-            },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
-      },
-    },
-    {
-      intent: inReleaseDateThirdAlbum,
-      bot: {
-        say: "2018. That's when ”Noonday Dream” came out.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
-              bot: {
-                say: "",
-                goto: "ABOUT_NOONDAYDREAM",
-              },
-            },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
-      },
-    },
-    {
-      intent: inReleaseDateNoondayDream,
-      bot: {
-        say: "”Noonday Dream” came out in 2018.",
-        bot: {
-          say: varContinueAlbum,
-          user: [
-            {
-              intent: yes,
-              bot: {
-                say: "",
-                goto: "ABOUT_NOONDAYDREAM",
-              },
-            },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
-              },
-            },
-          ],
-        },
-      },
-    },
-    {
-        intent: inNameOfLatestAlbum,
+  },
+  {
+    intent: inNameOfLatestAlbum,
     bot: {
       say: 'That\'s "Noonday Dream".',
       bot: {
@@ -402,8 +505,8 @@ export const aboutAlbums: UserTurn[] = [
               say: ["Uh-huh...", "Hm hm..."],
               bot: {
                 say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                goto: "QUERY_QUESTION",
+              },
             },
           },
         ],
@@ -413,10 +516,7 @@ export const aboutAlbums: UserTurn[] = [
   {
     intent: inReleaseDateLatestAlbum,
     bot: {
-      say: [
-        'Hmm. Must be the ”Noonday Dream". That one came out in 2018.',
-        'That\'s back in 2018. "Noonday Dream".',
-      ],
+      say: ['Hmm. Must be the ”Noonday Dream". That one came out in 2018.', 'That\'s back in 2018. "Noonday Dream".'],
       bot: {
         say: varContinueAlbum,
         user: [
@@ -433,8 +533,8 @@ export const aboutAlbums: UserTurn[] = [
               say: ["Uh-huh...", "Hm hm..."],
               bot: {
                 say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                goto: "QUERY_QUESTION",
+              },
             },
           },
         ],
@@ -450,68 +550,62 @@ export const aboutAlbums: UserTurn[] = [
         say: '"Every Kingdom" was released in 2011.',
         bot: {
           say: 'I recorded "I Forget Where We Were" in 2014.',
+          bot: {
+            say: 'Then, "Noonday Dream" is my latest album. It came out in June 2018.',
             bot: {
-              say: 'Then, "Noonday Dream" is my latest album. It came out in June 2018.',
-              bot: {
-                label: "CHOOSE_ALBUM",
-                say: [
-                  "Which one should I tell you more do about?",
-                  "Which EP do you want to hear more about?",
-                  "Do you want to hear more about any of the EPs?",
-                  "Should I go into detail about any of them?",
-                ],
-                user: [
-                  {
-                    intent: chooseEveryKingdom,
+              say: ["Do you want to hear more about any of the albums?", "Should I go into detail about any of them?"],
+              user: [
+                {
+                  intent: inAboutEveryKingdom,
+                  bot: {
+                    say: "",
+                    goto: "ABOUT_EVERYKINGDOM",
+                  },
+                },
+                {
+                  intent: inAboutIFWWW,
+                  bot: {
+                    say: "",
+                    goto: "ABOUT_IFWWW",
+                  },
+                },
+                {
+                  intent: inAboutNoondayDream,
+                  bot: {
+                    say: "",
+                    goto: "ABOUT_NOONDAYDREAM",
+                  },
+                },
+                {
+                  intent: inTellAboutAllAlbum,
+                  bot: {
+                    say: "",
+                    goto: "TELL_ALL_ABOUT_ALBUM",
+                  },
+                },
+                {
+                  intent: no,
+                  bot: {
+                    say: ["Uh-huh...", "Hm hm..."],
                     bot: {
-                      say: "",
-                      goto: "ABOUT_EVERYKINGDOM",
+                      say: varAskNegative,
+                      goto: "QUERY_QUESTION",
                     },
                   },
-                  {
-                    intent: chooseIFWWW,
-                    bot: {
-                      say: "",
-                      goto: "ABOUT_IFWWW",
-                    },
+                },
+                {
+                  intent: yes,
+                  bot: {
+                    say: ["Cool.", "Alright."],
+                    goto: "CHOOSE_ALBUM",
                   },
-                  {
-                    intent: chooseNoondayDream,
-                    bot: {
-                      say: "",
-                      goto: "ABOUT_NOONDAYDREAM",
-                    },
-                  },
-                  {
-                    intent: inTellAboutAllAlbum,
-                    bot: {
-                      say: "",
-                      goto: "TELL_ALL_ABOUT",
-                    },
-                  },
-                  {
-                    intent: no,
-                    bot: {
-                      say: ["Uh-huh...", "Hm hm..."],
-                      bot: {
-                        say: varAskNegative,
-                      goto: "QUERY_QUESTION"
-                      }
-                    },
-                  },
-                  {
-                    intent: yes,
-                    bot: {
-                      say: ["Cool.", "Alright."],
-                      goto: "CHOOSE_ALBUM",
-                    },
-                  },
-                ],
-              },
+                },
+              ],
             },
           },
         },
       },
+    },
   },
   {
     intent: inHowManyAlbum,
@@ -523,9 +617,9 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: yes,
             bot: {
-                say: "",
-                goto: "ABOUT_ALBUM",
-            }
+              say: "",
+              goto: "ABOUT_ALBUM",
+            },
           },
           {
             intent: no,
@@ -533,8 +627,8 @@ export const aboutAlbums: UserTurn[] = [
               say: ["Uh-huh...", "Hm hm..."],
               bot: {
                 say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                goto: "QUERY_QUESTION",
+              },
             },
           },
         ],
