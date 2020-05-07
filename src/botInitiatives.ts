@@ -1,9 +1,10 @@
 import { BotTurn, BridgeTurn, ANYTHING } from "narratory"
-import { yes, no, inGoodbye } from "./Intents/basicQuestions"
+import { yes, no, inGoodbye, inAnotherQuestion } from "./Intents/basicQuestions"
 import { answerFallback } from "./answerFallback"
 import { inAboutEveryKingdom, inAboutIFWWW, inAboutNoondayDream, inTellAboutAllAlbum } from "./Intents/aboutAlbums"
-import { varAskNegative, varAskPositive } from "./variables"
+import { varAskNegative, varAskPositive, varSorryAgain, intents, varNegativeFillers } from "./variables"
 import { entGoodbye } from "./Entities/general"
+import { inDoInTheMorning } from "./Intents/allStories"
 
 const askNegative: BotTurn = {
   label: "ASK_NEGATIVE",
@@ -25,7 +26,7 @@ const askNegative: BotTurn = {
     {
       intent: no,
       bot: {
-        say: ["Alright.", "I see."],
+        say: varNegativeFillers,
         goto: "MAKE_SURE",
       },
     },
@@ -38,7 +39,7 @@ const askNegative: BotTurn = {
 
 const makeSure: BotTurn = {
   label: "MAKE_SURE",
-  say: "So. Is this it?",
+  say: "Are we done talking here?",
   user: [
     {
       intent: yes,
@@ -200,106 +201,98 @@ const chooseAlbum: BridgeTurn = {
   },
 }
 
-const whatDoYouMean: BridgeTurn = {
-  label: "WDYM",
-  bot: {
-    say: 'Type "no" or "goodbye" if you feel like you\'re done talking to me.',
-    bot: {
-      say: "Or ask me something else.",
-      user: [
-        {
-          intent: yes,
-          bot: {
-            say: "",
-            goto: "ABOUT_EVERYKINGDOM",
-          },
-        },
-        {
-          intent: no,
-          bot: {
-            say: ["Uh-huh...", "Hm hm..."],
-            goto: "GOODBYE",
-          },
-        },
-        {
-          intent: inGoodbye,
-          bot: {
-            say: ["Uh-huh...", "Hm hm..."],
-            goto: "GOODBYE",
-          },
-        },
-        {
-          intent: ANYTHING,
-          bot: [
-            {
-              cond: { retryCount: 0 },
-              bot: {
-                say: "Sorry, I didn't get that.",
-                bot: {
-                  say: 'You have to either type "yes", "no", "goodbye" or ask me a question.',
-                  repair: true,
-                },
-              },
-            },
-            {
-              cond: { retryCount: 1 },
-              bot: {
-                say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
-                bot: {
-                  say: 'Either type "yes", "no", "goodbye" or ask me something.',
-                  repair: true,
-                },
-              },
-            },
-            {
-              bot: {
-                say: "Are we done talking for today?",
-                user: [
-                  {
-                    intent: yes,
-                    bot: {
-                      say: "",
-                      goto: "GOODBYE",
-                    },
-                  },
-                  {
-                    intent: no,
-                    bot: {
-                      say: "Alright, then.",
-                      bot: {
-                        say: 'Type "yes" if you are interested in hearing more.',
-                        goto: "WDYM",
-                      },
-                    },
-                  },
-                  {
-                    intent: ANYTHING,
-                    bot: [
-                      {
-                        cond: { retryCount: 0 },
-                        say: "Sorry, mate. I can't read you.",
-                        repair: true,
-                      },
-                      {
-                        cond: { retryCount: 1 },
-                        say: [
-                          "Sorry. Didn't get you this time either.",
-                          "Sorry, what was that?",
-                          "Sorry, hey. What did you say?",
-                          "Hey, mate. I'm sorry. I didn't understand what you said.",
-                        ],
-                        repair: true,
-                      },
-                    ],
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      ],
+const whatToAsk: BotTurn = {
+  label: "WHAT_TO_ASK",
+  say: [
+    "Hm. I could tell you about my mornings if you ask me.",
+    "If you ask me about my friends' taste in music, I will tell you.",
+  ],
+  user: [
+    {
+      intent: inDoInTheMorning,
+      bot: {
+        say: "",
+        goto: "DO_IN_THE_MORNING",
+      },
     },
-  },
+    {
+      intent: no,
+      bot: {
+        say: ["Uh-huh...", "Hm hm..."],
+        bot: {
+          say: varAskNegative,
+          goto: "QUERY_QUESTION",
+        },
+      },
+    },
+    {
+      intent: yes,
+      bot: {
+        say: "",
+        bot: {
+          label: "WHAT_TO_ASK_YES",
+          say: "If you want to know the full story, I can tell you.",
+          bot: {
+            say: "All you have to do is ask.",
+            bot: {
+              say: 'You do this by typing "tell me about..." followed by what you want me to tell you about.',
+              user: [
+                {
+                  intent: no,
+                  bot: {
+                    say: ["Uh-huh...", "Hm hm..."],
+                    bot: {
+                      say: varNegativeFillers,
+                      goto: "MAKE_SURE",
+                    },
+                  },
+                },
+                {
+                  intent: ANYTHING,
+                  bot: answerFallback,
+                },
+                {
+                  intent: yes,
+                  bot: {
+                    say: "",
+                    goto: "WHAT_TO_ASK_YES",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+    {
+      intent: inAnotherQuestion,
+      bot: {
+        say: ["Sure, you can ask me about my mum.", "For sure. You can ask me about Mazzy Star."],
+        repair: true,
+      },
+    },
+    {
+      intent: ANYTHING,
+      bot: answerFallback,
+    },
+    {
+      intent: yes,
+      bot: {
+        say: "",
+        goto: "WHAT_TO_ASK_YES",
+      },
+    },
+    {
+      intent: no,
+      bot: {
+        say: ["Uh-huh...", "Hm hm..."],
+        bot: {
+          say: varNegativeFillers,
+          goto: "MAKE_SURE",
+        },
+      },
+    },
+  ],
 }
 
-export const botInitiatives = [askNegative, makeSure, tellAllAboutAlbum, chooseAlbum, whatDoYouMean]
+export const botInitiatives = [askNegative, makeSure, tellAllAboutAlbum, chooseAlbum, whatToAsk]

@@ -1,5 +1,5 @@
 import { Intent } from "narratory"
-import { entName, entFirst, entMiddle, entLast, entFull, entHello, entWhere, entBorn, entPlace, entMean, entInfo, entUnderstand, entAnother, entQuestion, entCan, entAsk, entSomething, entGoodbye, entIDK } from "../Entities/general"
+import { entName, entFirst, entMiddle, entLast, entFull, entHello, entWhere, entBorn, entPlace, entMean, entInfo, entAnother, entQuestion, entCan, entAsk, entSomething, entGoodbye, entIDK, entHelp, entAnswer, entKnow, entAble, entHow } from "../Entities/general"
 
 /* | Name | First Name | Middle Name | Last Name | Full Name |
    | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
@@ -372,14 +372,17 @@ export const no: Intent = {
 }
 
 export const inMean: Intent = {
-  entities: {MEAN: entMean, INFO: entInfo, UNDERSTAND: entUnderstand, IDK: entIDK}, 
+  entities: {MEAN: entMean, INFO: entInfo, KNOW: entKnow, IDK: entIDK, HOW: entHow}, 
   examples: ["what do you _MEAN",
   "_INFO what you _MEAN",
-  "I don't _UNDERSTAND",
+  "I don't _KNOW",
   "can you _INFO what you _MEAN",
   "what is _THIS",
   "can you _INFO?",
-  "_IDK"],
+  "_IDK",
+  "_HOW will you _INFO",
+  "_HOW _CAN you _INFO",
+  "_HOW _CAN I _INFO"],
 }
 
 export const inAnotherQuestion: Intent = {
@@ -397,6 +400,24 @@ export const inGoodbye: Intent = {
   entities: {GOODBYE: entGoodbye}, 
   examples: ["goodbye",
 "_GOODBYE"]
+}
+
+export const inWhatToAsk: Intent = {
+  entities: {CAN: entCan, ASK: entAsk, INFO: entInfo, HELP: entHelp, QUESTION: entQuestion, IDK: entIDK, ANSWER: entAnswer, KNOW: entKnow, ABLE: entAble}, 
+  examples: [
+    "what _CAN I _ASK",
+    "INFO_ me what I _CAN _ASK",
+    "_HELP me with _QUESTION to _ASK",
+    "INFO_ me what to _ASK",
+    "_IDK what to _ASK",
+    "what _QUESTION _CAN i _ASK",
+    "what _QUESTION _CAN you _ANSWER?",
+    "what _QUESTION do you _KNOW?",
+    "what _CAN you _ANSWER?",
+    "what are you _ABLE to _ANSWER",
+    "what _QUESTION are you _ABLE to _ANSWER",
+    "what to _ASK?",
+  ]
 }
 
 export const intents = [

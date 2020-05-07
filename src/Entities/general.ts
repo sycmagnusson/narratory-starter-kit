@@ -94,7 +94,7 @@ export const entKnow: Entity = {
   name: "KNOW",
   enums: [
   {
-      name: "know", alts: ["hear", "learn", "be informed", "get the idea", "grasp", "have knowledge", "read", "listen"]
+      name: "know", alts: ["hear", "learn", "be informed", "get the idea", "grasp", "have knowledge", "read", "listen", "follow", "copy", "understand"]
   }
 ]
 }
@@ -112,7 +112,7 @@ export const entInfo: Entity = {
   name: "INFO",
   enums: [
   {
-      name: "info", alts: ["explain", "explain me", "what", "info", "inform me", "tell me", "tell", "teach me", "teach", "brief me", "brief", "update", "update me", "give me details"]
+      name: "info", alts: ["explain", "explain me", "what", "info", "inform me", "tell me", "tell", "teach me", "teach", "brief me", "brief", "update", "update me", "give me details", "do that"]
   }
 ]
 }
@@ -180,15 +180,6 @@ export const entMean: Entity = {
   ]
 }
 
-export const entUnderstand: Entity = {
-  name: "UNDERSTAND",
-  enums: [
-    {
-      name: "understand", alts: ["follow", "copy", "know"]
-    }
-  ]
-}
-
 export const entThis: Entity = {
   name: "THIS",
   enums: [
@@ -211,7 +202,7 @@ export const entQuestion: Entity = {
   name: "QUESTION",
   enums: [
     {
-      name: "question", alts: ["inquiry", "query", "qa", "QandA", "q&a"]
+      name: "question", alts: ["inquiry", "query", "qa", "QandA", "q&a", "questions", "inquiries", "querys"]
     }
   ]
 }
@@ -247,8 +238,44 @@ export const entIDK: Entity = {
   name: "IDK",
   enums: [
     {
-      name: "idk", alts: ["i don't know"]
+      name: "idk", alts: ["i don't know", "i have no idea", "i have no clue", "i haven't the least idea", "i have no way of knowing"]
     }
+  ]
+}
+
+export const entHelp: Entity = {
+  name: "HELP",
+  enums: [
+    {
+      name: "help", alts: ["advice", "tell", "aid", "guide", "support", "assist"]
+    }
+  ]
+}
+
+export const entAnswer: Entity = {
+  name: "ANSWER",
+  enums: [
+    {
+      name: "answer", alts: ["do", "deal with", "meet", "follow", "serve", "respond"]
+    },
+  ]
+}
+
+export const entAble: Entity = {
+  name: "ABLE",
+  enums: [
+    {
+      name: "able", alts: ["capable", "prepared", "keen", "skilled"]
+    },
+  ]
+}
+
+export const entHow: Entity = {
+  name: "HOW",
+  enums: [
+    {
+      name: "how", alts: ["by what means", "according to what", "by what method", "through what", "whence", "wherewith", "whereby"]
+    },
   ]
 }
 
