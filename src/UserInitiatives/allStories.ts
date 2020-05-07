@@ -89,10 +89,7 @@ export const allStories: UserTurn [] = [
 {
   intent: inDoInTheMorning,
   bot: {
-    say: "",
-    bot: {
-      label: "DO_IN_THE_MORNING",
-      say: "I think I sort of pick and choose which mornings I’m good on.",
+    say: "I think I sort of pick and choose which mornings I’m good on",
     bot: {
       say: varContinue,
       user: [
@@ -124,7 +121,6 @@ export const allStories: UserTurn [] = [
         },
       ],
     },
-  },
   }
 },
 {

@@ -1,6 +1,6 @@
 import { BotTurn, BridgeTurn, ANYTHING } from "narratory"
 import { varGreetings, varlyricGreetings } from "./variables"
-import { yes, no, inWhatToAsk } from "./Intents/basicQuestions"
+import { yes, no } from "./Intents/basicQuestions"
 import { answerFallback } from "./answerFallback"
 
 const greeting: BridgeTurn = {
@@ -28,13 +28,6 @@ const greeting: BridgeTurn = {
                   say: "Go on, ask me a question then.",
                   repair: true,
                 },
-              },
-              {
-                intent: inWhatToAsk,
-                bot: {
-                  say: "",
-                  goto: "WHAT_TO_ASK",
-                }
               },
               {
                 intent: ANYTHING,
@@ -115,13 +108,6 @@ const queryQuestions: BotTurn = {
     {
       intent: ANYTHING,
       bot: answerFallback,
-    },
-      {
-        intent: inWhatToAsk,
-        bot: {
-          say: "",
-          goto: "WHAT_TO_ASK",
-        }
     },
   ],
 }

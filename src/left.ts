@@ -35,38 +35,3 @@ export const chooseNoondayDream: Intent = {
     "_ND",
   ],
 }*/
-
-/* const sorryAgain: BridgeTurn = {
-  label: "SORRY_AGAIN",
-  bot: [
-    {
-      cond: { retryCount: 0 },
-      bot: {
-        say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
-        bot: {
-          say: 'Please type "yes", "no" or "goodbye".',
-          bot: {
-            say: "Or ask me a new question.",
-          repair: true,
-        },
-      },
-    },
-  },
-    {
-      cond: { retryCount: 1 },
-      bot: {
-        say: '"I don\'t want to trouble your mind," but I cannot make head nor tail of it.',
-        bot: {
-          say: 'Either type "yes", "no" or "goodbye" or ask me a different question.',
-          repair: true,
-        },
-      },
-    },
-    {
-      bot: {
-        say: varSorryAgain,
-        repair: true,
-      },
-    },
-  ],
-} */
