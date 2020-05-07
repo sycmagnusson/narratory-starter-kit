@@ -22,7 +22,7 @@ import {
 } from "../Intents/aboutAlbums"
 import { UserTurn, ANYTHING } from "narratory"
 import { varContinueAlbum, varAskPositive, varAskNegative, varPositiveFillers, varSorryAgain } from "../variables"
-import { yes, no, inMean, inGoodbye } from "../Intents/basicQuestions"
+import { yes, no, inMean, inGoodbye, inWhatToAsk } from "../Intents/basicQuestions"
 
 export const aboutAlbums: UserTurn[] = [
   {
@@ -100,25 +100,34 @@ export const aboutAlbums: UserTurn[] = [
                         },
                       },
                       {
+                        intent: inWhatToAsk,
+                        bot: {
+                          say: "",
+                          goto: "WHAT_TO_ASK"
+                        }
+                      },
+                      {
                         intent: ANYTHING,
                         bot: [
                           {
                             cond: { retryCount: 0 },
                             bot: {
-                              say: "Sorry, I didn't get that.",
+                              say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
                               bot: {
-                                say: 'You have to either type "yes", "no", "goodbye" or ask me a new question.',
+                                say: 'Please type "yes", "no" or "goodbye".',
+                                bot: {
+                                  say: "Or ask me another question.",
                                 repair: true,
                               },
                             },
                           },
+                        },
                           {
                             cond: { retryCount: 1 },
                             bot: {
-                              say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
+                              say: '"I don\'t want to trouble your mind", but I cannot make head nor tail of that.',
                               bot: {
-                                say:
-                                  'I can only understand you if you type either "yes", "no", "goodbye" or ask me another question.',
+                                say: 'Either type "yes", "no" or "goodbye" or ask me something else.',
                                 repair: true,
                               },
                             },
@@ -127,10 +136,10 @@ export const aboutAlbums: UserTurn[] = [
                             bot: {
                               say: varSorryAgain,
                               repair: true,
-                            }
-                          }
+                            },
+                          },
                         ],
-                      },
+                       }
                     ],
                   },
                 },

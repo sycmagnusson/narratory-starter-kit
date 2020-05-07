@@ -349,7 +349,7 @@ export const basicQuestions: UserTurn[] = [
                   say: "I see...",
                   bot: {
                     say: "",
-                  goto: "GOODBYE"
+                  goto: "MAKE_SURE"
                   }
                 },
               },

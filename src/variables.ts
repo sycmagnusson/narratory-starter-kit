@@ -17,6 +17,8 @@ export const varFillers = [
 
 export const varPositiveFillers = ["So, yeah.", "Alright.", "Cool, cool.", "Yeah, so.", "Cool.", "Okay, so."]
 
+export const varNegativeFillers = ["Ehm...", "Uh-huh...", "Hm hm...", "I see...", "Oh, so..."]
+
 export const varGreetings = [
   //"Hello, hi!", "Hi, hello!", "Hello mate!", "Hello!", "Hi!", "Hi, hello!",
   "... oh, hello, hi!",
@@ -95,10 +97,10 @@ export const varAskPositive = [
 export const varSorryAgain = [
   "I'm sorry, what was that?",
   "Sorry, hey. What did you say?",
-  "Hey, mate. I'm sorry. I didn't understand what you said. Could you say that again?",
-  "Sorry mate. Could you try and re-phrase that?",
+  "Hey, mate. I'm sorry. I didn't understand that. Could you please say that again?",
+  "Sorry mate. Could you please try and re-phrase that?",
   "Hey, sorry. Do you think you could say that one more time?",
-  "Sorry, I didn't get that. Could you repeat that?"
+  "Sorry, I didn't get that. Come again please?"
 ]
 
 export const variables = [
