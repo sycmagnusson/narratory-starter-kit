@@ -1,5 +1,51 @@
 import { Intent } from "narratory"
-import { entName, entFirst, entMiddle, entLast, entFull, entHello, entWhere, entBorn, entPlace, entMean, entInfo, entAnother, entQuestion, entCan, entAsk, entSomething, entGoodbye, entIDK, entHelp, entAnswer, entKnow, entAble, entHow } from "../Entities/general"
+import {
+  entName,
+  entFirst,
+  entMiddle,
+  entLast,
+  entFull,
+  entWhere,
+  entPlace,
+  entMean,
+  entInfo,
+  entAnother,
+  entQuestion,
+  entCan,
+  entAsk,
+  entSomething,
+  entIDK,
+  entHelp,
+  entAnswer,
+  entAble,
+  entHow,
+  entWork,
+  entBuild,
+  entWhen,
+  entDay,
+  entNo,
+  entYes,
+} from "../Entities/general"
+import {
+  entHello,
+  entBorn,
+  entGoodbye,
+  entHowAreYou,
+  entHowIsDay,
+  entWhatsUp,
+  entNiceMeetingYou,
+  entOld,
+  entBirthday,
+  entYear,
+  entWhereGrowUp,
+  entHomeTown,
+  entUK,
+  entReal,
+  entReally,
+  entLiveShows,
+  entPerforming,
+  entUpcoming,
+} from "../Entities/basicQuestions"
 
 /* | Name | First Name | Middle Name | Last Name | Full Name |
    | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
@@ -22,8 +68,7 @@ export const inName: Intent = {
 }
 
 export const inFirstName: Intent = {
-  entities: { FIRST: entFirst, 
-    NAME: entName},
+  entities: { FIRST: entFirst, NAME: entName },
   examples: [
     "_FIRST _NAME",
     "what is your _FIRST _NAME",
@@ -36,8 +81,7 @@ export const inFirstName: Intent = {
 }
 
 export const inMiddleName: Intent = {
-  entities: { MIDDLE: entMiddle,
-    NAME: entName },
+  entities: { MIDDLE: entMiddle, NAME: entName },
   examples: [
     "_MIDDLE _NAME",
     "what is your _MIDDLE _NAME",
@@ -50,8 +94,7 @@ export const inMiddleName: Intent = {
 }
 
 export const inLastName: Intent = {
-  entities: { LAST: entLast, 
-    NAME: entName},
+  entities: { LAST: entLast, NAME: entName },
   examples: [
     "_LAST _NAME",
     "what is your _LAST _NAME",
@@ -64,8 +107,7 @@ export const inLastName: Intent = {
 }
 
 export const inFullName: Intent = {
-  entities: { FULL: entFull,
-    NAME: entName},
+  entities: { FULL: entFull, NAME: entName },
   examples: [
     "_FULL _NAME",
     "what is your _FULL _NAME",
@@ -78,196 +120,98 @@ export const inFullName: Intent = {
 }
 
 export const inHello: Intent = {
-  entities: { HELLO: entHello},
-  examples: ["hi",
-  "_HELLO"]
+  entities: { HELLO: entHello },
+  examples: ["hi", "_HELLO"],
 }
 
 export const inHowAreYou: Intent = {
-  examples: [
-    "how are you?",
-    "how do you do",
-    "how's it going",
-    "how are you doing",
-    "how's everything",
-    "how goes it",
-    "how are things going",
-    "how are things with you",
-    "how's it hanging",
-    "how are you going",
-    "how are things",
-    "how are you keeping",
-    "how's life",
-    "ca va",
-    "wie geht es dir",
-    "como esta",
-    "¿Cómo está",
-    "como estas",
-    "¿Cómo estás?",
-    "howdy-do",
-    "howzit",
-    "how ya doin",
-    "how ya goin",
-    "you alright?",
-    "how are you holding up",
-    "how is life treating you",
-  ],
+  entities: { HOWAREYOU: entHowAreYou },
+  examples: ["how are you?", "_HOWAREYOU"],
 }
 
 export const inHowIsDay: Intent = {
-  examples: [
-    "how is day",
-    "how is your day",
-    "how's your day",
-    "how's your day been",
-    "how has your day been",
-    "how are you doing today",
-    "how was your morning",
-    "how is today?",
-    "you had a good day",
-    "how was the day",
-    "you had a good day",
-    "you have a nice day",
-    "how is week",
-    "how is your week",
-    "how's your week",
-    "how's your week been",
-    "how has your week been",
-    "how are you doing this week",
-    "how was your morning",
-    "how is week?",
-    "you had a good week",
-    "how was the week",
-    "you had a good week",
-    "you have a nice week",
-    "how have you been",
-    "how've you been",
-    "how has this week been",
-    "how has this year been",
-    "how was last week",
-    "how has everything been",
-    "how have things been",
-    "how has life been",
-    "how has life treated you",
-    "how have you been these past weeks",
-    "how have you been these past months",
-    "how have you been this past year",
-    "how have you done over the years",
-  ],
+  entities: { HOWISDAY: entHowIsDay },
+  examples: ["how is day", "_HOWISDAY"],
 }
 
 export const inWhatsUp: Intent = {
-  examples: [
-    "what's up doc",
-    "what's up dawg",
-    "what's the haps",
-    "wazup",
-    "what it do",
-    "what's going down",
-    "what's the rumpus",
-    "what's crackin",
-    "que tal",
-    "que pasa",
-    "¿Qué tal?",
-    "¿Qué pasa?",
-    "alles klar",
-    "was ist los",
-    "quoi de neuf",
-    "what's shakin",
-    "what's poppin",
-    "what's the dizzle",
-    "what's the story",
-    "what's cooking",
-    "what's happening",
-    "what's new",
-    "what's happenin",
-    "what's going on",
-    "sup",
-    "wassup",
-    "what is going on",
-    "what are you up to",
-  ],
+  entities: { WHATSUP: entWhatsUp },
+  examples: ["what's up", /*_WHAT*/ "whatSUP"],
 }
 
 export const inNiceMeetingYou: Intent = {
-  examples: [
-    "nice to meet you",
-    "Enchanté",
-    "enchantee",
-    "enchante",
-    "so glad to meet you",
-    "pleasure to meet you",
-    "nice meeting you",
-    "glad meeting you",
-    "honoured meeting you",
-    "feel honoured meeting you",
-    "it's a pleasure to meet you",
-    "pleased to meet you",
-    "nice to make friends with you",
-    "glad to talk to you",
-    "nice to make your acquaintance",
-    "wow, nice to meet you",
-    "can't believe i am talking to you",
-  ],
+  entities: { NICEMEETINGYOU: entNiceMeetingYou },
+  examples: ["nice to meet you", "_NICEMEETINGYOU"],
 }
 
 export const inAge: Intent = {
-  examples: [
-    "how old are you",
-    "tell me how old you are",
-    "what age are you",
-    "how many years are you",
-    "how many years have you lived",
-    "for how long have you lived",
-  ],
-}
-
-export const inWhenBorn: Intent = {
-  examples: ["when were you born", "tell me when you were born", "when are you born"],
-}
-
-export const inWhatYearBorn: Intent = {
-  examples: [
-    "what year were you born.",
-    "tell me what year you were born",
-    "which year were you born",
-    "in what year were you born",
-    "where you born in the 80s",
-  ],
+  entities: { OLD: entOld },
+  examples: ["how _OLD are you", "tell me how _OLD you are", "what _OLD are you"],
 }
 
 export const inBirthday: Intent = {
+  entities: { WHEN: entWhen, BIRTHDAY: entBirthday },
+  examples: ["tell me _WHEN your _BIRTHDAY is", "_WHEN is your _BIRTHDAY"],
+} 
+
+/* export const inWhatYearBorn: Intent = {
+  entities: {/*WHAT: entWhat BORN: entBorn, YEAR: entYear},
   examples: [
-    "when is your birthday",
-    "when's your birthday",
-    "what is your birth of date",
-    "when is your birth date",
-    "what date are you born",
-    "what date is your birthday",
+    /*_WHAT
+    "tell me _WHEN you were _BORN", 
+    "_WHEN are you _BORN", 
+    "_WHEN was you _BORN",
+    "what _YEAR were you _BORN.",
+    "tell me what _YEAR you were _BORN",
+    "tell me which _YEAR you were _BORN",
+    "in what _YEAR were you BORN",
+    "were you _BORN in the 80s",
   ],
-}
+} */
+
+/*
+export const inBirthday: Intent = {
+  entities: {BIRTHDAY: entBirthday, WHEN: entWhen, DAY: entDay, /*WHAT: entWhat},
+  examples: [
+    "tell me _WHEN your _BIRTHDAY is",
+    "_WHEN is your _BIRTHDAY",
+    /*_WHAT "which is your _BIRTHDAY",
+    /*_WHAT "what _DAY are you _BORN",
+    /*_WHAT "what _DAY is your _BIRTHDAY",
+    "which _DAY is your _BIRTHDAY",
+  ],
+}*/
 
 export const inBirthplace: Intent = {
-  entities: {WHERE: entWhere, BORN: entBorn, PLACE: entPlace},
+  entities: { WHERE: entWhere, BORN: entBorn, PLACE: entPlace },
   examples: [
     "_WHERE were you _BORN",
-    "what was the _PLACE were you were _BORN",
+    /*_WHAT*/ "what was the _PLACE were you were _BORN",
     "which _PLACE are you _BORN in",
     "_INFO about _WHERE you were _BORN",
-    "_WHERE was your _BORN"
+    "_WHERE was your _BORN",
+    "tell me _WHERE you were _BORN",
+    "tell me _WHEN you were _BORN",
+    "_WHEN are you _BORN",
+    "_WHEN was you _BORN",
+    "what _YEAR were you _BORN.",
+    "tell me what _YEAR you were _BORN",
+    "tell me which _YEAR you were _BORN",
+    "in what _YEAR were you BORN",
+    "were you _BORN in the 80s",
   ],
 }
 
 export const inGrowUp: Intent = {
+  entities: { WHERE: entWhere, GROWUP: entWhereGrowUp, HOMETOWN: entHomeTown, UK: entUK },
   examples: [
-    "where did you grow up",
-    "tell me about where you grew up",
-    "tell me about your hometown",
-    "where is your hometown",
-    "in what place did you grow up",
-    "in what city did you grew up",
-    "what kind of place did you grow up in",
-    "where in england did you grow up",
+    "_WHERE did you _GROWUP",
+    "tell me _WHERE you _GROWUP",
+    "tell me about your _HOMETOWN",
+    "_WHERE is your _HOMETOWN",
+    "in what _PLACE did you _GROWUP",
+    "what kind of _PLACE did you _GROWUP in",
+    "_WHERE in _UK did you _GROWUP",
   ],
 }
 
@@ -291,121 +235,105 @@ export const inAboutBen: Intent = {
 }
 
 export const inRealBenQuestion: Intent = {
+  entities: { REAL: entReal, REALLY: entReally },
   examples: [
-    "is this the real Ben Howard",
-    "is this Ben",
-    "is this the real Ben",
-    "am i talking to Ben",
-    "are you the real Ben Howard",
-    "is this really Ben",
-    "are you really Ben",
-    "is this you Ben",
-    "Ben, is this you",
-    "tell me if this is the real ben howard",
-    "tell me if this is the real ben",
-    "please tell me is this the real ben howard",
+    "is this the _REAL Ben Howard",
+    "am i talking to the _REAL Ben",
+    "are you the _REAL Ben Howard",
+    "is this _REALLY Ben",
+    "are you _REALLY Ben",
+    "is this _REALLY you Ben",
+    "Ben, is this _REALLY you",
+    "tell me if this is the _REAL ben howard",
   ],
 }
 
 export const inLiveShows: Intent = {
+  entities: { LIVESHOWS: entLiveShows, PERFORMING: entPerforming, UPCOMING: entUpcoming },
   examples: [
-    "ben howard live shows",
-    "are you doing any live shows",
-    "any upcoming concerts",
-    "any new concerts",
-    "are you going on tour",
-    "info ben howard live",
-    "info ben howard live show",
-    "ben howard live performance",
-    "ben howard performing live",
+    "ben howard _LIVESHOWS",
+    "are you doing any _LIVESHOWS",
+    "any _UPCOMING _LIVESHOWS",
+    "are you going _PERFORMING",
+    "will you be _PERFORMING soon",
+    "_ABOUT ben howard _LIVESHOWS",
+    "ben howard _LIVESHOWS",
+    "ben howard _PERFORMING live",
   ],
 }
 
 export const yes: Intent = {
-  examples: [
-    "yes",
-    "yeah",
-    "sure",
-    "alright",
-    "absolutely",
-    "by all means",
-    "certainly",
-    "indeed",
-    "mhm",
-    "aye",
-    "yep",
-    "uh-huh",
-    "okay",
-    "OK",
-    "okey dokey",
-    "yea",
-    "surely",
-    "hell yes",
-    "for sure",
-    "fine",
-    "sure thing",
-    "gladly",
-    "please",
-    "yes, please",
-    "ye",
-  ],
+  entities: { YES: entYes },
+  examples: ["yes", "_YES"],
 }
 
 export const no: Intent = {
-  examples: [
-    "no",
-    "nah",
-    "no thank you",
-    "nay",
-    "nix",
-    "no way",
-    "nope",
-    "not",
-    "definitely not",
-    "not ever",
-    "not in a million years",
-    "god no",
-    "please don't",
-    "don't",
-    "do not",
-  ],
+  entities: { NO: entNo },
+  examples: ["no", "_NO"],
 }
 
 export const inMean: Intent = {
-  entities: {MEAN: entMean, INFO: entInfo, KNOW: entKnow, IDK: entIDK, HOW: entHow}, 
-  examples: ["what do you _MEAN",
-  "_INFO what you _MEAN",
-  "I don't _KNOW",
-  "can you _INFO what you _MEAN",
-  "what is _THIS",
-  "can you _INFO?",
-  "_IDK",
-  "_HOW will you _INFO",
-  "_HOW _CAN you _INFO",
-  "_HOW _CAN I _INFO"],
+  entities: { MEAN: entMean, INFO: entInfo, IDK: entIDK, HOW: entHow, WORK: entWork, BUILT: entBuild },
+  examples: [
+    "what do you _MEAN",
+    "_INFO what you _MEAN",
+    "can you _INFO what you _MEAN",
+    "what is _THIS",
+    "can you _INFO?",
+    "_IDK",
+    "_HOW will you _INFO",
+    "_HOW _CAN you _INFO",
+    "_HOW _CAN I _INFO",
+    "_HOW to _INFO",
+    "_HOW do I _ASK you",
+    "_HOW do you _WORK",
+  ],
+}
+
+export const inHowBuilt: Intent = {
+  entities: { HOW: entHow, WORK: entWork, BUILD: entBuild, CAN: entCan, ANSWER: entAnswer, ABLE: entAble },
+  examples: [
+    "_HOW were you _BUILD",
+    "how did someone _BUILD you",
+    "_HOW do you _WORK",
+    "_HOW _CAN you _ANSWER",
+    "_HOW do you _ANSWER",
+    "_HOW are you _ABLE to _ANSWER",
+  ],
 }
 
 export const inAnotherQuestion: Intent = {
-  entities: {ANOTHER: entAnother, QUESTION: entQuestion, CAN: entCan, ASK: entAsk, SOMETHING: entSomething}, 
-  examples: ["another question",
+  entities: { ANOTHER: entAnother, QUESTION: entQuestion, CAN: entCan, ASK: entAsk, SOMETHING: entSomething },
+  examples: [
+    "another question",
     "_ANOTHER _QUESTION",
-  "_CAN I _ASK _ANOTHER _QUESTION",
-  "_CAN I _ASK _SOMETHING ELSE",
-  "_SOMETHING ELSE",
-  "i want to _ASK _ SOMETHING ELSE",
-  "i want to _ASK _ANOTHER _QUESTION"]
+    "_CAN I _ASK _ANOTHER _QUESTION",
+    "_CAN I _ASK _SOMETHING ELSE",
+    "_SOMETHING ELSE",
+    "i want to _ASK _ SOMETHING ELSE",
+    "i want to _ASK _ANOTHER _QUESTION",
+  ],
 }
 
 export const inGoodbye: Intent = {
-  entities: {GOODBYE: entGoodbye}, 
-  examples: ["goodbye",
-"_GOODBYE"]
+  entities: { GOODBYE: entGoodbye },
+  examples: ["goodbye", "_GOODBYE"],
 }
 
 export const inWhatToAsk: Intent = {
-  entities: {CAN: entCan, ASK: entAsk, INFO: entInfo, HELP: entHelp, QUESTION: entQuestion, IDK: entIDK, ANSWER: entAnswer, KNOW: entKnow, ABLE: entAble}, 
+  entities: {
+    /*WHAT: entWhat*/ CAN: entCan,
+    ASK: entAsk,
+    HELP: entHelp,
+    QUESTION: entQuestion,
+    IDK: entIDK,
+    ANSWER: entAnswer,
+    ABLE: entAble,
+  },
   examples: [
+    "like what",
     "what _CAN I _ASK",
+    "what _CAN i _ASK you",
     "INFO_ me what I _CAN _ASK",
     "_HELP me with _QUESTION to _ASK",
     "INFO_ me what to _ASK",
@@ -417,7 +345,9 @@ export const inWhatToAsk: Intent = {
     "what are you _ABLE to _ANSWER",
     "what _QUESTION are you _ABLE to _ANSWER",
     "what to _ASK?",
-  ]
+    "_HELP",
+    "help",
+  ],
 }
 
 export const intents = [
@@ -433,9 +363,8 @@ export const intents = [
   inWhatsUp,
   inNiceMeetingYou,
   inAge,
-  inWhenBorn,
-  inWhatYearBorn,
-  inBirthday,
+  /*inWhenBorn,
+  inWhatYearBorn,*/
   inBirthplace,
   inGrowUp,
   inAboutBen,

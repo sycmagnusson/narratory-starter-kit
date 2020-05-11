@@ -1,12 +1,10 @@
 import { BotTurn, BridgeTurn, ANYTHING } from "narratory"
-import { varGreetings, varlyricGreetings } from "./variables"
-import { yes, no, inWhatToAsk } from "./Intents/basicQuestions"
-import { answerFallback } from "./answerFallback"
+import { varGreetings, varlyricGreetings, varNegativeFillers } from "./variables"
+import { yes, no, inWhatToAsk, inMean } from "./Intents/basicQuestions"
+import { anythingNarrative } from "./answerFallback"
+import { whatToAsk} from "./botInitiatives"
 
 const greeting: BridgeTurn = {
-  cond: {
-    user_hotStarted: false,
-  },
   bot: {
     say: varlyricGreetings,
     bot: {
@@ -14,86 +12,20 @@ const greeting: BridgeTurn = {
       bot: {
         say: "I'm a bot created to mimic Ben Howard.",
         bot: {
-          say: ["Ehm.", "So, yeah.", "So, eh.", "So, ehm.", "Ehm, so.", "So, hmm.", "So.", "Eh."],
+          say: ["Erm, so.", "So, hm."],
           bot: {
             say: [
               "What question do you have for me?",
               "What would you like to ask me?",
               "How about you ask me a question?",
             ],
-            user: [
-              {
-                intent: yes,
-                bot: {
-                  say: "Go on, ask me a question then.",
-                  repair: true,
-                },
-              },
-              {
-                intent: inWhatToAsk,
-                bot: {
-                  say: "",
-                  goto: "WHAT_TO_ASK",
-                }
-              },
-              {
-                intent: ANYTHING,
-                bot: answerFallback,
-              },
-              {
-                intent: no,
-                bot: [
-                  {
-                    cond: { retryCount: 0 },
-                    bot: {
-                      say: ["Uh-huh...", "Hmm hmm..."],
-                      bot: {
-                        say: "Sorry, I didn't get it. You have to tell me which album you want to know more about.",
-                        repair: true,
-                      },
-                    },
-                  },
-                  {
-                    cond: { retryCount: 1 },
-                    bot: {
-                      say: ["Ehm...", "Uhm..."],
-                      bot: {
-                        say: "What was that? You have to tell me which album you want me to tell you more about.",
-                        repair: true,
-                      },
-                    },
-                  },
-                  {
-                    bot: {
-                      say: "This is it?",
-                      user: [
-                        {
-                          intent: yes,
-                          bot: {
-                            say: "I see...",
-                            goto: "GOODBYE",
-                          },
-                        },
-                        {
-                          intent: ANYTHING,
-                          bot: {
-                            say: "",
-                            goto: "GOODBYE",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      },
-    },
-  },
+          }
+        }
+      }
+    }
+  }
 }
-
+            
 const queryQuestions: BotTurn = {
   label: "QUERY_QUESTION",
   say: "",
@@ -101,30 +33,37 @@ const queryQuestions: BotTurn = {
     {
       intent: yes,
       bot: {
-        say: ["Go on, ask me a question then.", "How about you ask me something?"],
-        repair: true,
+        say: "",
+        goto: "HOW_BUILT"
       },
     },
     {
       intent: no,
       bot: {
-        say: "",
+        say: varNegativeFillers,
         goto: "MAKE_SURE",
       },
     },
     {
-      intent: ANYTHING,
-      bot: answerFallback,
+      intent: inMean,
+      bot: {
+        say: "",
+        goto: "HOW_BUILT",
+      }
     },
-      {
-        intent: inWhatToAsk,
-        bot: {
-          say: "",
-          goto: "WHAT_TO_ASK",
-        }
+    {
+      intent: ANYTHING,
+      bot: anythingNarrative,
+    },
+    {
+      intent: inWhatToAsk,
+      bot: whatToAsk,
     },
   ],
 }
+
+
+ 
 
 const goodbye: BotTurn = {
   label: "GOODBYE",

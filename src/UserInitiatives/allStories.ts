@@ -1,7 +1,7 @@
 import { UserTurn } from "narratory"
 import { yes, no } from "../Intents/basicQuestions"
 import { inFirstMusicalMemory, inMumUseSpotify, inDoInTheMorning, inFriendsMusicTaste, inMazzyStar } from "../Intents/allStories"
-import { varContinue, varAskPositive, varAskNegative } from "../variables"
+import { varContinue, varPositiveFillers, varNegativeFillers } from "../variables"
 
 /* | First Musical Memory | Mum Use Of Spotify | Do In The Morning | Friends Music Taste | Mazzy Star */
 
@@ -24,8 +24,7 @@ export const allStories: UserTurn [] = [
                 bot: {
                   say: "Sweet baby James records, those were my bedtime tunes.",
                   bot: {
-                    say: varAskPositive,
-                    goto: "QUERY_QUESTION",
+                    say: varPositiveFillers,
                   },
                 },
               },
@@ -35,9 +34,8 @@ export const allStories: UserTurn [] = [
         {
           intent: no,
           bot: {
-            say: ["Ehm...", "Uh-huh...", "Hm hm..."],
-            goto: "ASK_NEGATIVE",
-          },
+            say: varNegativeFillers,
+          }
         },
       ],
     },
@@ -65,8 +63,7 @@ export const allStories: UserTurn [] = [
                     bot: {
                       say: "An odd Donovan song or something.",
                       bot: {
-                        say: varAskPositive,
-                        goto: "QUERY_QUESTION",
+                        say: varPositiveFillers,
                       },
                     },
                   },
@@ -77,8 +74,7 @@ export const allStories: UserTurn [] = [
           {
             intent: no,
             bot: {
-              say: ["Ehm...", "Uh-huh...", "Hm hm..."],
-              goto: "ASK_NEGATIVE",
+              say: varNegativeFillers,
             },
           },
         ],
@@ -107,8 +103,7 @@ export const allStories: UserTurn [] = [
                 bot: {
                   say: "Once or twice, I’ll be alright though.",
                   bot: {
-                    say: varAskPositive,
-                    goto: "QUERY_QUESTION",
+                    say: varPositiveFillers,
                   },
                 },
               },
@@ -118,8 +113,7 @@ export const allStories: UserTurn [] = [
         {
           intent: no,
           bot: {
-            say: ["Ehm...", "Uh-huh...", "Hm hm..."],
-            goto: "ASK_NEGATIVE",
+            say: varNegativeFillers,
           },
         },
       ],
@@ -149,8 +143,7 @@ export const allStories: UserTurn [] = [
                     bot: {
                       say: "That’s any sort of friendship group.",
                       bot: {
-                        say: varAskPositive,
-                        goto: "QUERY_QUESTION",
+                        say: varPositiveFillers,
                       },
                     },
                   },
@@ -161,8 +154,7 @@ export const allStories: UserTurn [] = [
           {
             intent: no,
             bot: {
-              say: ["Ehm...", "Uh-huh...", "Hm hm..."],
-              goto: "ASK_NEGATIVE",
+              say: varNegativeFillers,
             },
           },
         ],
@@ -180,7 +172,9 @@ export const allStories: UserTurn [] = [
         say: "I actually re-discovered her a while back.",
         bot: {
           say: "Great voice.",
-          goto: "QUERY_QUESTION",
+          bot: {
+            say: varPositiveFillers,
+          },
         },
       },
     },

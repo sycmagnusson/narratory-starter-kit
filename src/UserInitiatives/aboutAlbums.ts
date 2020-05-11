@@ -1,28 +1,19 @@
 import {
   inAboutEveryKingdom,
-  inNameOfFirstAlbum,
-  inHaveFirstAlbum,
-  inReleaseDateFirstAlbum,
-  inNameOfSecondAlbum,
-  inHaveSecondAlbum,
-  inReleaseDateSecondAlbum,
   inAboutNoondayDream,
-  inNameOfThirdAlbum,
-  inHaveThirdAlbum,
-  inReleaseDateThirdAlbum,
   inNameOfLatestAlbum,
   inReleaseDateLatestAlbum,
-  inAboutAlbum,
   inHowManyAlbum,
   inReleaseDateEveryKingdom,
   inAboutIFWWW,
   inReleaseDateIFWWW,
-  inTellAboutAllAlbum,
   inReleaseDateNoondayDream,
+  inAboutAlbum,
 } from "../Intents/aboutAlbums"
 import { UserTurn, ANYTHING } from "narratory"
-import { varContinueAlbum, varAskPositive, varAskNegative, varPositiveFillers, varSorryAgain } from "../variables"
-import { yes, no, inMean, inGoodbye, inWhatToAsk } from "../Intents/basicQuestions"
+import { varContinueAlbum, varAskNegative, varPositiveFillers, varNegativeFillers } from "../variables"
+import { yes, no, inMean, inGoodbye } from "../Intents/basicQuestions"
+import { answerFallback } from "../answerFallback"
 
 export const aboutAlbums: UserTurn[] = [
   {
@@ -34,15 +25,11 @@ export const aboutAlbums: UserTurn[] = [
         say: "I will add more info about this Every Kingdom soon.",
         bot: {
           say: varPositiveFillers,
-          bot: {
-            say: varAskPositive,
-            goto: "QUERY_QUESTION",
-          },
         },
       },
     },
   },
-  {
+  /* {
     intent: inNameOfFirstAlbum,
     bot: {
       say: ["”Every Kingdom”."],
@@ -59,12 +46,12 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
-              bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+              say: varNegativeFillers,
             },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
           },
           {
             intent: inMean,
@@ -74,12 +61,13 @@ export const aboutAlbums: UserTurn[] = [
                 label: "WDYM_EK",
                 say: 'Type "yes" if you want me to tell you more about Every Kingdom.',
                 bot: {
-                  say: 'Type "no" or "goodbye" if you feel like you\'re done talking to me.',
+                  say: 'Type "no" if you want us to move on to another topic.',
                   bot: {
-                    say: "Or ask me a different question.",
+                    say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                    repair: true,
                     user: [
                       {
-                        intent: yes,
+                        /* intent: yes,
                         bot: {
                           say: "",
                           goto: "ABOUT_EVERYKINGDOM",
@@ -88,8 +76,7 @@ export const aboutAlbums: UserTurn[] = [
                       {
                         intent: no,
                         bot: {
-                          say: ["Uh-huh...", "Hm hm..."],
-                          goto: "GOODBYE",
+                          say: varNegativeFillers,
                         },
                       },
                       {
@@ -99,47 +86,6 @@ export const aboutAlbums: UserTurn[] = [
                           goto: "GOODBYE",
                         },
                       },
-                      {
-                        intent: inWhatToAsk,
-                        bot: {
-                          say: "",
-                          goto: "WHAT_TO_ASK"
-                        }
-                      },
-                      {
-                        intent: ANYTHING,
-                        bot: [
-                          {
-                            cond: { retryCount: 0 },
-                            bot: {
-                              say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
-                              bot: {
-                                say: 'Please type "yes", "no" or "goodbye".',
-                                bot: {
-                                  say: "Or ask me another question.",
-                                repair: true,
-                              },
-                            },
-                          },
-                        },
-                          {
-                            cond: { retryCount: 1 },
-                            bot: {
-                              say: '"I don\'t want to trouble your mind", but I cannot make head nor tail of that.',
-                              bot: {
-                                say: 'Either type "yes", "no" or "goodbye" or ask me something else.',
-                                repair: true,
-                              },
-                            },
-                          },
-                          {
-                            bot: {
-                              say: varSorryAgain,
-                              repair: true,
-                            },
-                          },
-                        ],
-                       }
                     ],
                   },
                 },
@@ -149,8 +95,8 @@ export const aboutAlbums: UserTurn[] = [
         ],
       },
     },
-  },
-  {
+  },*/
+  /*{
     intent: inHaveFirstAlbum,
     bot: {
       say: "Yeah. ”Every Kingdom”.",
@@ -167,18 +113,25 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
-              bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
+              goto: "WDYM_EK",
             },
           },
         ],
       },
     },
-  },
-  {
+  },*/
+  /* {
     intent: inReleaseDateFirstAlbum,
     bot: {
       say: "2011. That's when ”Every Kingdom” came out.",
@@ -195,17 +148,24 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
-              bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
+              goto: "WDYM_EK",
             },
           },
         ],
       },
     },
-  },
+  },*/
   {
     intent: inReleaseDateEveryKingdom,
     bot: {
@@ -223,11 +183,31 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inGoodbye,
+            bot: {
+              say: "",
+              goto: "GOODBYE",
+            }
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: 'Type "yes" if you want me to tell you more about Every Kingdom.',
               bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+                say: 'Type "no" if you want us to move on to another topic.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  repair: true,
+                }
+              }
             },
           },
         ],
@@ -239,21 +219,18 @@ export const aboutAlbums: UserTurn[] = [
     bot: {
       say: ["Oh, ”I Forget Where We Were”.", "Right. ”I Forget Where We Were”."],
       bot: {
+        say: "",
         label: "ABOUT_IFWWW",
-        say: "I will add more info about this I Forget Where We Were soon.",
         bot: {
+          say: "I will add more info about this I Forget Where We Were soon.",
           bot: {
-            say: ["So.", "Alright.", "Cool, cool"],
-            bot: {
-              say: varAskPositive,
-              goto: "QUERY_QUESTION",
-            },
+            say: varPositiveFillers,
           },
         },
       },
     },
   },
-  {
+  /* {
     intent: inNameOfSecondAlbum,
     bot: {
       say: "”I Forget Where We Were”.",
@@ -270,18 +247,44 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
               bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
+                label: "WDYM_IFWWW",
+                say: 'Type "yes" if you want me to tell you more about I Forget Where We Were.',
+                bot: {
+                  say: 'Type "no" if you want us to move on to another topic.',
+                  bot: {
+                    say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                    repair: true,
+                    user: [
+                      {
+                        intent: inGoodbye,
+                        bot: {
+                          say: ["Uh-huh...", "Hm hm..."],
+                          goto: "GOODBYE",
+                        },
+                      },
+                    ],
+                  },
+                },
               },
             },
           },
         ],
       },
     },
-  },
-  {
+  },*/
+  /* {
     intent: inHaveSecondAlbum,
     bot: {
       say: "Yeah. ”I Forget Where We Were”.",
@@ -298,18 +301,25 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
-              bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
+              goto: "WDYM_IFWWW",
             },
           },
         ],
       },
     },
-  },
-  {
+  },*/
+  /* {
     intent: inReleaseDateSecondAlbum,
     bot: {
       say: "2014. That's when ”I Forget Where We Were” came out.",
@@ -326,17 +336,24 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
-              bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
+              goto: "WDYM_IFWWW",
             },
           },
         ],
       },
     },
-  },
+  },*/
   {
     intent: inReleaseDateIFWWW,
     bot: {
@@ -354,11 +371,31 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inGoodbye,
+            bot: {
+              say: "",
+              goto: "GOODBYE",
+            }
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: 'Type "yes" if you want me to tell you more about I Forget Where We Were.',
               bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+                say: 'Type "no" if you want us to move on to another topic.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  repair: true,
+                }
+              }
             },
           },
         ],
@@ -373,16 +410,12 @@ export const aboutAlbums: UserTurn[] = [
         label: "ABOUT_NOONDAYDREAM",
         say: "I will add more info about this Noonday Dream soon.",
         bot: {
-          say: ["So.", "Alright.", "Cool, cool"],
-          bot: {
-            say: varAskPositive,
-            goto: "QUERY_QUESTION",
-          },
+          say: varPositiveFillers,
         },
       },
     },
   },
-  {
+  /* {
     intent: inNameOfThirdAlbum,
     bot: {
       say: "”Noonday Dream”.",
@@ -409,8 +442,8 @@ export const aboutAlbums: UserTurn[] = [
         ],
       },
     },
-  },
-  {
+  },*/
+  /*{
     intent: inHaveThirdAlbum,
     bot: {
       say: "Yeah. ”Noonday Dream”.",
@@ -437,8 +470,8 @@ export const aboutAlbums: UserTurn[] = [
         ],
       },
     },
-  },
-  {
+  },*/
+  /* {
     intent: inReleaseDateThirdAlbum,
     bot: {
       say: "2018. That's when ”Noonday Dream” came out.",
@@ -465,7 +498,7 @@ export const aboutAlbums: UserTurn[] = [
         ],
       },
     },
-  },
+  },*/
   {
     intent: inReleaseDateNoondayDream,
     bot: {
@@ -483,11 +516,35 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inGoodbye,
+            bot: {
+              say: "",
+              goto: "GOODBYE",
+            }
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
+            bot: {
+              label: "WDYM_ND",
+              say: 'Type "yes" if you want me to tell you more about Noonday Dream.',
               bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+                say: 'Type "no" if you want us to move on to another topic.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  repair: true,
+                }
+              }
+              }
             },
           },
         ],
@@ -511,21 +568,36 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
-              bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+              say: varNegativeFillers,
             },
           },
-        ],
-      },
+          {
+            intent: inGoodbye,
+            bot: 
+            {
+              say: "",
+              goto: "GOODBYE",
+            }
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
+              goto: "WDYM_ND"    
+          },
     },
+  ]
+}
+    }
   },
   {
     intent: inReleaseDateLatestAlbum,
     bot: {
-      say: ['Hmm. Must be the ”Noonday Dream". That one came out in 2018.', 'That\'s back in 2018. "Noonday Dream".'],
+      say: ['Hmm. Must be ”Noonday Dream". That one came out in 2018.', 'That\'s back in 2018. "Noonday Dream".'],
       bot: {
         say: varContinueAlbum,
         user: [
@@ -539,12 +611,19 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
-              bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
-              },
+              say: varNegativeFillers,
             },
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: "",
+              goto: "WDYM_ND",
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
           },
         ],
       },
@@ -556,13 +635,18 @@ export const aboutAlbums: UserTurn[] = [
       say: "",
       bot: {
         label: "ABOUT_ALBUM",
-        say: '"Every Kingdom" was released in 2011.',
+        say: 'My first album "Every Kingdom" was released in 2011.',
         bot: {
-          say: 'I recorded "I Forget Where We Were" in 2014.',
+          say: 'Then in 2014, I recorded "I Forget Where We Were".',
           bot: {
-            say: 'Then, "Noonday Dream" is my latest album. It came out in June 2018.',
+            say: '"Noonday Dream" is my third, and latest album. It came out in June 2018.',
             bot: {
-              say: ["Do you want to hear more about any of the albums?", "Should I go into detail about any of them?"],
+              say: [
+                "Do you want to hear more about any of the albums?",
+                "Should I go into detail about any of them?",
+                "Should I tell you more about any of the albums?",
+                "Do you want me to tell you more about any of the albums?",
+              ],
               user: [
                 {
                   intent: inAboutEveryKingdom,
@@ -585,28 +669,58 @@ export const aboutAlbums: UserTurn[] = [
                     goto: "ABOUT_NOONDAYDREAM",
                   },
                 },
-                {
+                /*{
                   intent: inTellAboutAllAlbum,
                   bot: {
                     say: "",
                     goto: "TELL_ALL_ABOUT_ALBUM",
                   },
-                },
+                },*/
                 {
                   intent: no,
                   bot: {
-                    say: ["Uh-huh...", "Hm hm..."],
-                    bot: {
-                      say: varAskNegative,
-                      goto: "QUERY_QUESTION",
+                      say: varNegativeFillers,
                     },
                   },
+                {
+                  intent: ANYTHING,
+                  bot: answerFallback,
                 },
                 {
                   intent: yes,
                   bot: {
-                    say: ["Cool.", "Alright."],
-                    goto: "CHOOSE_ALBUM",
+                    say: "",
+                    goto: "WDYM_ABOUTALBUM",
+                  },
+                },
+                {
+                  intent: inGoodbye,
+                  bot: {
+                    say: "",
+                    goto: "GOODBYE",
+                  },
+                },
+                {
+                  intent: inMean,
+                  bot: {
+                    say: "",
+                    bot: {
+                      label: "WDYM_ABOUTALBUM",
+                      say: "If you want to hear some more information about an album, type the name of that album.",
+                      bot: {
+                        say: 'Type "no" if you want us to move on to another topic.',
+                        bot: {
+                          say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                          repair: true,
+                          user: [
+                            {
+                              intent: no,
+                              bot: varNegativeFillers,
+                            },
+                          ],
+                        },
+                      },
+                    },
                   },
                 },
               ],
@@ -633,12 +747,32 @@ export const aboutAlbums: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: inGoodbye,
+            bot: {
+              say: "",
+              goto: "GOODBYE",
+            },
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: '"Type "yes" if you want to know about the albums I have released so far.',
               bot: {
-                say: varAskNegative,
-                goto: "QUERY_QUESTION",
+                say: 'Type "no" if you want to move on to another topic.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  repair: true,
+                },
               },
             },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallback,
           },
         ],
       },

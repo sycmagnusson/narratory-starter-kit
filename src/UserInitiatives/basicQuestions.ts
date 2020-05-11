@@ -6,10 +6,7 @@ import {
   inWhatsUp,
   inNiceMeetingYou,
   inAge,
-  inWhenBorn,
-  inWhatYearBorn,
   inBirthplace,
-  inBirthday,
   inGrowUp,
   yes,
   no,
@@ -21,8 +18,20 @@ import {
   inMiddleName,
   inLastName,
   inFullName,
+  inMean,
+  inGoodbye,
+  inHowBuilt,
+  inBirthday,
 } from "../Intents/basicQuestions"
-import { varThatsThat, varContinue, varAskNegative, varAskPositive } from "../variables"
+import {
+  varThatsThat,
+  varContinue,
+  varAskNegative,
+  varNegativeFillers,
+  varPositiveFillers,
+  varWhatToAsk,
+  varBuiltExampleQuestions,
+} from "../variables"
 
 /* | Name | First Name | Middle Name | Last Name | Full Name |
    | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
@@ -36,18 +45,16 @@ export const basicQuestions: UserTurn[] = [
     bot: {
       say: "Ben.",
       bot: {
-        say: ["Ehm, yeah. Just Ben.", "Eh, yeah. Just Ben."],
-        goto: "QUERY_QUESTION",
+        say: ["Erm, yeah. Just Ben.", "Er, yeah. Just Ben."],
       },
     },
   },
   {
-    intent: inFirstName, 
+    intent: inFirstName,
     bot: {
       say: "Benjamin.",
       bot: {
         say: ["But just Ben is fine too.", "You can just call me Ben though."],
-        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -57,7 +64,6 @@ export const basicQuestions: UserTurn[] = [
       say: "John.",
       bot: {
         say: varThatsThat,
-        goto: "QUERY_QUESTION",
       },
     },
   },
@@ -67,9 +73,9 @@ export const basicQuestions: UserTurn[] = [
       say: "Howard.",
       bot: {
         say: [
-          'If you ever wondered, that means means "high guardian".',
-          'Which means "brave heart". Go ahead and add that to your unnecessary knowledge.'],
-        goto: "QUERY_QUESTION",
+          'If you ever wondered, that means "high guardian".',
+          'Which means "brave heart". Go ahead and add that to your unnecessary knowledge.',
+        ],
       },
     },
   },
@@ -78,8 +84,7 @@ export const basicQuestions: UserTurn[] = [
     bot: {
       say: "Benjamin John Howard.",
       bot: {
-        say: ["However, just Ben's fine too.", "But really, you can just call me Ben."],
-        goto: "QUERY_QUESTION",
+        say: ["However, just Ben is fine too.", "But really, you can just call me Ben."],
       },
     },
   },
@@ -87,7 +92,10 @@ export const basicQuestions: UserTurn[] = [
     intent: inHello,
     bot: {
       say: ["Hello, hi!", "Hi, hello!", "Hello mate!", "Hello!", "Hi!", "Hi, hello!"],
-      goto: "QUERY_QUESTION",
+      bot: {
+        say: "",
+        goto: "SMALL_TALK",
+      },
     },
   },
   {
@@ -103,41 +111,41 @@ export const basicQuestions: UserTurn[] = [
         "Yeah, good! Nice!",
         "Yeah, good! Alright!",
       ],
-      goto: "QUERY_QUESTION",
     },
   },
   {
     intent: inHowIsDay,
     bot: {
       say: ["Lovely, thanks.", "Great, thank you.", '"I\'ve seen happiness". Yeah.', "Good mate, yeah."],
-      goto: "QUERY_QUESTION",
     },
   },
   {
     intent: inWhatsUp,
     bot: {
       say: [
-        'Err. "I\'ll have plenty of time to think about it."',
+        'Er. "I\'ll have plenty of time to think about it."',
         '"I wish I had all my friends somewhere drinking." Heh.',
-        '"Hmm. I could lay here for a while. ',
-        '"My time is a little unclear." Yeah.',
-        'Err. "My time is a little unclear."',
+        'Hmm. "I could lay here for a while." ',
+        '"I\'ve been worrying that my time is a little unclear." Yeah.',
+        'Er. "I\'ve been worrying that my time is a little unclear."',
       ],
-      goto: "QUERY_QUESTION",
     },
   },
   {
     intent: inNiceMeetingYou,
     bot: {
       say: [
-        "Nice meeting you too! Yeah.",
-        "Yeah, nice meeting you too!",
+        "Nice meeting you too. Yeah.",
+        "Yeah, nice meeting you too.",
         "Nice meeting you too, yeah.",
         "Nice to meet you too.",
-        "Yeah, nice to meet you too!",
+        "Yeah, nice to meet you too.",
         "Nice to meet you too, yeah.",
       ],
-      goto: "QUERY_QUESTION",
+      bot: {
+        say: "",
+        goto: "SMALL_TALK",
+      },
     },
   },
   {
@@ -146,67 +154,158 @@ export const basicQuestions: UserTurn[] = [
       say: "I'm 33.",
       bot: {
         say: ['"Time, you know. You can\'t get it back."', '"It\'s been a while, been a while now."'],
-        goto: "QUERY_QUESTION",
       },
     },
   },
-  {
-    intent: inWhenBorn,
-    bot: {
-      say: "24th of April, 1987.",
-      bot: {
-        say: "Do you want to hear the story about where I grew up?",
-      user: [
-        {
-          intent: yes,
-          bot: {
-            say: "I grew up in the doldrums of Middlesex.",
-            goto: "GROW_UP",
-          }
-        },
-        {
-        intent: no,
-        bot: {
-          say: ["Ehm...", "Uh-huh...", "Hm hm..."],
-          bot: {
-            say: varAskNegative,
-            goto: "QUERY_QUESTION"
-          }
-        }
-        },
-      ]
-    }
-  }
-},
-  {
+  /*{
     intent: inWhatYearBorn,
     bot: {
-      say: ["1987."],
+      say: "1987.",
+      bot: {
+        say: "Do you want to hear a story about where I grew up?",
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "I grew up in the doldrums of Middlesex.",
+              goto: "GROW_UP",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: {
+              say: "",
+              goto: "ANYTHING",
+            },
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: 'Type "yes" if you want me to tell you whereabouts I grew up.',
+              bot: {
+                say: 'Type "no" if you want us to move on to another topic.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  user: [
+                    {
+                      intent: yes,
+                      bot: {
+                        say: "",
+                        goto: "GROW_UP",
+                      },
+                    },
+                    {
+                      intent: no,
+                      bot: {
+                        say: varWhatToAsk,
+                        goto: "WHAT_TO_ASK_QUERY",
+                      },
+                    },
+                    {
+                      intent: inGoodbye,
+                      bot: {
+                        say: "",
+                        goto: "GOODBYE",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+  },*/
+  {
+    intent: inBirthday,
+    bot: {
+      say: ["24th of April."],
       bot: {
         say: ['"Every day\'s a dice roll."', '"And somehow I did feel like yesterday was ours."'],
-        goto: "QUERY_QUESTION",
       },
     },
   },
-  {
+  /*{
     intent: inBirthday,
     bot: {
       say: ["24th of April.", "April 24th."],
       bot: {
         say: varThatsThat,
-        goto: "QUERY_QUESTION",
       },
     },
-  },
+  },*/
   {
     intent: inBirthplace,
     bot: {
-      say: ["Richmond. South-west London.", "South-west London. Richmond."],
+      say: ["Erm...", "Er..."],
       bot: {
-        say: varThatsThat,
-        goto: "QUERY_QUESTION",
+        say: ["I was born on April 27th, 1987."],
+      bot: {
+        say: ["In South-west London, Richmond.", "In Richmond. South-west London"],
+      bot: {
+        say: "Do you want to hear a story about where I grew up?",
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "GROW_UP",
+            },
+          },
+          {
+            intent: no,
+            bot: {
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: 'Type "yes" if you want me to tell you more about where I grew up.',
+              bot: {
+                say: 'Type "no" if you want us to move on to another topic.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  repair: true,
+                  user: [
+                    {
+                      intent: yes,
+                      bot: {
+                        say: "",
+                        goto: "GROW_UP",
+                      },
+                    },
+                    {
+                      intent: no,
+                      bot: {
+                        say: "varWhatToAsk,",
+                        goto: "WHAT_TO_ASK_QUERY",
+                      },
+                    },
+                    {
+                      intent: inGoodbye,
+                      bot: {
+                        say: "",
+                        goto: "GOODBYE",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        ],
       },
     },
+  },
+}
   },
   {
     intent: inGrowUp, //ADD DEVON
@@ -236,19 +335,49 @@ export const basicQuestions: UserTurn[] = [
                             {
                               intent: yes,
                               bot: {
-                                label: "ABOUT_DEVON",
-                                say: "I will add more info about Devon here",
-                                goto: "QUERY_QUESTION",
+                                say: "",
+                                goto: "ABOUT_DEVON",
                               },
                             },
                             {
                               intent: no,
                               bot: {
-                                say: ["Uh-huh...", "Hm hm..."],
+                                say: varNegativeFillers,
+                              },
+                            },
+                            {
+                              intent: inMean,
+                              bot: {
+                                say: 'Type "yes" if you want me to tell you more about Devon.',
                                 bot: {
-                                  say: varAskNegative,
-                                goto: "QUERY_QUESTION"
-                                }
+                                  say: 'Type "no" if you want us to move on to another topic.',
+                                  bot: {
+                                    say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                                    user: [
+                                      {
+                                        intent: yes,
+                                        bot: {
+                                          say: "",
+                                          goto: "ABOUT_DEVON",
+                                        },
+                                      },
+                                      {
+                                        intent: no,
+                                        bot: {
+                                          say: varWhatToAsk,
+                                          goto: "WHAT_TO_ASK_QUERY",
+                                        },
+                                      },
+                                      {
+                                        intent: inGoodbye,
+                                        bot: {
+                                          say: "",
+                                          goto: "GOODBYE",
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
                               },
                             },
                           ],
@@ -263,12 +392,36 @@ export const basicQuestions: UserTurn[] = [
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: inMean,
+            bot: {
+              say: 'Type "yes" if you want me to tell you more about where I grew up.',
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
-            }
+                say: 'Type "no" if you want us to move on to another topic.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  user: [
+                    {
+                      intent: yes,
+                      bot: {
+                        say: "",
+                        goto: "GROW_UP",
+                      },
+                    },
+                    {
+                      intent: no,
+                      bot: {
+                        say: "varWhatToAsk,",
+                        goto: "WHAT_TO_ASK_QUERY",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
           },
         ],
       },
@@ -280,77 +433,117 @@ export const basicQuestions: UserTurn[] = [
       say: "Ben Howard.",
       bot: {
         say: varContinue,
-        label: "ABOUT_BEN",
         user: [
           {
             intent: yes,
             bot: {
-              say: "I'm the best artist in the world.",
+              say: "",
               bot: {
-                say: "And the best musician",
+                label: "ABOUT_BEN",
+                say: "I'm the best artist in the world.",
                 bot: {
-                  say: "And I write the best lyrics.",
+                  say: "And the best musician",
                   bot: {
-                    say: "I'm just exquisite.",
+                    say: "And I write the best lyrics.",
                     bot: {
+                      say: "I'm just exquisite.",
                       bot: {
-                        say: varAskPositive,
-                        goto: "QUERY_QUESTION",
+                        bot: {
+                          say: varPositiveFillers,
+                        },
+                      },
                     },
                   },
                 },
               },
             },
           },
-        },
           {
             intent: no,
             bot: {
-              say: ["Uh-huh...", "Hm hm..."],
-              bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+              say: varNegativeFillers,
+            },
           },
-        }
+          {
+            intent: inMean,
+            bot: {
+              say: 'Type "yes" if you want me to tell you more about who I am and what I do.',
+              bot: {
+                say: 'Type "no" if you want us to move on to another topic.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  user: [
+                    {
+                      intent: yes,
+                      bot: {
+                        say: "",
+                        goto: "ABOUT_BEN",
+                      },
+                    },
+                    {
+                      intent: no,
+                      bot: {
+                        say: "varWhatToAsk,",
+                        goto: "WHAT_TO_ASK_QUERY",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
         ],
       },
     },
   },
   {
-    intent: inRealBenQuestion, //NEEDS TO BE EDITED
+    intent: inRealBenQuestion,
     bot: {
-      say: [
-        "Err, not really.",
-        "Unfortunately, no.",
-        "No, sorry.",
-        "Err, no. Sorry.",
-      ],
+      say: ["Er, not really.", "Unfortunately, no.", "No, sorry.", "Er, no. Sorry."],
       bot: {
         say: ["I'm a chatbot.", "I'm a bot.", "I'm just a bot.", "I'm just a chatbot."],
         bot: {
           say: ["I was created to mimic Ben Howard."],
           bot: {
-            say: [
-              "Do you still want to talk to me?",
-              "Do you still feel like talking to me?",
-            ],
+            say: ["Do you still want to talk to me?", "Do you still feel like talking to me?"],
             user: [
               {
                 intent: yes,
                 bot: {
-                  say: varAskPositive,
-                  goto: "QUERY_QUESTION",
+                  say: varPositiveFillers,
                 },
               },
               {
                 intent: no,
                 bot: {
-                  say: "I see...",
+                  say: varNegativeFillers,
+                  goto: "MAKE_SURE",
+                },
+              },
+              {
+                intent: inMean,
+                bot: {
+                  say: 'Type "yes" if you still want to talk to me.',
                   bot: {
-                    say: "",
-                  goto: "MAKE_SURE"
-                  }
+                    say: 'Type "no" if you want to end our conversation.',
+
+                    user: [
+                      {
+                        intent: yes,
+                        bot: {
+                          say: "",
+                          goto: "ABOUT_BEN",
+                        },
+                      },
+                      {
+                        intent: no,
+                        bot: {
+                          say: "",
+                          goto: "GOODBYE",
+                        },
+                      },
+                    ],
+                  },
                 },
               },
             ],
@@ -360,17 +553,42 @@ export const basicQuestions: UserTurn[] = [
     },
   },
   {
-  intent: inLiveShows, //NEEDS TO BE UPDATED
-  bot: {
-    label: "LIVE_SHOWS",
-    say: "",
+    intent: inLiveShows, //NEEDS TO BE UPDATED
     bot: {
-      say: ['"Come find me when the years get older."',
-      '"You can tell \'em I\'ll be back in the minute. For now is not the time".'],
-      goto: "QUERY_QUESTION",
-    }
-  }
-},
+      say: "",
+      bot: {
+        label: "LIVE_SHOWS",
+        say: [
+          '"Come find me when the years get older."',
+          "\"You can tell 'em I'll be back in the minute. For now is not the time\".",
+        ],
+      },
+    },
+  },
+  {
+    intent: inHowBuilt,
+    bot: {
+      say: "",
+      bot: {
+        label: "HOW_BUILT",
+        say:
+          "I'm a scripted bot, which means that I pick up pre-written keywords in conversations with people I talk to.",
+        bot: {
+          say: "These keywords helps me to decide what to answer.",
+          bot: {
+            say: varBuiltExampleQuestions,
+            bot: {
+              say: "... well, you'll find out what I'd answer if you ask me about it.",
+              bot: {
+                say: "Try and type a question for me.",
+                goto: "QUERY_QUESTION",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 ]
 
 export const UIBasicQuestions = [basicQuestions]

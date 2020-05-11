@@ -13,7 +13,7 @@ export const entFirst: Entity = {
     name: "FIRST",
     enums: [
       {
-        name: "first", alts: ["1", "1st", "earliest", "original", "primary", "debut"]
+        name: "first", alts: ["1", "1st", "debut"]
       },
     ],
   }
@@ -31,10 +31,20 @@ export const entFirst: Entity = {
     name: "LAST",
     enums: [
       {
-        name: "last", alts: ["ending", "end", "sur", "utmost", "uttermost", "far-off", "ultimate"]
+        name: "last", alts: ["ending", "end", "sur", "utmost", "uttermost", "far-off", "ultimate", "surname"]
       },
     ],
   }
+
+  export const entLatest: Entity = {
+    name: "LATEST",
+    enums: [
+      {
+        name: "latest", alts: ["newest", "most new", "new", "recent"]
+      },
+    ],
+  }
+
 
   export const entFull: Entity = {
     name: "FULL",
@@ -55,19 +65,10 @@ export const entFirst: Entity = {
   }
 
   export const entThird: Entity = {
-    name: "SECOND",
+    name: "THIRD",
     enums: [
       {
         name: "third", alts: ["3", "3rd"]
-      },
-    ],
-  }
-
-  export const entHave: Entity = {
-    name: "HAVE",
-    enums: [
-      {
-        name: "have", alts: ["have", "is there", "did"]
       },
     ],
   }
@@ -90,14 +91,14 @@ export const entFirst: Entity = {
 ]
 }
 
-export const entKnow: Entity = {
+/* export const entKnow: Entity = {
   name: "KNOW",
   enums: [
   {
       name: "know", alts: ["hear", "learn", "be informed", "get the idea", "grasp", "have knowledge", "read", "listen", "follow", "copy", "understand"]
   }
 ]
-}
+} */
 
 export const entSomething: Entity = {
   name: "SOMETHING",
@@ -126,15 +127,6 @@ export const entWhere: Entity = {
 ]
 }
 
-export const entBorn: Entity = {
-  name: "BORN",
-  enums: [
-  {
-      name: "born", alts: ["birth"]
-  }
-]
-}
-
 export const entPlace: Entity = {
   name: "PLACE",
   enums: [
@@ -142,24 +134,6 @@ export const entPlace: Entity = {
       name: "place", alts: ["city", "town", "area", "spot", "site", "point"]
   }
 ]
-}
-
-export const entLatest: Entity = {
-  name: "LATEST",
-  enums: [
-  {
-      name: "latest", alts: ["last"]
-  }
-]
-}
-
-export const entMany: Entity = {
-  name: "MANY",
-  enums: [
-    {
-    name: "many"
-    }
-  ]
 }
 
 export const entAll: Entity = {
@@ -225,15 +199,6 @@ export const entAsk: Entity = {
   ]
 }
 
-export const entGoodbye: Entity = {
-  name: "GOODBYE",
-  enums: [
-    {
-      name: "goodbye", alts: ["bye", "godspeed", "ciao", "adios", "so long", "see you", "farewell", "adieu", "later"]
-    }
-  ]
-}
-
 export const entIDK: Entity = {
   name: "IDK",
   enums: [
@@ -279,79 +244,95 @@ export const entHow: Entity = {
   ]
 }
 
-  export const entHello: Entity = {
-    name: "HELLO",
-    enums: [
-      {
-        name: "hello",
-        alts: [
-          "hi",
-          "howdy",
-          "greetings", 
-          "hi ya", 
-          "good morning",
-          "bonjour", 
-          "salutation",
-          "good evening",
-          "hallo", 
-          "hey",
-          "yo", 
-          "g'day",
-          "aloha",
-          "salut",
-          "hello mate",
-          "hi mate",
-          "hallå",
-          "nihao",
-          "hallo",
-          "hej",
-          "greeting",
-          "annyeong",
-          "konnichiwa",
-          "tjo",
-          "hello",
-          "hi",
-          "good afternoon",
-          "hola",
-          "hello there",
-          "shalom",
-          "guten tag",
-          "tja",
-          "hejsan",
-          "hi",
-          "hello",
-          "hi there",
-          "hi ya",
-          "good morrow",
-          "coo coo",
-          "bonsoir",
-          "grüß dich",
-          "tjena",
-          "buenos dias",
-          "buenas tardes",
-          "yello",
-          "hey ya",
-          "cuckoo",
-          "cou cou",
-          "allo",
-          "moin",
-          "¿Aló",
-          "a-yo",
-          "salaam",
-          "heyo",
-          "ahoy",
-          "gidday",
-          "ello",
-          "ello heilo",
-          "well hello",
-          "hey man",
-          "gday",
-          "hello there",
-          "hey ben",
-          "yo ben",
-          "look who it is",
-        ],
-      },
-    ],
-  }
+export const entWork: Entity = {
+  name: "WORK", 
+  enums: [
+    {
+      name: "work", alts: ["function", "operate", "live", "go", "run", "know", "answer"]
+    }
+  ]
+}
 
+export const entBuild: Entity = {
+  name: "BUILD", 
+  enums: [
+    {
+      name: "build", alts: ["build", "create", "created", "construct", "constructed", "made", "set up", "put up"]
+    }
+  ]
+}
+
+export const entDay: Entity = {
+  name: "DAY",
+  enums: [
+    {
+      name: "day", alts: ["date"]
+}
+]
+}
+
+/*export const entWhat: Entity = {
+  name: "WHAT",
+  enums: [
+    {
+      name: "what", alts: ["which", "what's"]
+}
+]
+}*/
+
+export const entNo: Entity = {
+  name: "NO",
+  enums: [
+    {
+      name: "no", alts: ["nah",
+      "no thank you",
+      "nay",
+      "nix",
+      "no way",
+      "nope",
+      "not",
+      "definitely not",
+      "not ever",
+      "not in a million years",
+      "god no",
+      "please don't",
+      "don't",
+      "do not",
+      "screw that",
+      "fuck that"]
+}
+]
+}
+
+export const entYes: Entity = {
+  name: "YES",
+  enums: [
+    {
+      name: "yes", alts: [
+        "yeah",
+        "sure",
+        "alright",
+        "absolutely",
+        "by all means",
+        "certainly",
+        "indeed",
+        "mhm",
+        "aye",
+        "yep",
+        "uh-huh",
+        "okay",
+        "OK",
+        "okey dokey",
+        "yea",
+        "surely",
+        "hell yes",
+        "for sure",
+        "fine",
+        "sure thing",
+        "gladly",
+        "please",
+        "yes, please",
+        "ye"]
+}
+]
+}

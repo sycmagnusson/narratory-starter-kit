@@ -36,7 +36,7 @@ import {
 } from "../Intents/aboutEP"
 import { UserTurn } from "narratory"
 import { no, yes } from "../Intents/basicQuestions"
-import { varContinueEP, varAskNegative, varAskPositive } from "../variables"
+import { varContinueEP, varPositiveFillers, varNegativeFillers} from "../variables"
 
 /* | About Games In The Dark | Name of first EP | Have first EP | Release Date First EP | Release Date Games In The Dark | 
    | About These Waters | Name of Second EP | Have Second EP | Release Date Second EP | Release Date These Waters | 
@@ -54,8 +54,7 @@ export const aboutEP: UserTurn[] = [
         label: "ABOUT_GAMESINTHEDARK",
         say: "I will add more info about this Games In The Dark soon.",
         bot: {
-        say: varAskPositive,
-        goto: "QUERY_QUESTION",
+        say: varPositiveFillers,
         }
       },
     },
@@ -76,12 +75,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -104,12 +99,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -132,12 +123,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -160,12 +147,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -180,8 +163,7 @@ export const aboutEP: UserTurn[] = [
         label: "ABOUT_THESEWATERS",
         say: "I will add more info about this These Waters soon.",
         bot: {
-          say: varAskPositive,
-          goto: "QUERY_QUESTION",
+          say: varPositiveFillers,
           }
       },
     },
@@ -205,8 +187,7 @@ export const aboutEP: UserTurn[] = [
             bot: {
               say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
+                say: varNegativeFillers,
               }
             },
           },
@@ -233,8 +214,7 @@ export const aboutEP: UserTurn[] = [
             bot: {
               say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
+                say: varNegativeFillers,
               }
             },
           },
@@ -258,12 +238,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -286,12 +262,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-            },
+                say: varNegativeFillers,
           },
         }
         ],
@@ -306,8 +278,7 @@ export const aboutEP: UserTurn[] = [
         label: "ABOUT_OLDPINE",
         say: "I will add more info about this Old Pine soon.",
         bot: {
-          say: varAskPositive,
-          goto: "QUERY_QUESTION",
+          say: varPositiveFillers,
           }
       },
     },
@@ -328,12 +299,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -356,12 +323,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -384,12 +347,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -412,12 +371,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION}"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -443,12 +398,8 @@ export const aboutEP: UserTurn[] = [
             },
             {
               intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
                 bot: {
-                  say: varAskNegative,
-                goto: "QUERY_QUESTION"
-                }
+                  say: varNegativeFillers,
               },
             },
           ],
@@ -472,12 +423,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -500,12 +447,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-              }
+                say: varNegativeFillers,
             },
           },
         ],
@@ -528,12 +471,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-                bot: {
-                  say: ["Uh-huh...", "Hm hm..."],
                   bot: {
-                    say: varAskNegative,
-                  goto: "QUERY_QUESTION"
-              }
+                    say: varNegativeFillers,
             },
           },
         ],
@@ -556,12 +495,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-            },
+                say: varNegativeFillers,
             }
           },
         ],
@@ -576,8 +511,7 @@ export const aboutEP: UserTurn[] = [
         label: "ABOUT_THEBURGHISLAND",
         say: "I will add more info about The Burgh Island soon.",
         bot: {
-          say: varAskPositive,
-          goto: "QUERY_QUESTION",
+          say: varPositiveFillers,
           }
       },
     },
@@ -598,12 +532,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-            },
+                say: varNegativeFillers,
           },
         }
         ],
@@ -626,12 +556,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-            },
+                say: varNegativeFillers,
           },
         }
         ],
@@ -654,12 +580,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-            },
+                say: varNegativeFillers,
           },
         }
         ],
@@ -682,12 +604,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-            },
+                say: varNegativeFillers,
           },
         }
         ],
@@ -711,11 +629,7 @@ export const aboutEP: UserTurn[] = [
           {
             intent: no,
             bot: {
-            say: ["Uh-huh...", "Hm hm..."],
-            bot: {
-              say: varAskNegative,
-            goto: "QUERY_QUESTION"
-            }
+              say: varNegativeFillers,
             },
           },
         ],
@@ -742,11 +656,7 @@ export const aboutEP: UserTurn[] = [
           {
             intent: no,
             bot: {
-            say: ["Uh-huh...", "Hm hm..."],
-            bot: {
-              say: varAskNegative,
-            goto: "QUERY_QUESTION"
-            },
+              say: varNegativeFillers,
           }
           },
         ],
@@ -819,18 +729,14 @@ export const aboutEP: UserTurn[] = [
                   },
                   {
                     intent: no,
-                    bot: {
-                      say: ["Uh-huh...", "Hm hm..."],
                       bot: {
-                        say: varAskNegative,
-                      goto: "QUERY_QUESTION"
-                    },
+                        say: varNegativeFillers,
                   },
                 },
                   {
                     intent: yes,
                     bot: {
-                      say: ["Cool.", "Alright."],
+                      say: varPositiveFillers,
                       goto: "CHOOSE_EP",
                     },
                   },
@@ -858,12 +764,8 @@ export const aboutEP: UserTurn[] = [
           },
           {
             intent: no,
-            bot: {
-              say: ["Uh-huh...", "Hm hm..."],
               bot: {
-                say: varAskNegative,
-              goto: "QUERY_QUESTION"
-            }
+                say: varNegativeFillers,
             },
           },
         ],

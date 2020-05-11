@@ -1,19 +1,19 @@
 import { Entity } from "narratory"
 
-export const entAlbum: Entity = {
+ export const entAlbum: Entity = {
     name: "ALBUM",
      enums: [
     {
         name: "album", alts: ["record", "LP", "tape", "albums", "records", "lps", "tapes"]
     }
 ]
-}
+} 
 
 export const entEK: Entity = {
     name: "EVERY_KINGDOM",
     enums: [
     {
-        name: "ifwww", alts: ["EK", "Every Kingdom"]
+        name: "every kingdom", alts: ["EK", "EveryKingdom"]
     }
 ]
 }
@@ -35,8 +35,3 @@ export const entIFWWW: Entity = {
       },
     ],
   }
-
-
-  export  const entities = [entAlbum,
-    entEK,
-    entIFWWW]

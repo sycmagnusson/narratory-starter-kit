@@ -1,23 +1,20 @@
-import { Entity, Intent, UserTurn, BotTurn } from "narratory"
+import { Entity, Intent, UserTurn, BotTurn, BridgeTurn } from "narratory"
 
 //VARIABLES
 
 export const varFillers = [
-  "Ehm.",
+  "Erm.",
   "So, yeah.",
-  "Heh, yeah.",
   "Hm, yeah.",
-  "Mmm... hehe.",
-  "Hm hm.",
   "Yeah.",
-  "Mhmm.",
+  "Yeah, hm.",
+  "Yeah, so.",
   "So.",
-  "Eh.",
 ]
 
-export const varPositiveFillers = ["So, yeah.", "Alright.", "Cool, cool.", "Yeah, so.", "Cool.", "Okay, so."]
+export const varPositiveFillers = ["So, yeah.", "Alright.", "Cool, cool.", "Yeah, so.", "Okay, so."]
 
-export const varNegativeFillers = ["Ehm...", "Uh-huh...", "Hm hm...", "I see...", "Oh, so..."]
+export const varNegativeFillers = ["Erm...", "Uh-huh...", "Hm hm...", "Er...", "Uh-hm..."]
 
 export const varGreetings = [
   //"Hello, hi!", "Hi, hello!", "Hello mate!", "Hello!", "Hi!", "Hi, hello!",
@@ -50,11 +47,12 @@ export const varFirstQuestion = [
 ]
 
 export const varThatsThat = [
-  "Ehm, that's that.",
-  "Ehm, that's it.",
+  "Erm, that's that.",
+  "Erm, that's it.",
   "\"That's it, that's it all.\"",
-  "That's that, ehm.",
-  "That's it, ehm.",
+  "That's that, erm.",
+  "That's it, erm.",
+  "Erm, yeah. That's it."
 ]
 
 export const varContinue = [
@@ -86,22 +84,51 @@ export const varAskNegative = [
   "Then, do you feel like asking something else?",
 ]
 
-export const varAskPositive = [
-  "How about you ask me something else?",
-  "Is there any other question you would like to ask me?",
-  "Do you want to ask me anything else?",
-  "Do you have any other question for me?",
-  "How about you ask me another question?",
-  "Is there anything else you would like to ask me?",
+export const varAskSmallTalk = [
+  "How about you ask me something?",
+  "Do you want to ask me anything?",
+  "Would you like to ask me something?",
+  "Do you have any question for me?",
 ]
+
+export const varWhatToAsk = [
+  "Then, what would you like to talk about instead?",
+  "Then, what do you want to talk about instead?",
+  "Then, what do you rather want to talk about?"
+]
+
+export const varAsk = [
+  "How about you ask me something else?",
+  "Do you want to ask me some other question?",
+  "Do you have another question?",
+  "Do you want to ask me something else?",
+  "Would you like to ask me something else?",
+  "Would you like to ask me some other question?",
+  "How about you ask me another question?",
+  "Is there anything else you would like to know?",
+  "Do you have any other question for me?",
+]
+
 export const varSorryAgain = [
   "I'm sorry, what was that?",
   "Sorry, hey. What did you say?",
-  "Hey, mate. I'm sorry. I didn't understand that. Could you please say that again?",
+  "Hey, mate. I'm sorry. I didn't understand that. Do you think you could try and say that again?",
   "Sorry mate. Could you please try and re-phrase that?",
   "Hey, sorry. Do you think you could say that one more time?",
   "Sorry, I didn't get that. Come again please?"
 ]
+
+export const varBuiltExampleQuestions = 
+  ['For example, if you ask me "what\'s the name of your last album", or "when did you release your first EP"...',
+  'For example, if you ask me "what\'s the name of your first EP", or "when did you release your latest album"...',
+  'For example, if you ask me "when is your next concert", or "where were you born"...',
+  'For example, if you ask me "where were you born", or "when is your next concert"...']
+
+/*export const varSorryWhatToAsk = [
+  "Sorry, mate.",
+  "Sorry, hey.",
+  "Sorry, what?."
+]*/
 
 export const variables = [
   varFillers,
@@ -113,7 +140,7 @@ export const variables = [
   varContinueFurther,
   varContinueAlbum,
   varAskNegative,
-  varAskPositive,
+  varAsk,
   varSorryAgain,
 ]
 

@@ -6,12 +6,14 @@
     "agent": "agent.ts"
   },
   "scripts": {
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "generate:faq": "tsc && node out/src/generate.js"
   },
   "author": "luddilo",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^12.12.21",
+    "google-spreadsheet": "^3.0.11",
     "narratory": "^0.12.9"
   },
   "devDependencies": {
