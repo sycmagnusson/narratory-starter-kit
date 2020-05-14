@@ -1,20 +1,18 @@
 import { UserTurn } from "narratory"
 import { yes, no } from "../Intents/basicQuestions"
-import { inFirstMusicalMemory, inMumUseSpotify, inDoInTheMorning, inFriendsMusicTaste, inMazzyStar } from "../Intents/allStories"
+import { inFirstMusicalMemory, inMumUseSpotify, inDoInTheMorning, inFriendsMusicTaste, inMazzyStar } from "../Intents/randomStories"
 import { varContinue, varPositiveFillers, varNegativeFillers } from "../variables"
-
-/* | First Musical Memory | Mum Use Of Spotify | Do In The Morning | Friends Music Taste | Mazzy Star */
 
 export const allStories: UserTurn [] = [
   {
   intent: inFirstMusicalMemory,
   bot: {
     say: "I mostly remember records and stuff that used to be on.",
-    bot: {
+    /*bot: {
       say: varContinue,
       user: [
         {
-          intent: yes,
+          intent: yes,*/
           bot: {
             say: "My folks used to put music on when I went to bed.",
             bot: {
@@ -29,7 +27,7 @@ export const allStories: UserTurn [] = [
                 },
               },
             },
-          },
+          /*},
         },
         {
           intent: no,
@@ -37,7 +35,7 @@ export const allStories: UserTurn [] = [
             say: varNegativeFillers,
           }
         },
-      ],
+      ],*/
     },
   }
 },
@@ -47,11 +45,11 @@ export const allStories: UserTurn [] = [
     say: "Yeah, I’ve got my mum onto Spotify.",
     bot: {
       say: "She hasn’t quite grasped how to use it though.",
-      bot: {
+      /*bot: {
         say: varContinue,
         user: [
           {
-            intent: yes,
+            intent: yes,*/
             bot: {
               say: "She sort of treats it like a record store.",
               bot: {
@@ -70,7 +68,7 @@ export const allStories: UserTurn [] = [
                 },
               },
             },
-          },
+         /*},
           {
             intent: no,
             bot: {
@@ -78,7 +76,7 @@ export const allStories: UserTurn [] = [
             },
           },
         ],
-      },
+      },*/
     },
   }
 },
@@ -89,11 +87,11 @@ export const allStories: UserTurn [] = [
     bot: {
       label: "DO_IN_THE_MORNING",
       say: "I think I sort of pick and choose which mornings I’m good on.",
-    bot: {
+    /*bot: {
       say: varContinue,
       user: [
         {
-          intent: yes,
+          intent: yes,*/
           bot: {
             say: "I’m mostly bad in the mornings.",
             bot: {
@@ -109,7 +107,7 @@ export const allStories: UserTurn [] = [
               },
             },
           },
-        },
+        /*},
         {
           intent: no,
           bot: {
@@ -117,7 +115,7 @@ export const allStories: UserTurn [] = [
           },
         },
       ],
-    },
+    },*/
   },
   }
 },
@@ -127,11 +125,11 @@ export const allStories: UserTurn [] = [
     say: "Most of my friends listen to albums.",
     bot: {
       say: "Sort of.",
-      bot: {
+      /*bot: {
         say: varContinue,
         user: [
           {
-            intent: yes,
+            intent: yes,*/
             bot: {
               say: "There's kind of an eclectic bunch down Totnes.",
               bot: {
@@ -150,7 +148,7 @@ export const allStories: UserTurn [] = [
                 },
               },
             },
-          },
+          /*},
           {
             intent: no,
             bot: {
@@ -158,7 +156,7 @@ export const allStories: UserTurn [] = [
             },
           },
         ],
-      },
+      },*/
     },
   },
 },

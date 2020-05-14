@@ -1,51 +1,5 @@
 import { Intent } from "narratory"
-import {
-  entName,
-  entFirst,
-  entMiddle,
-  entLast,
-  entFull,
-  entWhere,
-  entPlace,
-  entMean,
-  entInfo,
-  entAnother,
-  entQuestion,
-  entCan,
-  entAsk,
-  entSomething,
-  entIDK,
-  entHelp,
-  entAnswer,
-  entAble,
-  entHow,
-  entWork,
-  entBuild,
-  entWhen,
-  entDay,
-  entNo,
-  entYes,
-} from "../Entities/general"
-import {
-  entHello,
-  entBorn,
-  entGoodbye,
-  entHowAreYou,
-  entHowIsDay,
-  entWhatsUp,
-  entNiceMeetingYou,
-  entOld,
-  entBirthday,
-  entYear,
-  entWhereGrowUp,
-  entHomeTown,
-  entUK,
-  entReal,
-  entReally,
-  entLiveShows,
-  entPerforming,
-  entUpcoming,
-} from "../Entities/basicQuestions"
+import { entHello, entHowAreYou, entHowIsDay, entWhatsUp, entNiceMeetingYou, entOld, entBirthday, entBorn, entWhereGrowUp, entHomeTown, entUK, entReal, entReally, entLiveShows, entPerforming, entUpcoming, entGoodbye, entName, entFirst, entMiddle, entLast, entFull, entWhen, entWhere, entPlace, entYes, entNo, entMean, entInfo, entIDK, entHow, entWork, entBuild, entCan, entAnswer, entAble, entAnother, entQuestion, entAsk, entSomething, entHelp } from "../allEntities"
 
 /* | Name | First Name | Middle Name | Last Name | Full Name |
    | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
@@ -57,7 +11,7 @@ import {
 export const inName: Intent = {
   entities: { NAME: entName },
   examples: [
-    "_NAME",
+    /*"_NAME",*/
     "what is your _NAME",
     "tell me your _NAME",
     "your _NAME please",
@@ -70,7 +24,7 @@ export const inName: Intent = {
 export const inFirstName: Intent = {
   entities: { FIRST: entFirst, NAME: entName },
   examples: [
-    "_FIRST _NAME",
+    /*"_FIRST _NAME",*/
     "what is your _FIRST _NAME",
     "tell me your _FIRST _NAME",
     "your _FIRST _NAME please",
@@ -83,7 +37,7 @@ export const inFirstName: Intent = {
 export const inMiddleName: Intent = {
   entities: { MIDDLE: entMiddle, NAME: entName },
   examples: [
-    "_MIDDLE _NAME",
+    /*"_MIDDLE _NAME",*/
     "what is your _MIDDLE _NAME",
     "tell me your _MIDDLE _NAME",
     "your _MIDDLE _NAME please",
@@ -96,7 +50,7 @@ export const inMiddleName: Intent = {
 export const inLastName: Intent = {
   entities: { LAST: entLast, NAME: entName },
   examples: [
-    "_LAST _NAME",
+    /*"_LAST _NAME",*/
     "what is your _LAST _NAME",
     "tell me your _LAST _NAME",
     "your _LAST _NAME please",
@@ -109,7 +63,7 @@ export const inLastName: Intent = {
 export const inFullName: Intent = {
   entities: { FULL: entFull, NAME: entName },
   examples: [
-    "_FULL _NAME",
+    /*"_FULL _NAME",*/
     "what is your _FULL _NAME",
     "tell me your _FULL _NAME",
     "your _FULL _NAME please",
@@ -249,7 +203,7 @@ export const inRealBenQuestion: Intent = {
 }
 
 export const inLiveShows: Intent = {
-  entities: { LIVESHOWS: entLiveShows, PERFORMING: entPerforming, UPCOMING: entUpcoming },
+  entities: { LIVESHOWS: entLiveShows, PERFORMING: entPerforming, UPCOMING: entUpcoming, WHEN: entWhen },
   examples: [
     "ben howard _LIVESHOWS",
     "are you doing any _LIVESHOWS",
@@ -259,6 +213,7 @@ export const inLiveShows: Intent = {
     "_ABOUT ben howard _LIVESHOWS",
     "ben howard _LIVESHOWS",
     "ben howard _PERFORMING live",
+    "_WHEN is your _UPCOMING _LIVESHOWS",
   ],
 }
 
@@ -322,7 +277,7 @@ export const inGoodbye: Intent = {
 
 export const inWhatToAsk: Intent = {
   entities: {
-    /*WHAT: entWhat*/ CAN: entCan,
+     CAN: entCan,
     ASK: entAsk,
     HELP: entHelp,
     QUESTION: entQuestion,
@@ -363,8 +318,6 @@ export const intents = [
   inWhatsUp,
   inNiceMeetingYou,
   inAge,
-  /*inWhenBorn,
-  inWhatYearBorn,*/
   inBirthplace,
   inGrowUp,
   inAboutBen,

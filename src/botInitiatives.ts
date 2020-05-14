@@ -1,15 +1,14 @@
 import { BotTurn, BridgeTurn, ANYTHING } from "narratory"
 import { yes, no, inGoodbye, inAnotherQuestion, inWhatToAsk, inMean } from "./Intents/basicQuestions"
-import { answerFallback, altAnswerFallback, anythingMakeSure } from "./answerFallback"
-import { inAboutEveryKingdom, inAboutIFWWW, inAboutNoondayDream } from "./Intents/aboutAlbums"
+import { anythingMakeSure, generalAnswerFallback } from "./answerFallback"
 import {
-  varAskNegative,
   varSorryAgain,
   varNegativeFillers,
-  varPositiveFillers,
   varWhatToAsk,
   varAskSmallTalk,
+  varPositiveFillers,
 } from "./variables"
+import { inTonyTheMouse, inInspirationEK, inDifficultiesEK } from "./Intents/storiesMusic"
 
 export const anotherQuestion: BotTurn = {
   label: "ANOTHER_QUESTION",
@@ -25,7 +24,7 @@ export const anotherQuestion: BotTurn = {
     {
       intent: yes,
       bot: {
-        say: "",
+        say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
         goto: "WHAT_TO_ASK_YES",
       },
     },
@@ -39,15 +38,82 @@ export const anotherQuestion: BotTurn = {
     {
       intent: inMean,
       bot: {
+        say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+      bot: {
         say: "",
         goto: "WHAT_TO_ASK_YES",
       },
+    }
     },
     {
       intent: ANYTHING,
-      bot: altAnswerFallback,
+      bot: generalAnswerFallback,
     },
   ],
+}
+
+export const movingOn: BridgeTurn = {
+  label: "MOVING_ON",
+  bot: {
+    say: [
+      "Then, what should we talk about instead?",
+      "Then, what do you want to talk about instead?",
+      "Then, what would you like to talk about instead?",
+    ],
+    bot: {
+      say: 'If you\'re not sure what you want to talk about, type "help" and I will suggest a few topics.',
+      user: [
+        {
+          intent: inWhatToAsk,
+          bot: {
+            say: "",
+            goto: "WHAT_TO_ASK",
+          },
+        },
+        {
+          intent: ANYTHING,
+          bot: {
+            say: varSorryAgain,
+            repair: true,
+          }
+        },
+        {
+          intent: yes,
+          bot: {
+            say: ["Then, go ahead and ask me something."],
+            repair: true,
+          },
+        },
+        {
+          intent: no,
+          bot: {
+            say: varNegativeFillers,
+            goto: "MAKE_SURE",
+          },
+        },
+        {
+          intent: inGoodbye,
+          bot: {
+            say: "",
+            goto: "GOODBYE",
+          },
+        },
+        {
+          intent: inMean,
+          bot: {
+            say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+          bot: {
+            say: 'Type "help" if you want me to suggest a few topics we can talk about.',
+            bot: {
+              say: 'Or type "no" if you feel like we are done talking here.',
+              repair: true,
+            },
+          },
+          },
+        },
+      ],
+    },
+  },
 }
 
 const askNegative: BotTurn = {
@@ -64,7 +130,7 @@ const askNegative: BotTurn = {
       intent: yes,
       bot: {
         say: ["Then, go ahead and ask me something."],
-        goto: "QUERY_QUESTION",
+        repair: true,
       },
     },
     {
@@ -75,15 +141,21 @@ const askNegative: BotTurn = {
       },
     },
     {
-      intent: inWhatToAsk,
-      bot: {
-        say: "",
-        goto: "WHAT_TO_ASK",
-      },
+      intent: ANYTHING,
+      bot: generalAnswerFallback,
     },
     {
-      intent: ANYTHING,
-      bot: altAnswerFallback,
+      intent: inMean,
+      bot: {
+        say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+      bot: {
+        say: 'If you\'re not sure what you want to talk about, type "help" and I will suggest a few topics.',
+        bot: {
+          say: 'Or type "goodbye" if you feel like we are done talking here.',
+          repair: true,
+        },
+      },
+      },
     },
   ],
 }
@@ -102,183 +174,28 @@ export const makeSure: BotTurn = {
     {
       intent: no,
       bot: {
-        say: "",
+        say: varPositiveFillers,
       },
     },
     {
       intent: ANYTHING,
       bot: anythingMakeSure,
     },
-  ],
-}
-
-const tellAllAboutAlbum: BridgeTurn = {
-  label: "TELL_ALL_ABOUT_ALBUM",
-  bot: {
-    say: ["\"I'll take the long way 'round.\"", '"Where to, where to begin?"', '"Make your mind up, child"'],
-    bot: {
-      say: ["Let’s start with one of them.", "Let’s go one at a time."],
+    {
+      intent: inMean,
       bot: {
-        say: ["Which album should I tell you more about?", "Which album do you want to hear more about?"],
-        repair: true,
-        user: [
-          {
-            intent: inAboutEveryKingdom,
-            bot: {
-              say: "",
-              goto: "ABOUT_EVERYKINGDOM",
-            },
-          },
-          {
-            intent: inAboutIFWWW,
-            bot: {
-              say: "",
-              goto: "ABOUT_IFWWW",
-            },
-          },
-          {
-            intent: inAboutNoondayDream,
-            bot: {
-              say: "",
-              goto: "ABOUT_NOONDAYDREAM",
-            },
-          },
-          {
-            intent: no,
-            bot: {
-              say: varNegativeFillers,
-              goto: "QUERY_QUESTION",
-            },
-          },
-          {
-            intent: ANYTHING,
-            bot: [
-              {
-                cond: { retryCount: 0 },
-                bot: {
-                  say: ["Uh-huh...", "Hmm hmm..."],
-                  bot: {
-                    say: "Sorry, I didn't get it. You have to tell me which album you want to know more about.",
-                    repair: true,
-                  },
-                },
-              },
-              {
-                cond: { retryCount: 1 },
-                bot: {
-                  say: ["Ehm...", "Uhm..."],
-                  bot: {
-                    say: "What was that? You have to tell me which album you want me to tell you more about.",
-                    repair: true,
-                  },
-                },
-              },
-              {
-                bot: {
-                  say: varSorryAgain,
-                  repair: true,
-                },
-              },
-            ],
-          },
-        ],
-      },
+        say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+      bot: {
+        say: 'Type "no" if you want to keep talking to me',
+        bot: {
+          say: 'Or type "goodbye" if you feel like we are done talking for now.',
+          repair: true,
+      }
     },
-  },
+    },
 }
-
-/*
-const chooseAlbum: BridgeTurn = {
-  label: "CHOOSE_ALBUM",
-  bot: {
-    say: ["Which one should I tell you more about?", "Which album do you want to hear more about?"],
-    user: [
-      {
-        intent: inAboutEveryKingdom,
-        bot: {
-          say: "",
-          goto: "ABOUT_EVERYKINGDOM",
-        },
-      },
-      {
-        intent: inAboutIFWWW,
-        bot: {
-          say: "",
-          goto: "ABOUT_IFWWW",
-        },
-      },
-      {
-        intent: inAboutNoondayDream,
-        bot: {
-          say: "",
-          goto: "ABOUT_NOONDAYDREAM",
-        },
-      },
-      {
-        intent: inTellAboutAllAlbum,
-        bot: {
-          say: "",
-          goto: "TELL_ALL_ABOUT",
-        },
-      },
-      {
-        intent: no,
-        bot: {
-          say: ["Uh-huh...", "Hm hm..."],
-          bot: {
-            say: varAskNegative,
-            goto: "QUERY_QUESTION",
-          },
-        },
-      },
-      {
-        intent: ANYTHING,
-        bot: [
-          {
-            cond: { retryCount: 0 },
-            bot: {
-              say: ["Uh-huh...", "Hmm hmm..."],
-              bot: {
-                say: "Sorry, I didn't get it. You have to tell me which album you want to know more about.",
-                repair: true,
-              },
-            },
-          },
-          {
-            cond: { retryCount: 1 },
-            bot: {
-              say: ["Ehm...", "Uhm..."],
-              bot: {
-                say: "What was that? You have to tell me which album you want me to tell you more about.",
-                repair: true,
-              },
-            },
-          },
-          {
-            say: "Would you like to ask me another question?",
-            user: [
-              {
-                intent: no,
-                bot: {
-                  say: "I see...",
-                  goto: "GOODBYE",
-                },
-              },
-              {
-                intent: yes,
-                bot: [
-                  {
-                    say: varPositiveFillers,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-} */
+  ]
+}
 
 export const whatToAsk: BotTurn = {
   label: "WHAT_TO_ASK",
@@ -298,7 +215,6 @@ export const whatToAsk: BotTurn = {
       intent: no,
       bot: {
         say: varNegativeFillers,
-        goto: "BRIDGE",
       },
     },
     {
@@ -307,6 +223,8 @@ export const whatToAsk: BotTurn = {
         say: "",
         bot: {
           label: "WHAT_TO_ASK_YES",
+          say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+        bot: {
           say: "If you want to know the full story, I can tell you.",
           bot: {
             say: "All you have to do is ask.",
@@ -314,6 +232,7 @@ export const whatToAsk: BotTurn = {
               say: 'You do this by typing "tell me about..." followed by what you want me to tell you about.',
               repair: true,
             },
+          }
           },
         },
       },
@@ -324,7 +243,7 @@ export const whatToAsk: BotTurn = {
     },
     {
       intent: ANYTHING,
-      bot: answerFallback,
+      bot: generalAnswerFallback,
     },
   ],
 }
@@ -344,122 +263,23 @@ export const whatToAskQuery: BridgeTurn = {
           },
         },
         {
+          intent: inGoodbye,
+          bot: {
+            say: "",
+            goto: "GOODBYE",
+        }
+      },
+        {
           intent: ANYTHING,
-          bot: altAnswerFallback,
+          bot: {
+            say: varSorryAgain,
+            repair: true,
         },
+      }
       ],
     },
   },
 }
-
-export const anythingNarrative: BridgeTurn = {
-  bot: [
-    {
-      cond: { retryCount: 0 },
-      bot: {
-        say: '"I don\'t want to trouble your mind", but I cannot make head nor tail of that.',
-        bot: {
-          say: [
-            "Do you think you could re-phrase that?",
-            "Do you think you could ask that question again?",
-            "Do you think you could ask me that again?",
-          ],
-          repair: true,
-        },
-      },
-    },
-    {
-      cond: { retryCount: 1 },
-      bot: {
-        say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
-        bot: {
-          say: [
-            "One more time, please",
-            "Please, come again.",
-            "Could you please repeat that?",
-            "Please, say that again.",
-            "Could you please say that again?",
-          ],
-          repair: true,
-        },
-      },
-    },
-    {
-      bot: {
-        say: varSorryAgain,
-        repair: true,
-      },
-    },
-  ],
-}
-
-/*
-export const anythingCustomStart: BridgeTurn = {
-  label: "ANYTHING_START",
-  bot: [
-    {
-      cond: { retryCount: 0 },
-      bot: {
-        say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
-        bot: {
-          say: 'Please type "yes", or "no", depending on if you want to hear more or not.',
-          repair: true,
-        },
-    },
-  },
-    {
-      cond: { retryCount: 1 },
-      bot: {
-        say: '"I don\'t want to trouble your mind", but I cannot make head nor tail of that.',
-        bot: {
-          say: 'Make sure you type either "yes" or "no", depending on if you are interested in hearing more about this or not.',
-          repair: true,
-        },
-      },
-    },
-    {
-      bot: {
-        say: varSorryAgain,
-        repair: true,
-      },
-    },
-  ],
-}
-
-export const anythingCustomReal: BridgeTurn = {
-  label: "ANYTHING_REAL",
-  bot: [
-    {
-      cond: { retryCount: 0 },
-      bot: {
-        say: '"I don\'t wanna beg you pardon", but I beg you pardon?',
-        bot: {
-          say: 'Please type "yes", or "no", depending on if you want to keep talking to me or not.',
-          repair: true,
-        },
-    },
-  },
-    {
-      cond: { retryCount: 1 },
-      bot: {
-        say: '"I don\'t want to trouble your mind", but I cannot make head nor tail of that.',
-        bot: {
-          say: 'Type "yes" if you still want to talk to me.',
-          bot: {
-            say: 'Type "no" if you want to end our conversation here.',
-          repair: true,
-        },
-      },
-    },
-  },
-    {
-      bot: {
-        say: varSorryAgain,
-        repair: true,
-      },
-    },
-  ],
-}*/
 
 export const smallTalk: BotTurn = {
   label: "SMALL_TALK",
@@ -481,7 +301,10 @@ export const smallTalk: BotTurn = {
     },
     {
       intent: ANYTHING,
-      bot: answerFallback,
+      bot: {
+        say: varSorryAgain,
+        repair: true,
+      }
     },
     {
       intent: no,
@@ -490,80 +313,63 @@ export const smallTalk: BotTurn = {
         goto: "MAKE_SURE",
       },
     },
+    {
+      intent: inMean,
+      bot: {
+        say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+      bot: {
+        say: 'If you\'re not sure what you want to talk about, type "help" and I will suggest a few topics.',
+        bot: {
+          say: 'Or type "goodbye" if you feel like we are done talking here.',
+          repair: true,
+        }
+        }
+      }
+    }
   ],
 }
 
-/*
-export const aboutAlbum: BridgeTurn = {
-  label: "ABOUT_ALBUM",
+export const queryInspirationTonyDifficulties: BridgeTurn = {
+  label: "TONY_INSPIRATION_DIFFICULTIES_QUERY",
   bot: {
-    say: '"Every Kingdom" was released in 2011.',
-    bot: {
-      say: 'I recorded "I Forget Where We Were" in 2014.',
-      bot: {
-        say: 'Then, "Noonday Dream" is my latest album. It came out in June 2018.',
+    say: '"I watched the host drink all the wind and now she rambles through the who\'ve and who have nots...',
+  bot: {
+    say: '... sorry, could you please remind me of what I was going to tell you?',
+    user: [
+      {
+        intent: inTonyTheMouse,
         bot: {
-          say: ["Do you want to hear more about any of the albums?", "Should I go into detail about any of them?"],
-          user: [
-            {
-              intent: inAboutEveryKingdom,
-              bot: {
-                say: "",
-                goto: "ABOUT_EVERYKINGDOM",
-              },
-            },
-            {
-              intent: inAboutIFWWW,
-              bot: {
-                say: "",
-                goto: "ABOUT_IFWWW",
-              },
-            },
-            {
-              intent: inAboutNoondayDream,
-              bot: {
-                say: "",
-                goto: "ABOUT_NOONDAYDREAM",
-              },
-            },
-            {
-              intent: inTellAboutAllAlbum,
-              bot: {
-                say: "",
-                goto: "TELL_ALL_ABOUT_ALBUM",
-              },
-            },
-            {
-              intent: no,
-              bot: {
-                say: ["Uh-huh...", "Hm hm..."],
-                bot: {
-                  say: varAskNegative,
-                  goto: "QUERY_QUESTION",
-                },
-              },
-            },
-            {
-              intent: yes,
-              bot: {
-                say: ["Cool.", "Alright."],
-                goto: "CHOOSE_ALBUM",
-              },
-            },
-          ],
-        },
+          say: "",
+          goto: "TONY_THE_MOUSE",
+        }
       },
-    },
-  },
-}*/
+      {
+        intent: inInspirationEK,
+        bot: {
+          say: "",
+          goto: "INSPIRATION_EK"
+        }
+      },
+      {
+        intent: inDifficultiesEK,
+        bot: {
+          say: "",
+          goto: "DIFFICULTIES_EK",
+        }
+      }
+    ]
+  }
+  }
+}
+
 
 export const botInitiatives = [
   askNegative,
   makeSure,
-  tellAllAboutAlbum,
   whatToAsk,
   anotherQuestion,
   whatToAskQuery,
-  anythingNarrative,
-  smallTalk /*anythingCustomStart, anythingCustomReal*/,
+  smallTalk,
+  movingOn,
+  queryInspirationTonyDifficulties
 ]

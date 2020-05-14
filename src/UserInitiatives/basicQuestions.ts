@@ -33,12 +33,6 @@ import {
   varBuiltExampleQuestions,
 } from "../variables"
 
-/* | Name | First Name | Middle Name | Last Name | Full Name |
-   | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
-   | Age | WhenBorn | What Year Born | Birthday | Birthplace |
-   | Grow Up | About Devon | 
-   | About Ben | Real Ben? | Live Shows | */
-
 export const basicQuestions: UserTurn[] = [
   {
     intent: inName,
@@ -116,7 +110,7 @@ export const basicQuestions: UserTurn[] = [
   {
     intent: inHowIsDay,
     bot: {
-      say: ["Lovely, thanks.", "Great, thank you.", '"I\'ve seen happiness". Yeah.', "Good mate, yeah."],
+      say: ["Lovely, thanks.", "Great, thank you.", '"I\'ve seen happiness". Yeah.', "Good mate, yeah.", '"All is well, all is good." Yeah.',],
     },
   },
   {
