@@ -2,18 +2,19 @@ import { narrative } from "./narrative"
 import { userInitiatives } from "./userInitiatives"
 import { Agent, Language } from "narratory"
 import { botInitiatives } from "./botInitiatives"
-import { UIBasicQuestions } from "./UserInitiatives/basicQuestions"
-import { UIAboutMusic } from "./UserInitiatives/aboutMusic"
-import { UIAllStories } from "./UserInitiatives/randomStories"
-import {UIStoriesMusic} from "./UserInitiatives/storiesMusic"
+import { UIBasicQuestions } from "./UserInitiatives/smallTalk"
+import { UIAboutMusic } from "./UserInitiatives/howBuilt"
+import { UIAboutBen } from "./UserInitiatives/anotherQuestion"
+import {UIStoriesMusic} from "./UserInitiatives/storiesHowBuilt"
 import { bridge } from "./bridges"
+import { UIStoriesBen } from "./UserInitiatives/whatToAsk"
 
 
 const agent: Agent = {
   agentName: "the Ben Howard Chatbot",
   language: Language.English,
   narrative, // See the file narrative.ts
-  userInitiatives: userInitiatives.concat(...UIBasicQuestions, ...UIAllStories, ...UIAboutMusic, ...UIStoriesMusic),  // See the file userInitiatives.ts
+  userInitiatives: userInitiatives.concat(...UIBasicQuestions, ...UIAboutBen, ...UIAboutMusic, ...UIStoriesMusic, ...UIStoriesBen),  // See the file userInitiatives.ts
   botInitiatives,
   bridges: [bridge],
   defaultFallbacks: ['"Oh hey, I wasn\'t listening". Say that again please?', '"I hear you\'re there". Come again please?'], 

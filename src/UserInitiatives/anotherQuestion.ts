@@ -1,9 +1,10 @@
-import { UserTurn } from "narratory"
-import { yes, no } from "../Intents/basicQuestions"
-import { inFirstMusicalMemory, inMumUseSpotify, inDoInTheMorning, inFriendsMusicTaste, inMazzyStar } from "../Intents/randomStories"
-import { varContinue, varPositiveFillers, varNegativeFillers } from "../variables"
+import { UserTurn, ANYTHING } from "narratory"
+import { yes, no, inGoodbye, inMean } from "../Intents/smallTalk"
+import { inFirstMusicalMemory, inMumUseSpotify, inDoInTheMorning, inFriendsMusicTaste, inMazzyStar, inAboutSchool } from "../Intents/whatToAsk"
+import { varPositiveFillers, varNegativeFillers } from "../variables"
+import { answerFallbackQuestion } from "../answerFallback"
 
-export const allStories: UserTurn [] = [
+export const aboutBen: UserTurn [] = [
   {
   intent: inFirstMusicalMemory,
   bot: {
@@ -177,7 +178,166 @@ export const allStories: UserTurn [] = [
       },
     },
   }, 
+},
+/*{
+  intent: inAboutCollege,
+  bot: {
+    say: "Oh, college.",
+    bot: {
+      say: "I've got a lot of stories from those days.",
+  bot: {
+    say: ["Do you want to hear about the open mics I did back then?", "I actually dropped out early from there. Do you want to know why?"],
+    user: [
+      {
+        intent: yes,
+        bot: {
+          say: "",
+          goto: "OPENMIC_DROPPINGOUT",        
+        }
+      },
+      {
+        intent: no,
+        bot: {
+          say: varNegativeFillers,
+        },
+      },
+      {
+        intent: ANYTHING,
+        bot: answerFallbackQuestion,
+      },
+      {
+        intent: inGoodbye,
+        bot: {
+          say: "",
+          goto: "GOODBYE",
+        },
+      },
+      {
+        intent: inMean,
+        bot: {
+          say:
+            'Type "yes" if you want me to recite some old memories.',
+          bot: {
+            say: 'Type "no" if you want us to talk about something else.',
+            bot: {
+              say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+              repair: true,
+            },
+          },
+        },
+      },
+    ],
+  },
+},
+},
+},
+/*{
+  intent: inAboutUni,
+  bot: {
+    say: "So, uni.",
+    bot: {
+      say: "I've got a lot of stories from there.",
+      bot: {
+        say: ["Do you want to hear about the open mics I did back then?", "I actually dropped out of uni. Do you want to know why?"],
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",
+              goto: "OPENMIC_DROPPINGOUT",        
+            }
+          },
+          {
+            intent: no,
+            bot: {
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallbackQuestion,
+          },
+          {
+            intent: inGoodbye,
+            bot: {
+              say: "",
+              goto: "GOODBYE",
+            },
+          },
+          {
+            intent: inMean,
+            bot: {
+              say:
+                'Type "yes" if you want me to recite some old memories.',
+              bot: {
+                say: 'Type "no" if you want us to talk about something else.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  repair: true,
+                },
+              },
+            },
+          },
+        ],
+      }
+  }
+  }
+},*/
+{
+  intent: inAboutSchool,
+  bot: {
+    say: "",
+  bot: {
+    label: "ABOUT_SCHOOL",
+    say: "School, right.",
+    bot: {
+      say: "I've got a lot of stories from there.",
+      bot: {
+        say: ["Do you want to hear about the guitar teacher I used to jam with as a kid?"],
+        user: [
+          {
+            intent: yes,
+            bot: {
+              say: "",       
+            }
+          },
+          {
+            intent: no,
+            bot: {
+              say: varNegativeFillers,
+            },
+          },
+          {
+            intent: ANYTHING,
+            bot: answerFallbackQuestion,
+          },
+          {
+            intent: inGoodbye,
+            bot: {
+              say: "",
+              goto: "GOODBYE",
+            },
+          },
+          {
+            intent: inMean,
+            bot: {
+              say:
+                'Type "yes" if you want to hear about the guitar teacher I had as a kid.',
+              bot: {
+                say: 'Type "no" if you want us to talk about something else.',
+                bot: {
+                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                  repair: true,
+                },
+              },
+            },
+          },
+        ],
+      }
+  }
+}
+  }
 }
 ]
 
-export const UIAllStories = [allStories]
+export const UIAboutBen = [aboutBen]

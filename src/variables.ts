@@ -106,6 +106,7 @@ export const varAsk = [
   "Would you like to ask me some other question?",
   "How about you ask me another question?",
   "Is there anything else you would like to know?",
+  "Is there anything else you would like to ask me?",
   "Do you have any other question for me?",
 ]
 
@@ -119,7 +120,7 @@ export const varSorryAgain = [
 ]
 
 export const varBuiltExampleQuestions = 
-  ['For example, if you ask me "what\'s the name of your last album", or "when did you release your first EP"...',
+  ['For example, if you ask me "what do you think about university?", or "when did you release your first EP"...',
   'For example, if you ask me "what\'s the name of your first EP", or "when did you release your latest album"...',
   'For example, if you ask me "when is your next concert", or "where were you born"...',
   'For example, if you ask me "where were you born", or "when is your next concert"...']

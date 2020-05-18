@@ -1,6 +1,6 @@
 import { BotTurn, BridgeTurn, ANYTHING } from "narratory"
 import { varGreetings, varlyricGreetings, varNegativeFillers } from "./variables"
-import { yes, no, inWhatToAsk, inMean } from "./Intents/basicQuestions"
+import { yes, no, inWhatToAsk, inMean, inHowBuilt } from "./Intents/smallTalk"
 import { anythingNarrative } from "./answerFallback"
 import { whatToAsk} from "./botInitiatives"
 
@@ -58,6 +58,13 @@ const queryQuestions: BotTurn = {
     {
       intent: inWhatToAsk,
       bot: whatToAsk,
+    },
+    {
+      intent: inHowBuilt,
+      bot: {
+        say: "",
+      goto: "HOW_BUILT",
+      } 
     },
   ],
 }

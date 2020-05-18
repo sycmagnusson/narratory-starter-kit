@@ -1,4 +1,5 @@
 import { Intent } from "narratory";
+import { entInfo } from "../allEntities";
 
 export const inFirstMusicalMemory: Intent = {
     examples: [
@@ -40,6 +41,7 @@ export const inFirstMusicalMemory: Intent = {
       "are you a morning person",
       "do you wake up early",
       "what does your mornings look like",
+      "tell me about your mornings",
     ],
   }
 
@@ -66,9 +68,39 @@ export const inFirstMusicalMemory: Intent = {
       "Mazzy Star",
     ],
   }
+
+ /* export const inAboutCollege: Intent = {
+    entities: {INFO: entInfo},
+    examples: [
+    "_INFO about college",
+    "what about college",
+    "how was college",
+    ]
+  }
+
+  export const inAboutUni: Intent = {
+    entities: {INFO: entInfo},
+    examples: [
+    "_INFO about university",
+    "what about university",
+    "how was university",
+    ]
+  }*/
+
+  export const inAboutSchool: Intent = {
+    entities: {INFO: entInfo},
+    examples: [
+    "_INFO about school",
+    "what about school",
+    "how was school",
+    ]
+  }
   
   export const intents = [inMazzyStar, 
     inFirstMusicalMemory,
     inMumUseSpotify,
     inDoInTheMorning,
-    inFriendsMusicTaste]
+    inFriendsMusicTaste, 
+    /*inAboutUni,
+    inAboutCollege,*/
+    inAboutSchool]

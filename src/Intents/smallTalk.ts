@@ -1,5 +1,5 @@
 import { Intent } from "narratory"
-import { entHello, entHowAreYou, entHowIsDay, entWhatsUp, entNiceMeetingYou, entOld, entBirthday, entBorn, entWhereGrowUp, entHomeTown, entUK, entReal, entReally, entLiveShows, entPerforming, entUpcoming, entGoodbye, entName, entFirst, entMiddle, entLast, entFull, entWhen, entWhere, entPlace, entYes, entNo, entMean, entInfo, entIDK, entHow, entWork, entBuild, entCan, entAnswer, entAble, entAnother, entQuestion, entAsk, entSomething, entHelp } from "../allEntities"
+import { entHello, entHowAreYou, entHowIsDay, entWhatsUp, entNiceMeetingYou, entOld, entBirthday, entBorn, entWhereGrowUp, entHomeTown, entUK, entReal, entReally, entLiveShows, entPerforming, entUpcoming, entGoodbye, entName, entFirst, entMiddle, entLast, entFull, entWhen, entWhere, entPlace, entYes, entNo, entMean, entInfo, entIDK, entHow, entWork, entBuild, entCan, entAnswer, entAble, entAnother, entQuestion, entAsk, entSomething, entHelp, entBot } from "../allEntities"
 
 /* | Name | First Name | Middle Name | Last Name | Full Name |
    | Hello | How Are You | How Is Day | What's Up | Nice Meeting You |
@@ -246,7 +246,7 @@ export const inMean: Intent = {
 }
 
 export const inHowBuilt: Intent = {
-  entities: { HOW: entHow, WORK: entWork, BUILD: entBuild, CAN: entCan, ANSWER: entAnswer, ABLE: entAble },
+  entities: { HOW: entHow, WORK: entWork, BUILD: entBuild, CAN: entCan, ANSWER: entAnswer, ABLE: entAble, BOT: entBot},
   examples: [
     "_HOW were you _BUILD",
     "how did someone _BUILD you",
@@ -254,6 +254,8 @@ export const inHowBuilt: Intent = {
     "_HOW _CAN you _ANSWER",
     "_HOW do you _ANSWER",
     "_HOW are you _ABLE to _ANSWER",
+    "what _CAN you _ANSWER?",
+    "are you a _BOT"
   ],
 }
 
@@ -296,7 +298,6 @@ export const inWhatToAsk: Intent = {
     "what _QUESTION _CAN i _ASK",
     "what _QUESTION _CAN you _ANSWER?",
     "what _QUESTION do you _KNOW?",
-    "what _CAN you _ANSWER?",
     "what are you _ABLE to _ANSWER",
     "what _QUESTION are you _ABLE to _ANSWER",
     "what to _ASK?",

@@ -1,6 +1,6 @@
 import { BotTurn } from "narratory"
 import { varNegativeFillers, varAskNegative, varAsk } from "./variables"
-import { no } from "./Intents/basicQuestions"
+import { no } from "./Intents/smallTalk"
 
 export const bridge: BotTurn = {
   say: [

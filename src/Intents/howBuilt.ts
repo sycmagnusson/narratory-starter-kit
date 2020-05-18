@@ -56,7 +56,7 @@ export const inAboutAlbum: Intent = {
 
 export const inAboutEveryKingdom: Intent = {
   entities: { EK: entEK },
-  examples: ["tell me about _EK", "i want to hear about _EK", "info about _EK", "can you tell me about _EK"],
+  examples: ["tell me about _EK", "i want to hear about _EK", "info about _EK", "can you tell me about _EK", "_EK"],
 }
 
 export const inReleaseDateEveryKingdom: Intent = {
@@ -71,6 +71,7 @@ export const inAboutIFWWW: Intent = {
     "i want to hear about _IFWWW",
     "info about _IFWWW",
     "can you tell me about _IFWWW",
+    "_IFWWW"
   ],
 }
 
@@ -81,7 +82,7 @@ export const inReleaseDateIFWWW: Intent = {
 
 export const inAboutNoondayDream: Intent = {
   entities: { ND: entND },
-  examples: ["tell me about _ND", "i want to hear about _ND", "info about _ND", "can you tell me about _ND"],
+  examples: ["tell me about _ND", "i want to hear about _ND", "info about _ND", "can you tell me about _ND", "_ND"],
 }
 
 export const inReleaseDateNoondayDream: Intent = {
@@ -194,7 +195,8 @@ export const inAboutGamesInTheDark: Intent = {
     "tell me about _GAMESINTHEDARK", 
     "i want to hear about _GAMESINTHEDARK", 
     "info about _GAMESINTHEDARK", 
-    "can you tell me about _GAMESINTHEDARK"
+    "can you tell me about _GAMESINTHEDARK",
+    "_GAMESINTHEDARK"
   ]
 }
 
@@ -211,7 +213,8 @@ export const inAboutTheseWaters: Intent = {
     "tell me about _THESEWATERS", 
     "i want to hear about _THESEWATERS", 
     "info about _THESEWATERS", 
-    "can you tell me about _THESEWATERS"
+    "can you tell me about _THESEWATERS",
+    "_THESEWATERS"
   ],
 }
 
@@ -228,7 +231,8 @@ export const inAboutOldPine: Intent = {
     "tell me about _OLDPINE", 
     "i want to hear about _OLDPINE", 
     "info about _OLDPINE", 
-    "can you tell me about _OLDPINE"
+    "can you tell me about _OLDPINE",
+    "_OLDPINE"
   ],
 }
 
@@ -245,7 +249,8 @@ export const inAboutBHWRDLIVE: Intent = {
     "tell me about _BHWRDLIVE", 
     "i want to hear about _BHWRDLIVE", 
     "info about _BHWRDLIVE", 
-    "can you tell me about _BHWRDLIVE"
+    "can you tell me about _BHWRDLIVE",
+    "_BHWRDLIVE"
   ],
 }
 
@@ -262,7 +267,8 @@ export const inAboutTheBurghIsland: Intent = {
     "tell me about _THEBURGHISLAND", 
     "i want to hear about _THEBURGHISLAND", 
     "info about _THEBURGHISLAND", 
-    "can you tell me about _THEBURGHISLAND"
+    "can you tell me about _THEBURGHISLAND",
+    "_THEBURGHISLAND"
   ],
 }
 

@@ -23,10 +23,10 @@ import {
   inHowManyEP,
   inAboutTheseWaters,
   inAboutOldPine,
-} from "../Intents/aboutMusic"
+} from "../Intents/howBuilt"
 import { UserTurn, ANYTHING } from "narratory"
 import { varContinueAlbum, varAskNegative, varPositiveFillers, varNegativeFillers, varContinueEP } from "../variables"
-import { yes, no, inMean, inGoodbye } from "../Intents/basicQuestions"
+import { yes, no, inMean, inGoodbye } from "../Intents/smallTalk"
 import { answerFallbackQuestion, answerFallbackAlbums, answerFallbackEP } from "../answerFallback"
 
 export const aboutMusic: UserTurn[] = [
@@ -81,7 +81,7 @@ export const aboutMusic: UserTurn[] = [
   {
     intent: inAboutEveryKingdom,
     bot: {
-      say: ["Oh, ”Every Kingdom”.", "Right. ”Every Kingdom”."],
+      say: ['Oh, ”Every Kingdom”.', 'Right. ”Every Kingdom”.'],
       bot: {
         label: "ABOUT_EVERYKINGDOM",
         say: "It took like a year and a half for us to record.",
@@ -94,7 +94,7 @@ export const aboutMusic: UserTurn[] = [
                 bot: {
                   say: "It turned into a huge melting pot. ",
                   bot: {
-                    say: "We had around 22 songs, then it got all whittled down and we ended up with a record.",
+                    say: "We had around 22 songs, then it got all whittled down and then, erm, we ended up with a record.",
                     bot: {
                       say: ['"Every Kingdom" was recorded in a barn. Do you want to hear more about it?',],
                     user: [
@@ -119,16 +119,14 @@ export const aboutMusic: UserTurn[] = [
                                 {
                                   intent: yes,
                                   bot: {
-                                    say: "So, in the winter, we had an alarm clock at 4 o’clock in the morning.",
+                                    say: "In the winter, we had an alarm clock at 4 o’clock in the morning.",
                                     bot: {
-                                      say: "Just to make sure that someone would get up and put a log on the fire.",
+                                      say: "So that someone would get up and put a log on the fire.",
                                       bot: {
-                                        say: "Otherwise, it would be really cold when we got up...",
-                                        bot: {
-                                          say: "... and everything would freeze.",
+                                        say: "Otherwise, it would be really cold when we got up and everything would freeze.",
                                           bot: {
                                             say: ["Hey, came to think of it. I've got this story about Tony, the mouse. Do you want to hear about him?",
-                                            "Apart from running away from London, do you want to hear of what inspired us to record in a barn?",
+                                            "Apart from running away from London, do you want to hear of what the inspiration to record in a barn was?",
                                             'Recording in a studio was new to all of us. Do you want me to tell you about the some of the difficulties we faced when recording "Every Kingdom"?'],
                                             user: [
                                               {
@@ -173,7 +171,6 @@ export const aboutMusic: UserTurn[] = [
                                           }
                                         }
                                       }
-                                    },
                                 },
                                 {
                                   intent: no,
@@ -1122,7 +1119,7 @@ export const aboutMusic: UserTurn[] = [
                     bot: {
                       say: "",
                       bot: {
-                        label: "WDYM_ABOUTALBUM",
+                        label: "WDYM_ABOUTEP",
                         say: "If you want to hear some more information about an EP, type the name of that EP.",
                         bot: {
                           say: 'Type "no" if you want us to move on to another topic.',

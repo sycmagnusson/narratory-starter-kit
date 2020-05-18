@@ -1,5 +1,5 @@
 import { BotTurn, BridgeTurn, ANYTHING } from "narratory"
-import { yes, no, inGoodbye, inAnotherQuestion, inWhatToAsk, inMean } from "./Intents/basicQuestions"
+import { yes, no, inGoodbye, inAnotherQuestion, inWhatToAsk, inMean } from "./Intents/smallTalk"
 import { anythingMakeSure, generalAnswerFallback } from "./answerFallback"
 import {
   varSorryAgain,
@@ -8,7 +8,6 @@ import {
   varAskSmallTalk,
   varPositiveFillers,
 } from "./variables"
-import { inTonyTheMouse, inInspirationEK, inDifficultiesEK } from "./Intents/storiesMusic"
 
 export const anotherQuestion: BotTurn = {
   label: "ANOTHER_QUESTION",
@@ -174,7 +173,7 @@ export const makeSure: BotTurn = {
     {
       intent: no,
       bot: {
-        say: varPositiveFillers,
+        say: "Alright",
       },
     },
     {
@@ -200,8 +199,7 @@ export const makeSure: BotTurn = {
 export const whatToAsk: BotTurn = {
   label: "WHAT_TO_ASK",
   say: [
-    "I could tell you about my mornings if you ask me.",
-    "If you ask me about my friends' taste in music, I will tell you.",
+    "How about you ask me what I think about university?",
   ],
   user: [
     {
@@ -224,16 +222,12 @@ export const whatToAsk: BotTurn = {
         bot: {
           label: "WHAT_TO_ASK_YES",
           say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
-        bot: {
-          say: "If you want to know the full story, I can tell you.",
-          bot: {
-            say: "All you have to do is ask.",
+          /*bot: {
+            say: "All you have to do is ask.",*/
             bot: {
-              say: 'You do this by typing "tell me about..." followed by what you want me to tell you about.',
+              say: 'Type "tell me about..." followed by what you want me to tell you.',
               repair: true,
-            },
           }
-          },
         },
       },
     },
@@ -329,7 +323,7 @@ export const smallTalk: BotTurn = {
   ],
 }
 
-export const queryInspirationTonyDifficulties: BridgeTurn = {
+export const queryTonyInspirationyDifficulties: BridgeTurn = {
   label: "TONY_INSPIRATION_DIFFICULTIES_QUERY",
   bot: {
     say: '"I watched the host drink all the wind and now she rambles through the who\'ve and who have nots...',
@@ -337,31 +331,126 @@ export const queryInspirationTonyDifficulties: BridgeTurn = {
     say: '... sorry, could you please remind me of what I was going to tell you?',
     user: [
       {
-        intent: inTonyTheMouse,
-        bot: {
+        intent: yes,
+        bot: 
+        {
           say: "",
-          goto: "TONY_THE_MOUSE",
-        }
+          goto: "WDYM_TID",
+        },
       },
       {
-        intent: inInspirationEK,
-        bot: {
-          say: "",
-          goto: "INSPIRATION_EK"
-        }
+        intent: no,
+        bot: 
+        {
+          say: varNegativeFillers,
+        },
       },
       {
-        intent: inDifficultiesEK,
-        bot: {
-          say: "",
-          goto: "DIFFICULTIES_EK",
-        }
+        intent: ANYTHING,
+        bot: generalAnswerFallback,
+      },
+        {
+          intent: inGoodbye,
+          bot: {
+            say: "",
+            goto: "GOODBYE",
+          },
+        },
+        {
+          intent: inMean,
+          bot: {
+            bot: {
+              label: "WDYM_TID",
+              say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+            bot: {
+              say: 'I was supposed to tell you a story, but "I forget where we were."',
+              bot: {
+                say: "Could you please remind me about what I was going to talk about?",
+                bot: {
+                say: 'I think it was something about our inspiration for setting up a studio in the barn, the difficiulties we faced whilst recording "Every Kingdom"...',
+                bot: {
+                  say: '... or was it Tony, the mouse?',
+                bot: {
+                  say: 'If you ask me about it, then I\'m sure it will come back to me.',
+                  bot: {
+                    say: 'You do this by typing "tell me about..." followed by what you want me to tell you.',
+                  repair: true,
+              },
+            },
+            },
+          },
+        },
       }
+    },
+  },
+},
     ]
   }
   }
 }
 
+export const queryOpenMicDroppingOut: BridgeTurn = {
+  label: "OPENMIC_DROPPINGOUT",
+  bot: {
+    say: '"I may be floating through memories, with maybe the broken wings on a butterfly...',
+  bot: {
+    say: '... sorry, could you please remind me of what I was going to tell you?',
+    user: [
+      {
+        intent: yes,
+        bot: 
+        {
+          say: "",
+          goto: "WDYM_OD",
+        },
+      },
+      {
+        intent: no,
+        bot: 
+        {
+          say: varNegativeFillers,
+        },
+      },
+      {
+        intent: ANYTHING,
+        bot: generalAnswerFallback,
+      },
+        {
+          intent: inGoodbye,
+          bot: {
+            say: "",
+            goto: "GOODBYE",
+          },
+        },
+        {
+          intent: inMean,
+          bot: {
+            bot: {
+              label: "WDYM_OD",
+              say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+            bot: {
+              say: 'I was supposed to tell you a story, but "I forget where we were."',
+              bot: {
+                say: "Could you please remind me about what I was going to talk about?",
+                bot: {
+                  say: "I think it was something about the open mics at uni, or why I decided to drop out before I finished my degree.",
+              bot: {
+                say: 'If you ask me about it, I\'m sure it will come back to me.', 
+                bot: {
+                  say: 'You do this by typing "tell me about..." followed by what you want me to tell you.',
+                repair: true,
+              },
+            },
+            },
+          },
+        },
+      },
+      }
+    },
+    ]
+  }
+  }
+}
 
 export const botInitiatives = [
   askNegative,
@@ -371,5 +460,5 @@ export const botInitiatives = [
   whatToAskQuery,
   smallTalk,
   movingOn,
-  queryInspirationTonyDifficulties
+  queryTonyInspirationyDifficulties
 ]

@@ -746,7 +746,182 @@ export const entYes: Entity = {
         "gladly",
         "please",
         "yes, please",
-        "ye"]
+        "ye",
+        "why not"]
 }
 ]
 }
+
+export const entTonyTheMouse: Entity = {
+  name: "TONY_THE_MOUSE",
+  enums: [
+    {
+      name: "tony the mouse", alts: ["tony", "tonythemouse"]
+    }
+  ]
+}
+
+export const entAnimalsInBarn: Entity = {
+  name: "ANIMALS_IN_BARN",
+  enums: [
+    {
+      name: "animals", alts: ["mice", "birds"]
+    }
+  ]
+}
+
+export const entSheeps: Entity = {
+  name: "SHEEPS",
+  enums: [
+    {
+      name: "sheep", alts: ["sheeps", "mutton", "woolly"]
+    }
+  ]
+}
+
+export const entPromise: Entity = {
+  name: "PROMISE",
+  enums: [
+    {
+      name: "promise"
+    }
+  ]
+}
+
+export const entBarn: Entity = {
+  name: "BARN",
+  enums: [
+    {
+      name: "barn", alts: ["outbuilding", "shed", "farm building"]
+    }
+  ]
+}
+
+export const entMeaning: Entity = {
+  name: "MEANING",
+  enums: [
+    {
+      name: "meaning", alts: ["definition", "context", "symbolization", "symbolize", "mean", "define"]
+    }
+  ]
+}
+
+export const entDifficult: Entity = {
+  name: "DIFFICULT",
+  enums: [
+    {
+      name: "difficult", alts: ["hard", "challenging", "tough", "bothersome", "problematic"]
+    }
+  ]
+}
+
+export const entLike: Entity = {
+  name: "LIKE",
+  enums: [
+    {
+      name: "like", alts: ["enjoy", "fond of", "admire", "appreciate", "love", "adore", "fancy", "cherish", "dig", "relish", "favor", "rejoice in"]
+    }
+  ]
+}
+
+export const entBonIver: Entity = {
+  name: "BONIVER",
+  enums: [
+    {
+      name: "bon iver", alts: ["boniver", "Justin Vernon"]
+    }
+  ]
+}
+
+export const entWDYT: Entity = {
+  name: "WDYT",
+  enums: [
+    {
+      name: "what do you think of", alts: ["what you think of", "how do you feel about", "how you feel about", "how do you think of", "how you think of", "what you say about", "what are your feelings towards", "what your feelings towards", "what are your thoughts about", "what are your thoughts regarding", "what is your opinion about"]
+    }
+  ]
+}
+
+export const entInspire: Entity = {
+  name: "INSPIRE",
+  enums: [
+    {
+      name: "inspire", alts: ["influence", "instill", "spur", "enkindle", "inspired", "influenced", "instilled", "enkindled", "inspiration"]
+    }
+  ]
+}
+
+export const entDamienRice: Entity = {
+  name: "DAMIENRICE",
+  enums: [
+    {
+      name: "damien rice", alts: ["damienrice"]
+    }
+  ]
+}
+
+export const entBot: Entity = {
+  name: "BOT",
+  enums: [
+    {
+      name: "bot", alts: ["chatbot", "bott", "bått", "robot", "conversational agent"],
+    }
+  ]
+}
+
+export const entQuit: Entity = {
+  name: "QUIT",
+  enums: [
+    {
+      name: "quit", alts: ["stop", "drop out", "abandon", "vacate", "leave", "desert", "walk out", "give up", "finish", "discontinue", "relinquish", "cancel", "forgo", "withdraw", "pack in", "terminate", "halt"],
+    }
+  ]
+}
+
+export const entUni: Entity = {
+  name: "UNI",
+  enums: [
+    {
+      name: "uni", alts: ["school", "university", "uni", "college"],
+    }
+  ]
+}
+
+export const entRegret: Entity = {
+  name: "REGRET",
+  enums: [
+    {
+      name: "regret", alts: ["feel sorry about", "feel contrite about", "feel apologetic about", "feel remorse about", "feel remorse for", "rue", "repent of", "repent for", "feel repentant about"],
+    }
+  ]
+}
+
+export const entWhy: Entity = {
+  name: "WHY",
+  enums: [
+    {
+      name: "why", alts: ["what's the reason", "how come"],
+    }
+  ]
+}
+
+export const entEnroll: Entity = {
+  name: "ENROLL",
+  enums: [
+    {
+      name: "enroll", alts: ["enroll", "go", "enlist", "start", "enter", "engage", "join", "register"],
+    }
+  ]
+}
+
+export const entLearn: Entity = {
+  name: "LEARN",
+  enums: [
+    {
+      name: "learn", alts: ["gain", "get", "grasp", "master", "pick up", "figure out"],
+    }
+  ]
+}
+
+
+

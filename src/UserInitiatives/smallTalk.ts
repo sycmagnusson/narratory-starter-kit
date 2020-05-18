@@ -22,7 +22,7 @@ import {
   inGoodbye,
   inHowBuilt,
   inBirthday,
-} from "../Intents/basicQuestions"
+} from "../Intents/smallTalk"
 import {
   varThatsThat,
   varContinue,
@@ -244,7 +244,7 @@ export const basicQuestions: UserTurn[] = [
       bot: {
         say: ["In South-west London, Richmond.", "In Richmond. South-west London"],
       bot: {
-        say: "Do you want to hear a story about where I grew up?",
+        say: "Do you want to hear more about whwre I grew up?",
         user: [
           {
             intent: yes,
@@ -574,8 +574,8 @@ export const basicQuestions: UserTurn[] = [
             bot: {
               say: "... well, you'll find out what I'd answer if you ask me about it.",
               bot: {
-                say: "Try and type a question for me.",
-                goto: "QUERY_QUESTION",
+                say: 'Try and type a question for me. You do this by typing "tell me about..." followed by what you want me to tell you.',
+                repair: true,
               },
             },
           },
