@@ -26,14 +26,11 @@ import {
 import {
   varThatsThat,
   varContinue,
-  varAskNegative,
   varNegativeFillers,
   varPositiveFillers,
-  varWhatToAsk,
-  varBuiltExampleQuestions,
 } from "../variables"
 
-export const basicQuestions: UserTurn[] = [
+export const smallTalk: UserTurn[] = [
   {
     intent: inName,
     bot: {
@@ -120,8 +117,7 @@ export const basicQuestions: UserTurn[] = [
         'Er. "I\'ll have plenty of time to think about it."',
         '"I wish I had all my friends somewhere drinking." Heh.',
         'Hmm. "I could lay here for a while." ',
-        '"I\'ve been worrying that my time is a little unclear." Yeah.',
-        'Er. "I\'ve been worrying that my time is a little unclear."',
+        'Yeah. "I\'ve been worrying that my time is a little unclear."',
       ],
     },
   },
@@ -235,192 +231,6 @@ export const basicQuestions: UserTurn[] = [
       },
     },
   },*/
-  {
-    intent: inBirthplace,
-    bot: {
-      say: ["Erm...", "Er..."],
-      bot: {
-        say: ["I was born on April 27th, 1987."],
-      bot: {
-        say: ["In South-west London, Richmond.", "In Richmond. South-west London"],
-      bot: {
-        say: "Do you want to hear more about whwre I grew up?",
-        user: [
-          {
-            intent: yes,
-            bot: {
-              say: "",
-              goto: "GROW_UP",
-            },
-          },
-          {
-            intent: no,
-            bot: {
-              say: varNegativeFillers,
-            },
-          },
-          {
-            intent: inMean,
-            bot: {
-              say: 'Type "yes" if you want me to tell you more about where I grew up.',
-              bot: {
-                say: 'Type "no" if you want us to move on to another topic.',
-                bot: {
-                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
-                  repair: true,
-                  user: [
-                    {
-                      intent: yes,
-                      bot: {
-                        say: "",
-                        goto: "GROW_UP",
-                      },
-                    },
-                    {
-                      intent: no,
-                      bot: {
-                        say: "varWhatToAsk,",
-                        goto: "WHAT_TO_ASK_QUERY",
-                      },
-                    },
-                    {
-                      intent: inGoodbye,
-                      bot: {
-                        say: "",
-                        goto: "GOODBYE",
-                      },
-                    },
-                  ],
-                },
-              },
-            },
-          },
-        ],
-      },
-    },
-  },
-}
-  },
-  {
-    intent: inGrowUp, //ADD DEVON
-    bot: {
-      say: ["I grew up in the doldrums of Middlesex."],
-      bot: {
-        say: varContinue,
-        user: [
-          {
-            intent: yes,
-            bot: {
-              say: "",
-              bot: {
-                label: "GROW_UP",
-                say: "Me and my family lived right under the Heathrow path.",
-                bot: {
-                  say: "I remember standing at the end of the garden.",
-                  bot: {
-                    say: "It was me, my mum, and my older sister Krysia.",
-                    bot: {
-                      say: "Oh, and a jeweller.",
-                      bot: {
-                        say: "We waved at my dad when he got back from one of his business trips.",
-                        bot: {
-                          say: varContinue,
-                          user: [
-                            {
-                              intent: yes,
-                              bot: {
-                                say: "",
-                                goto: "ABOUT_DEVON",
-                              },
-                            },
-                            {
-                              intent: no,
-                              bot: {
-                                say: varNegativeFillers,
-                              },
-                            },
-                            {
-                              intent: inMean,
-                              bot: {
-                                say: 'Type "yes" if you want me to tell you more about Devon.',
-                                bot: {
-                                  say: 'Type "no" if you want us to move on to another topic.',
-                                  bot: {
-                                    say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
-                                    user: [
-                                      {
-                                        intent: yes,
-                                        bot: {
-                                          say: "",
-                                          goto: "ABOUT_DEVON",
-                                        },
-                                      },
-                                      {
-                                        intent: no,
-                                        bot: {
-                                          say: varWhatToAsk,
-                                          goto: "WHAT_TO_ASK_QUERY",
-                                        },
-                                      },
-                                      {
-                                        intent: inGoodbye,
-                                        bot: {
-                                          say: "",
-                                          goto: "GOODBYE",
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-          {
-            intent: no,
-            bot: {
-              say: varNegativeFillers,
-            },
-          },
-          {
-            intent: inMean,
-            bot: {
-              say: 'Type "yes" if you want me to tell you more about where I grew up.',
-              bot: {
-                say: 'Type "no" if you want us to move on to another topic.',
-                bot: {
-                  say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
-                  user: [
-                    {
-                      intent: yes,
-                      bot: {
-                        say: "",
-                        goto: "GROW_UP",
-                      },
-                    },
-                    {
-                      intent: no,
-                      bot: {
-                        say: "varWhatToAsk,",
-                        goto: "WHAT_TO_ASK_QUERY",
-                      },
-                    },
-                  ],
-                },
-              },
-            },
-          },
-        ],
-      },
-    },
-  },
   {
     intent: inAboutBen, //NEEDS TO BE UPDATED
     bot: {
@@ -563,26 +373,9 @@ export const basicQuestions: UserTurn[] = [
     intent: inHowBuilt,
     bot: {
       say: "",
-      bot: {
-        label: "HOW_BUILT",
-        say:
-          "I'm a scripted bot, which means that I pick up pre-written keywords in conversations with people I talk to.",
-        bot: {
-          say: "These keywords helps me to decide what to answer.",
-          bot: {
-            say: varBuiltExampleQuestions,
-            bot: {
-              say: "... well, you'll find out what I'd answer if you ask me about it.",
-              bot: {
-                say: 'Try and type a question for me. You do this by typing "tell me about..." followed by what you want me to tell you.',
-                repair: true,
-              },
-            },
-          },
-        },
-      },
+      goto: "HOW_BUILT",
     },
   },
 ]
 
-export const UIBasicQuestions = [basicQuestions]
+export const UISmallTalk = [smallTalk]

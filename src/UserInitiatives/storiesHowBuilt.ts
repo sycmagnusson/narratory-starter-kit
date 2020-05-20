@@ -13,7 +13,7 @@ import { yes, no, inGoodbye, inMean } from "../Intents/smallTalk"
 import { varNegativeFillers, varPositiveFillers } from "../variables"
 import { answerFallbackQuestion } from "../answerFallback"
 
-export const storiesMusic: UserTurn[] = [
+export const howBuiltStories: UserTurn[] = [
   {
     intent: inTonyTheMouse,
     bot: {
@@ -419,4 +419,4 @@ export const storiesMusic: UserTurn[] = [
   },
 ]
 
-export const UIStoriesMusic = [storiesMusic]
+export const UIHowBuiltStories = [howBuiltStories]

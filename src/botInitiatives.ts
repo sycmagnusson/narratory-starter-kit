@@ -11,7 +11,12 @@ import {
 
 export const anotherQuestion: BotTurn = {
   label: "ANOTHER_QUESTION",
-  say: ["Sure, you can ask me about my mum.", "For sure. You can ask me about Mazzy Star."],
+  //EXAMPLE-QUERIES
+  say: ["Sure, you can ask me about my first musical memory.", 
+  "For sure. My mum uses Spotify in an interesting way. Do you want me to tell you about it?",
+  "I can tell you what I think about my friend's music taste, if you ask me.",
+  "Alright. Ask me about Mazzy Star.",
+  "Do you want to hear about the guitar teacher I used to jam with?"],
   user: [
     {
       intent: no,
@@ -24,7 +29,7 @@ export const anotherQuestion: BotTurn = {
       intent: yes,
       bot: {
         say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
-        goto: "WHAT_TO_ASK_YES",
+        goto: "WDYM_WHATTOASK",
       },
     },
     {
@@ -40,7 +45,7 @@ export const anotherQuestion: BotTurn = {
         say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
       bot: {
         say: "",
-        goto: "WHAT_TO_ASK_YES",
+        goto: "WDYM_WHATTOASK",
       },
     }
     },
@@ -196,18 +201,27 @@ export const makeSure: BotTurn = {
   ]
 }
 
-export const whatToAsk: BotTurn = {
+export const whatToAsk: BridgeTurn = {
   label: "WHAT_TO_ASK",
-  say: [
-    "How about you ask me what I think about university?",
-  ],
+  bot:
+  {
+    say: [
+      "Hmm-hmm...", "Hmm..."],
+    bot: {
+      //EXAMPLE-QUERIES
+  say: ["How about you ask me wherebouts I grew up?", "Try and ask me what I think about university."],
   user: [
     {
       intent: inMean,
-      bot: {
-        say: "",
+        bot: {
+          say: "", 
+        bot: {
+          label: "WDYM_WHATTOASK",
+        say: 'Just type "tell me about" followed by what you want me to tell you.',
         goto: "WHAT_TO_ASK_YES",
+        repair: true,
       },
+    }
     },
     {
       intent: no,
@@ -218,19 +232,12 @@ export const whatToAsk: BotTurn = {
     {
       intent: yes,
       bot: {
-        say: "",
+        say: "Go ahead then.",
         bot: {
-          label: "WHAT_TO_ASK_YES",
-          say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
-          /*bot: {
-            say: "All you have to do is ask.",*/
-            bot: {
-              say: 'Type "tell me about..." followed by what you want me to tell you.',
-              repair: true,
+          say: 'Type "tell me about" followed by what you want me to tell you.'
           }
         },
       },
-    },
     {
       intent: inAnotherQuestion,
       bot: anotherQuestion,
@@ -240,6 +247,73 @@ export const whatToAsk: BotTurn = {
       bot: generalAnswerFallback,
     },
   ],
+    }
+  }
+}
+    
+export const howBuilt: BridgeTurn = {
+  bot: {
+    say: "hi",
+    bot: {
+      label: "HOW_BUILT",
+    say:
+      "I'm a scripted bot, which means that I pick up pre-written keywords in conversations with people I talk to.",
+    bot: {
+      say: "These keywords helps me to decide what to answer.",
+      bot: {
+        //EXAMPLE-QUERIES
+        say: ['For example, if you ask me "when did you release your first album?", or "how many EPs have you released so far?"...',
+        'For example, if you ask me "what\'s the name of your first EP", or "when did you release your latest album"...'],
+        bot: {
+          say: "... well, you'll find out what I'd answer if you ask me about it.",
+          bot: {
+            say: 'Try and type a question for me.',
+            bot: {
+              say: 'You do this by typing "tell me about" followed by what you want me to tell you.',
+            user: [
+              {
+                intent: no,
+                bot: {
+                  say: varNegativeFillers,
+                  goto: "MAKE_SURE",
+                },
+              },
+              {
+                intent: yes,
+                bot: {
+                  say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+                  goto: "WDYM_WHATTOASK",
+                },
+              },
+              {
+                intent: inAnotherQuestion,
+                bot: {
+                  say: "",
+                  goto: "ANOTHER_QUESTION",
+                },
+              },
+              {
+                intent: inMean,
+                bot: {
+                  say: ["Er...", "Erm...", "So...", "Erm, so...", "So, erm..."],
+                bot: {
+                  say: "",
+                  goto: "WDYM_WHATTOASK",
+                },
+              }
+              },
+              {
+                intent: ANYTHING,
+                bot: generalAnswerFallback,
+              },
+            ],
+          }          
+        },
+      },
+    },
+  },
+}
+}
 }
 
 export const whatToAskQuery: BridgeTurn = {
@@ -373,7 +447,7 @@ export const queryTonyInspirationyDifficulties: BridgeTurn = {
                 bot: {
                   say: 'If you ask me about it, then I\'m sure it will come back to me.',
                   bot: {
-                    say: 'You do this by typing "tell me about..." followed by what you want me to tell you.',
+                    say: 'Go ahead and type "tell me about" followed by what you want me to tell you.',
                   repair: true,
               },
             },
@@ -392,7 +466,7 @@ export const queryTonyInspirationyDifficulties: BridgeTurn = {
 export const queryOpenMicDroppingOut: BridgeTurn = {
   label: "OPENMIC_DROPPINGOUT",
   bot: {
-    say: '"I may be floating through memories, with maybe the broken wings on a butterfly...',
+    say: '"I may be floating through memories, with maybe the broken wings on a butterfly..."',
   bot: {
     say: '... sorry, could you please remind me of what I was going to tell you?',
     user: [
@@ -437,7 +511,7 @@ export const queryOpenMicDroppingOut: BridgeTurn = {
               bot: {
                 say: 'If you ask me about it, I\'m sure it will come back to me.', 
                 bot: {
-                  say: 'You do this by typing "tell me about..." followed by what you want me to tell you.',
+                  say: 'Go ahead and type "tell me about" followed by what you want me to tell you.',
                 repair: true,
               },
             },
@@ -460,5 +534,7 @@ export const botInitiatives = [
   whatToAskQuery,
   smallTalk,
   movingOn,
-  queryTonyInspirationyDifficulties
+  queryTonyInspirationyDifficulties,
+  queryOpenMicDroppingOut,
+  howBuilt
 ]

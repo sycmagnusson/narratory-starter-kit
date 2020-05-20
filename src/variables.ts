@@ -92,9 +92,15 @@ export const varAskSmallTalk = [
 ]
 
 export const varWhatToAsk = [
-  "Then, what would you like to talk about instead?",
-  "Then, what do you want to talk about instead?",
-  "Then, what do you rather want to talk about?"
+  "Okay, then. What should we talk about instead?",
+  "Alright, let's move on. What do you want to talk about instead?",
+  "Let's move on then. What do you feel like talking about instead?",
+  "Okay, then. What do you want to talk about instead?",
+  "Okay, then. What do you feel like talking about instead?",
+  "Alright, let's move on. What should we talk about instead?",
+  "Alright, let's move on. What do you feel like talking about instead?",
+  "Let's move on then. What should we talk about instead?",
+  "Let's move on then. What do you want to talk about instead?",
 ]
 
 export const varAsk = [
@@ -118,32 +124,11 @@ export const varSorryAgain = [
   "Hey, sorry. Do you think you could say that one more time?",
   "Sorry, I didn't get that. Come again please?"
 ]
-
-export const varBuiltExampleQuestions = 
-  ['For example, if you ask me "what do you think about university?", or "when did you release your first EP"...',
-  'For example, if you ask me "what\'s the name of your first EP", or "when did you release your latest album"...',
-  'For example, if you ask me "when is your next concert", or "where were you born"...',
-  'For example, if you ask me "where were you born", or "when is your next concert"...']
-
 /*export const varSorryWhatToAsk = [
   "Sorry, mate.",
   "Sorry, hey.",
   "Sorry, what?."
 ]*/
-
-export const variables = [
-  varFillers,
-  varGreetings,
-  varlyricGreetings,
-  varFirstQuestion,
-  varThatsThat,
-  varContinue,
-  varContinueFurther,
-  varContinueAlbum,
-  varAskNegative,
-  varAsk,
-  varSorryAgain,
-]
 
 export const inOnlyLove: Intent = {
   examples: ["i love you", "i love your music"],

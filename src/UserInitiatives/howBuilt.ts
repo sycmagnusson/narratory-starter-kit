@@ -29,7 +29,7 @@ import { varContinueAlbum, varAskNegative, varPositiveFillers, varNegativeFiller
 import { yes, no, inMean, inGoodbye } from "../Intents/smallTalk"
 import { answerFallbackQuestion, answerFallbackAlbums, answerFallbackEP } from "../answerFallback"
 
-export const aboutMusic: UserTurn[] = [
+export const howBuiltQueries: UserTurn[] = [
   {
     intent: inReleaseDateEveryKingdom,
     bot: {
@@ -81,136 +81,143 @@ export const aboutMusic: UserTurn[] = [
   {
     intent: inAboutEveryKingdom,
     bot: {
-      say: ['Oh, ”Every Kingdom”.', 'Right. ”Every Kingdom”.'],
+      say: ["Oh, ”Every Kingdom”.", "Right. ”Every Kingdom”."],
       bot: {
         label: "ABOUT_EVERYKINGDOM",
         say: "It took like a year and a half for us to record.",
         bot: {
           say: "We saw every season, and then we started seeing all the seasons again.",
           bot: {
-            say: "We were in and out of the studio playing a lot of live stuff, and we kept coming back from touring, being like...",
+            say:
+              "We were in and out of the studio playing a lot of live stuff, and we kept coming back from touring, being like...",
+            bot: {
+              say: '... "we’ll do one more song".',
               bot: {
-                say: '... "we’ll do one more song".',
+                say: "It turned into a huge melting pot. ",
                 bot: {
-                  say: "It turned into a huge melting pot. ",
+                  say:
+                    "We had around 22 songs, then it got all whittled down and then, erm, we ended up with a record.",
                   bot: {
-                    say: "We had around 22 songs, then it got all whittled down and then, erm, we ended up with a record.",
-                    bot: {
-                      say: ['"Every Kingdom" was recorded in a barn. Do you want to hear more about it?',],
+                    say: ['"Every Kingdom" was recorded in a barn. Do you want to hear more about it?'],
                     user: [
                       {
                         intent: yes,
                         bot: {
                           say: "",
-                        bot: {
-                          label: "RECORDING_BARN",
-                          say: "Actually, it was just a concious effort to record near home.",
                           bot: {
-                            say: "Because for me, the big thing was just being near home.",
+                            label: "RECORDING_BARN",
+                            say: "Actually, it was just a conscious effort to record near home.",
                             bot: {
-                              say: "It wasn’t like running away from anywhere...",
+                              say: "Because for me, the big thing was just being near home.",
                               bot: {
-                              say: "... or I guess it was probably running away from London.",
-                              bot: {
-                                say: "I don’t wanna be in London for more than five days, heh.",
+                                say: "It wasn’t like running away from anywhere...",
                                 bot: {
-                                  say: "There's more to this story. Do you want me to go on?",
-                              user: [
-                                {
-                                  intent: yes,
+                                  say: "... or I guess it was probably running away from London.",
                                   bot: {
-                                    say: "In the winter, we had an alarm clock at 4 o’clock in the morning.",
+                                    say: "I don’t wanna be in London for more than five days, heh.",
                                     bot: {
-                                      say: "So that someone would get up and put a log on the fire.",
-                                      bot: {
-                                        say: "Otherwise, it would be really cold when we got up and everything would freeze.",
+                                      say: "There's more to this story. Do you want me to go on?",
+                                      user: [
+                                        {
+                                          intent: yes,
                                           bot: {
-                                            say: ["Hey, came to think of it. I've got this story about Tony, the mouse. Do you want to hear about him?",
-                                            "Apart from running away from London, do you want to hear of what the inspiration to record in a barn was?",
-                                            'Recording in a studio was new to all of us. Do you want me to tell you about the some of the difficulties we faced when recording "Every Kingdom"?'],
-                                            user: [
-                                              {
-                                                intent: yes,
-                                                bot: {
-                                                  say: "",
-                                                  goto: "TONY_INSPIRATION_DIFFICULTIES_QUERY",
-                                                }
-                                              },
-                                              {
-                                                intent: no, 
-                                                bot: {
-                                                  say: varNegativeFillers
-                                              },
-                                            },
-                                            {
-                                              intent: ANYTHING,
-                                              bot: answerFallbackQuestion,  
-                                            },
-                                            {
-                                              intent: inGoodbye,
+                                            say: "In the winter, we had an alarm clock at 4 o’clock in the morning.",
+                                            bot: {
+                                              say: "So that someone would get up and put a log on the fire.",
                                               bot: {
-                                                say: "",
-                                                goto: "GOODBYE",
-                                              },
-                                            },
-                                            {
-                                              intent: inMean,
-                                              bot: {
-                                                say: 'Type "yes" if you want me to keep reciting old memories.',
+                                                say:
+                                                  "Otherwise, it would be really cold when we got up and everything would freeze.",
                                                 bot: {
-                                                  say: 'Type "no" if you want us to talk about something else.',
-                                                  bot: {
-                                                    say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
-                                                    repair: true,
-                                                  },
+                                                  say: [
+                                                    "Hey, came to think of it. I've got this story about Tony, the mouse. Do you want to hear about him?",
+                                                    "Apart from running away from London, do you want to hear of what the inspiration to record in a barn was?",
+                                                    'Recording in a studio was new to all of us. Do you want me to tell you about the some of the difficulties we faced when recording "Every Kingdom"?',
+                                                  ],
+                                                  user: [
+                                                    {
+                                                      intent: yes,
+                                                      bot: {
+                                                        say: "",
+                                                        goto: "TONY_INSPIRATION_DIFFICULTIES_QUERY",
+                                                      },
+                                                    },
+                                                    {
+                                                      intent: no,
+                                                      bot: {
+                                                        say: varNegativeFillers,
+                                                      },
+                                                    },
+                                                    {
+                                                      intent: ANYTHING,
+                                                      bot: answerFallbackQuestion,
+                                                    },
+                                                    {
+                                                      intent: inGoodbye,
+                                                      bot: {
+                                                        say: "",
+                                                        goto: "GOODBYE",
+                                                      },
+                                                    },
+                                                    {
+                                                      intent: inMean,
+                                                      bot: {
+                                                        say: 'Type "yes" if you want me to keep reciting old memories.',
+                                                        bot: {
+                                                          say: 'Type "no" if you want us to talk about something else.',
+                                                          bot: {
+                                                            say:
+                                                              'Or type "goodbye" if you feel like you\'re done talking to me.',
+                                                            repair: true,
+                                                          },
+                                                        },
+                                                      },
+                                                    },
+                                                  ],
                                                 },
                                               },
                                             },
-                                            ]
-                                            }
-                                          }
-                                        }
-                                      }
-                                },
-                                {
-                                  intent: no,
-                                  bot: {
-                                    say: varNegativeFillers
-                                  }
-                                },
-                                {
-                                  intent: ANYTHING,
-                                  bot: answerFallbackQuestion, 
-                                },
-                                {
-                                  intent: inGoodbye,
-                                  bot: {
-                                    say: "",
-                                    goto: "GOODBYE",
-                                  },
-                                },
-                                {
-                                  intent: inMean,
-                                  bot: {
-                                    say: 'Type "yes" if you want me to tell you more about the recording process of "Every Kingdom".',
-                                    bot: {
-                                      say: 'Type "no" if you want us to talk about something else.',
-                                      bot: {
-                                        say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
-                                        repair: true,
-                                      },
+                                          },
+                                        },
+                                        {
+                                          intent: no,
+                                          bot: {
+                                            say: varNegativeFillers,
+                                          },
+                                        },
+                                        {
+                                          intent: ANYTHING,
+                                          bot: answerFallbackQuestion,
+                                        },
+                                        {
+                                          intent: inGoodbye,
+                                          bot: {
+                                            say: "",
+                                            goto: "GOODBYE",
+                                          },
+                                        },
+                                        {
+                                          intent: inMean,
+                                          bot: {
+                                            say:
+                                              'Type "yes" if you want me to tell you more about the recording process of "Every Kingdom".',
+                                            bot: {
+                                              say: 'Type "no" if you want us to talk about something else.',
+                                              bot: {
+                                                say: 'Or type "goodbye" if you feel like you\'re done talking to me.',
+                                                repair: true,
+                                              },
+                                            },
+                                          },
+                                        },
+                                      ],
                                     },
                                   },
                                 },
-                              ],
-                              }
-                            }
-                          }
+                              },
+                            },
+                          },
                         },
                       },
-                    },
-                  },
-                },
                       {
                         intent: no,
                         bot: {
@@ -249,8 +256,8 @@ export const aboutMusic: UserTurn[] = [
           },
         },
       },
+    },
   },
-},
   {
     intent: inReleaseDateIFWWW,
     bot: {
@@ -1206,4 +1213,4 @@ export const aboutMusic: UserTurn[] = [
   },
 ]
 
-export const UIAboutMusic = [aboutMusic]
+export const UIHowBuiltQueries = [howBuiltQueries]

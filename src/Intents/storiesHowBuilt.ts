@@ -72,7 +72,7 @@ export const inTonyTheMouse: Intent = {
   export const inPlayingLive: Intent = {
     entities: {INFO: entInfo, PERFORMING: entPerforming, LIKE: entLike, WDYT: entWDYT}, 
     examples: [
-      "can you _INFO what you _LIKE about _PERFORMING?",
+      /*"can you _INFO what you _LIKE about _PERFORMING?",*/
       "what is the best about _PERFORMING?",
       "what do you _LIKE about _PERFORMING?",
       "rocking out",
